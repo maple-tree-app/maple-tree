@@ -1,10 +1,11 @@
-<ul>
+<ul class="flex flex-row items-center">
+  <li class="h-full w-12 pr-2" ><%= link img_tag(Routes.static_path(@conn, "/images/maple-leaf.png")), to: Routes.page_path(@conn, :index) %></li>
 <%= if @current_user do %>
   <li><%= @current_user.email %></li>
   <li><%= link "Settings", to: Routes.user_settings_path(@conn, :edit) %></li>
   <li><%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete %></li>
 <% else %>
   <li><%= link "Register", to: Routes.user_registration_path(@conn, :new) %></li>
-  <li><%= link "Log in", to: Routes.user_session_path(@conn, :new) %></li>
+  <li><%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "lolll" %></li>
 <% end %>
 </ul>
