@@ -1,0 +1,15 @@
+<ul class="flex flex-row items-center text-xl antialiased font-sans">
+  <li class="h-full w-12" ><%= link img_tag(Routes.static_path(@conn, "/images/maple-leaf.png")), to: Routes.page_path(@conn, :index) %></li>
+  <Li class='pl-2 <%= apply_class_when_current_route(@conn, Routes.page_path(@conn, :index), "text-red-500") %>'>shopping list</li>
+  <Li class='pl-2 <%= apply_class_when_current_route(@conn, Routes.user_registration_path(@conn, :new), "text-red-500") %>'>expenses</li>
+  <Li class='pl-2'>tasks</li>
+  <li class="flex-grow">
+<%= if @current_user do %>
+  <li><%= @current_user.email %></li>
+  <li><%= link "Settings", to: Routes.user_settings_path(@conn, :edit), class: "pl-3" %></li>
+  <li><%= link "Log out", to: Routes.user_session_path(@conn, :delete), class: "pl-3",  method: :delete %></li>
+<% else %>
+  <li><%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "pl-3"  %></li>
+  <li><%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "pl-3" %></li>
+<% end %>
+</ul>
