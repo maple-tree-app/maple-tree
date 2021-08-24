@@ -37,7 +37,7 @@ defmodule MapleWeb do
       # Import convenience functions from controllers
       import Phoenix.Controller,
         only: [get_flash: 1, get_flash: 2, view_module: 1, view_template: 1]
-      
+
       import MapleWeb.PathHelpers
 
       # Include shared imports and aliases for views
@@ -47,9 +47,9 @@ defmodule MapleWeb do
 
   def live_view do
     quote do
+      import MapleWeb.PathHelpers
       use Phoenix.LiveView,
         layout: {MapleWeb.LayoutView, "live.html"}
-        import MapleWeb.PathHelpers
 
       unquote(view_helpers())
     end

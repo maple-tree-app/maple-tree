@@ -11,14 +11,7 @@
   </head>
   <body class="<%= @theme %> bg-white">
     <div class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
-      <header class="px-5 py-3">
-        <section>
-          <nav role="navigation">
-            <%= render "user_menu.html", assigns %>
-          </nav>
-        </section>
-      </header>
       <%= @inner_content %>
-  </div>
+    </div>
   </body>
 </html>

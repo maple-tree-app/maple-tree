@@ -22,6 +22,8 @@ defmodule MapleWeb.Router do
     pipe_through :browser
 
     live "/", PageLive, :index
+    live "/shopping_list", ShoppingListLive, :index
+    live "/users/register", UserRegistrationLive, :new
   end
 
   # Other scopes may use custom stacks.
@@ -40,7 +42,7 @@ defmodule MapleWeb.Router do
     import Phoenix.LiveDashboard.Router
 
     scope "/" do
-      pipe_through :browser
+      pipe_through [:browser, :require_authenticated_user]
       live_dashboard "/dashboard", metrics: MapleWeb.Telemetry
     end
   end
@@ -50,8 +52,6 @@ defmodule MapleWeb.Router do
   scope "/", MapleWeb do
     pipe_through [:browser, :redirect_if_user_is_authenticated]
 
-    get "/users/register", UserRegistrationController, :new
-    post "/users/register", UserRegistrationController, :create
     get "/users/log_in", UserSessionController, :new
     post "/users/log_in", UserSessionController, :create
     get "/users/reset_password", UserResetPasswordController, :new
