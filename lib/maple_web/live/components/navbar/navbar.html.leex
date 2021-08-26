@@ -1,4 +1,4 @@
- <nav class="px-5 py-3 pb-4 text-lg">
+ <nav class="px-5 py-3 dark:bg-black py-2 text-lg">
       <%# DESKTOP NAV  %>
       <div class="hidden md:flex items-center justify-between pb-2">
         <div class="flex items-center">
@@ -9,7 +9,7 @@
         </div>
         <div class="flex items-center">
           <%= live_patch "Login", to: Routes.shopping_list_path(@socket, :index), class: "pl-4" %>
-          <%= live_patch "Register", to: Routes.shopping_list_path(@socket, :index), class: "pl-4" %>
+          <%= live_patch "Register", to: Routes.user_registration_path(@socket, :new), class: "pl-4" %>
         </div>
       </div>
 

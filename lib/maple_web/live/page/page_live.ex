@@ -4,7 +4,10 @@ defmodule MapleWeb.PageLive do
   alias Phoenix.View
 
   @impl true
-  def mount(_params, _session, socket) do
+  def mount(_params, session, socket) do
+    # if locale = session["locale"] do
+    #   Gettext.put_locale(MapleWeb.Gettext, locale)
+    # end
     {:ok, socket}
   end
 

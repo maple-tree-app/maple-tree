@@ -94,8 +94,20 @@ defmodule MapleWeb.UserAuth do
     assign(conn, :current_user, user)
   end
 
-  def get_user_theme(conn, _opts) do
+  def set_user_theme(conn, _opts) do
     assign(conn, :theme, "dark")
+  end
+
+  def set_user_locale(conn, _opts) do
+    case conn.params["locale"] || get_session(conn, :locale) do
+      nil ->
+        IO.puts "NIL BY MOUTH"
+        conn
+      locale ->
+        IO.inspect locale
+        Gettext.put_locale(MapleWeb.Gettext, locale)
+        conn |> put_session(:locale, locale)
+    end
   end
 
   defp ensure_user_token(conn) do

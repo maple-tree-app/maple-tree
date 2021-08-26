@@ -1,21 +1,28 @@
-<h1>Register</h1>
+<main class="m-auto flex justify-center my-10">
+  <div class="flex flex-col align-center justify-center max-w-xl w-1/2 max-w-lg">
+    <h1>Register</h1>
 
-<%= form_for @changeset, "#", fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
-    </div>
-  <% end %>
+    <%= f = form_for @changeset, "#",
+        id: "register-form",
+        class: "flex flex-col"
+      %>
+      <%= if @changeset.action do %>
+        <div class="alert alert-danger">
+          <p>Oops, something went wrong! Please check the errors below.</p>
+        </div>
+      <% end %>
 
-  <%= label f, :email %>
-  <%= email_input f, :email, required: true %>
-  <%= error_tag f, :email %>
+      <%= label f, :email %>
+      <%= email_input f, :email, required: true %>
+      <%= error_tag f, :email %>
 
-  <%= label f, :password %>
-  <%= password_input f, :password, required: true %>
-  <%= error_tag f, :password %>
+      <%= label f, :password %>
+      <%= password_input f, :password, required: true %>
+      <%= error_tag f, :password %>
 
-  <div>
-    <%= submit "Register" %>
+      <div>
+        <%= submit "Register", phx_disable_with: "Registering..." %>
+      </div>
+    </form>
   </div>
-<% end %>
+</main>

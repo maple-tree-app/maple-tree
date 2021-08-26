@@ -14,7 +14,7 @@ defmodule MapleWeb.UserRegistrationLive do
   end
 
   defp add_changeset(socket) do
-    params = [changeset: Users.change_user_registration(%User{})]
+    params = [changeset: Users.change_user_registration(%User{}), trigger_submit: false]
     assign(socket, params)
   end
 

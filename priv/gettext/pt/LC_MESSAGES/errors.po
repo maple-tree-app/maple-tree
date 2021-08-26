@@ -16,7 +16,7 @@ msgstr ""
 
 ## From Ecto.Changeset.unique_constraint/3
 msgid "has already been taken"
-msgstr ""
+msgstr "já está sendo usado"
 
 ## From Ecto.Changeset.put_change/3
 msgid "is invalid"
@@ -97,4 +97,4 @@ msgid "must be equal to %{number}"
 msgstr ""
 
 msgid "welcome %{name}"
-msgstr "Welcome to Maple, %{name}"
+msgstr ""
