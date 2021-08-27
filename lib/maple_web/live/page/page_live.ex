@@ -5,9 +5,9 @@ defmodule MapleWeb.PageLive do
 
   @impl true
   def mount(_params, session, socket) do
-    # if locale = session["locale"] do
-    #   Gettext.put_locale(MapleWeb.Gettext, locale)
-    # end
+    if locale = session["locale"] do
+      Gettext.put_locale(MapleWeb.Gettext, locale)
+    end
     {:ok, socket}
   end
 

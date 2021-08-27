@@ -101,7 +101,6 @@ defmodule MapleWeb.UserAuth do
   def set_user_locale(conn, _opts) do
     case conn.params["locale"] || get_session(conn, :locale) do
       nil ->
-        IO.puts "NIL BY MOUTH"
         conn
       locale ->
         IO.inspect locale

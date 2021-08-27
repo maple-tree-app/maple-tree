@@ -13,7 +13,6 @@ defmodule MapleWeb.Router do
     plug :fetch_current_user
     plug :set_user_theme
     plug :set_user_locale
-    plug MapleWeb.Plugs.LiveView
   end
 
   pipeline :api do
@@ -56,6 +55,7 @@ defmodule MapleWeb.Router do
 
     get "/users/log_in", UserSessionController, :new
     post "/users/log_in", UserSessionController, :create
+    post "/_form/register/user", UserRegistrationController, :create
     get "/users/reset_password", UserResetPasswordController, :new
     post "/users/reset_password", UserResetPasswordController, :create
     get "/users/reset_password/:token", UserResetPasswordController, :edit

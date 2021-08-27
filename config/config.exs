@@ -27,7 +27,7 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-config :maple, MapleWeb.Gettext, default_locale: "pt", locales: ~w(en pt)
+config :maple, MapleWeb.Gettext, default_locale: "en", locales: ~w(en pt)
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

@@ -8,6 +8,8 @@ defmodule Maple.Users.User do
   schema "users" do
     field :email, :string
     field :password, :string, virtual: true
+    field :name, :string
+    field :image_url, :string
     field :hashed_password, :string
     field :confirmed_at, :naive_datetime
 
@@ -33,7 +35,7 @@ defmodule Maple.Users.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password])
+    |> cast(attrs, [:email, :password, :name])
     |> validate_email()
     |> validate_password(opts)
   end
