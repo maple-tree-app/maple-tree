@@ -88,8 +88,8 @@ defmodule Maple.Users do
       %Ecto.Changeset{data: %User{}}
 
   """
-  def change_user_registration(attrs \\ %{}) do
-    User.registration_changeset(%User{}, attrs)
+  def change_user_registration(attrs \\ %{}, opts \\ []) do
+    User.registration_changeset(%User{}, attrs, opts)
   end
 
   ## Settings

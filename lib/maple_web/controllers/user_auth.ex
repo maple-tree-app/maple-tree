@@ -40,9 +40,7 @@ defmodule MapleWeb.UserAuth do
     put_resp_cookie(conn, @remember_me_cookie, token, @remember_me_options)
   end
 
-  defp maybe_write_remember_me_cookie(conn, _token, _params) do
-    conn
-  end
+  defp maybe_write_remember_me_cookie(conn, _token, _params), do: conn
 
   # This function renews the session ID and erases the whole
   # session to avoid fixation attacks. If there is any data
@@ -99,12 +97,12 @@ defmodule MapleWeb.UserAuth do
   end
 
   def set_user_locale(conn, _opts) do
-    case conn.params["locale"] || get_session(conn, :locale) do
+    
+    case conn.params["locale"] || MapleWeb.Helpers.Locale.get_locale_from_conn(conn) do
       nil ->
         conn
       locale ->
-        IO.inspect locale
-        Gettext.put_locale(MapleWeb.Gettext, locale)
+        Gettext.put_locale(MapleWeb.Gettext, locale) #for liveview this needs to be repeated in mount/3
         conn |> put_session(:locale, locale)
     end
   end

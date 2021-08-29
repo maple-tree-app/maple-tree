@@ -18,15 +18,14 @@ defmodule MapleWeb.UserRegistrationLive do
   end
 
   def handle_event("save", %{"user" => user_params}, socket) do
-    changeset = apply_changeset(user_params)
+    changeset = apply_changeset(user_params, hash_password: true, validate_unique_email: true) |> Map.put(:action, :update)
     {:noreply, assign(socket, changeset: changeset, trigger_submit: changeset.valid?)}
   end
 
   def handle_event("validate", %{"user" => user_params}, socket) do
-    IO.inspect apply_changeset(user_params)
     {:noreply, assign(socket, changeset: apply_changeset(user_params))}
   end
 
-  defp apply_changeset(user_params), do: Users.change_user_registration(user_params)
+  defp apply_changeset(user_params, opts \\ []), do: Users.change_user_registration(user_params, opts)
 
 end

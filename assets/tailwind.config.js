@@ -10,7 +10,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'maple-dark-bg': '#212121'
+        'maple-dark-bg': '#212121',
+        'maple-white-bg': '#F1F1F1'
       }
     },
   },

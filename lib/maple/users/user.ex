@@ -36,16 +36,16 @@ defmodule Maple.Users.User do
   def registration_changeset(user, attrs, opts \\ []) do
     user
     |> cast(attrs, [:email, :password, :name])
-    |> validate_email()
+    |> validate_email(opts)
     |> validate_password(opts)
   end
 
-  defp validate_email(changeset) do
+  defp validate_email(changeset, opts \\ []) do
     changeset
     |> validate_required([:email])
     |> validate_format(:email, ~r/^[^\s]+@[^\s]+$/, message: "must have the @ sign and no spaces")
     |> validate_length(:email, max: 160)
-    |> unsafe_validate_unique(:email, Maple.Repo)
+    |> maybe_unsafe_validate_unique_email(opts)
     |> unique_constraint(:email)
   end
 
@@ -69,6 +69,13 @@ defmodule Maple.Users.User do
       |> delete_change(:password)
     else
       changeset
+    end
+  end
+
+  defp maybe_unsafe_validate_unique_email(changeset, opts) do
+    case Keyword.get(opts, :validate_unique_email, false) do
+      true -> unsafe_validate_unique(changeset, :email, Maple.Repo)
+      false -> changeset
     end
   end
 
