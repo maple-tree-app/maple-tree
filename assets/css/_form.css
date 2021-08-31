@@ -1,0 +1,7 @@
+input.form-input {
+  @apply rounded p-2 mt-8 dark:bg-gray-900 dark:text-white  text-black border border-maple-light-border dark:border-maple-dark-border ;
+
+  &:focus {
+    @apply border-yellow-300;
+  }
+}

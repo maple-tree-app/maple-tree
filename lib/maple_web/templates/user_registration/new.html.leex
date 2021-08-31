@@ -1,11 +1,11 @@
 <main class="m-auto flex justify-center my-10">
-  <div class="flex flex-col align-center justify-center max-w-xl w-1/2 max-w-lg">
-    <h1 class="mb-8 text-xl">Register</h1>
+  <div class="flex flex-col align-center justify-center max-w-xl w-2/3 max-w-xl">
+    <h1 class="mb-8 text-left sm:text-center text-2xl">Register</h1>
 
     <%= form_for @changeset, Routes.user_registration_path(@socket, :create),
         [
           id: "register-form",
-          class: "flex flex-col",
+          class: "grid grid-cols-1 gap-x-8 sm:grid-cols-2",
           phx_change: "validate",
           phx_trigger_action: @trigger_submit,
           autocomplete: "off",
@@ -13,19 +13,26 @@
         ],
         fn f -> %>
 
-      <%= label f, :email, class: "mt-10" %>
-      <%= email_input f, :email, required: true, class: "pl-2 rounded text-pink-500" %>
-      <%= error_tag f, :email %>
-
-      <%= label f, :name, class: "mt-10" %>
-      <%= text_input f, :name, required: false, class: "pl-2 rounded text-pink-500 dark:text-red-600" %>
-      <%= error_tag f, :name %>
-
-      <%= label f, :password, class: "mt-10" %>
-      <%= password_input f, :password, value: input_value(f, :password), required: true, class: "pl-2 rounded text-pink-500" %>
-      <%= error_tag f, :password %>
 
       <div>
+        <%= label f, :email, class: "mt-10 block" %>
+        <%= email_input f, :email, required: true, class: "form-input" %>
+        <%= error_tag f, :email %>
+      </div>
+
+      <div>
+        <%= label f, :name, class: "mt-10 block" %>
+        <%= text_input f, :name, required: false, class: "form-input" %>
+        <%= error_tag f, :name %>
+      </div>
+
+      <div>
+        <%= label f, :password, class: "mt-10 block" %>
+        <%= password_input f, :password, value: input_value(f, :password), required: true, class: "form-input" %>
+        <%= error_tag f, :password %>
+      </div>
+
+      <div class="col-span-full">
         <%= submit "Register", phx_disable_with: "Registering...", class: "rounded p-2 mt-8 bg-red-500 text-black: hover:bg-red-600 dark:hover:bg-red-400 transition duration-150" %>
       </div>
     <% end %>
