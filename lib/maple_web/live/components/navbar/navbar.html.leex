@@ -1,15 +1,15 @@
- <nav class="sticky top-0 z-10 px-5 py-5 pb-2 text-lg bg-maple-light-bg dark:bg-maple-dark-bg border-b-2 border-black dark:border-red-500 shadow-xl">
+ <nav class="sticky top-0 z-10 px-5 py-5 pb-2 text-lg bg-maple-light-bg dark:bg-maple-dark-bg border-b-2 border-yellow-300 dark:border-red-500 shadow-xl">
       <%# DESKTOP NAV  %>
       <div class="hidden md:flex items-center justify-between pb-2">
         <div class="flex items-center">
           <%= live_patch img_tag(Routes.static_path(@socket, "/images/maple-leaf.png")), to: (Routes.page_path @socket, :index) %>
-          <%= live_patch "Shopping List", to: Routes.shopping_list_path(@socket, :index), class: "pl-4" %>
-          <%= live_patch "Tasks", to: Routes.shopping_list_path(@socket, :index), class: "pl-4" %>
-          <%= live_patch "Expenses", to: Routes.shopping_list_path(@socket, :index), class: "pl-4" %>
+          <%= live_patch "Shopping List", to: Routes.shopping_list_path(@socket, :index), class: "nav-item md" %>
+          <%= live_patch "Tasks", to: Routes.shopping_list_path(@socket, :index), class: "nav-item md" %>
+          <%= live_patch "Expenses", to: Routes.shopping_list_path(@socket, :index), class: "nav-item md" %>
         </div>
         <div class="flex items-center">
-          <%= live_patch "Login", to: Routes.shopping_list_path(@socket, :index), class: "pl-4" %>
-          <%= live_patch "Register", to: Routes.user_registration_path(@socket, :new), class: "pl-4" %>
+          <%= live_patch "Login", to: Routes.shopping_list_path(@socket, :index), class: "nav-item md" %>
+          <%= live_patch "Register", to: Routes.user_registration_path(@socket, :new), class: "nav-item md" %>
         </div>
       </div>
 

@@ -1,0 +1,8 @@
+.nav-item {
+  & + .md {
+    @apply pl-4;
+  }
+  &:hover {
+    @apply opacity-70;
+  }
+}
