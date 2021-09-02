@@ -1,7 +1,7 @@
 input.form-input {
-  @apply rounded p-2 mt-8 dark:bg-gray-900 dark:text-white  text-black ring-1 ring-maple-light-border outline-none  dark:ring-maple-dark-border;
+  @apply rounded p-2 mt-8 dark:bg-maple-dark-input-bg dark:text-white  text-black ring-1 ring-maple-light-border outline-none  dark:ring-maple-dark-border;
 
   &:focus {
-    @apply ring-yellow-300 outline-none;
+    @apply ring-red-500 dark:ring-yellow-300 outline-none;
   }
 }

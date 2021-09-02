@@ -17,13 +17,12 @@ import {Socket} from "phoenix"
 import topbar from "topbar"
 import {LiveSocket} from "phoenix_live_view"
 
+const isProduction = process.env.NODE_ENV === 'production';
 const hooks = {};
 hooks.darkMode = {
   mounted() {
-    const body = document.getElementsByTagName('body')[0];
-    this.el.addEventListener('click', () => {
-      body.classList.toggle('dark');
-    })
+    const [body] = document.getElementsByTagName('body');
+    this.el.addEventListener('click', () => body.classList.toggle('dark'));
   }
 }
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
@@ -33,9 +32,11 @@ let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToke
 
 
 // Show progress bar on live navigation and form submits
-topbar.config({barColors: {0: "#29d"}, shadowColor: "rgba(0, 0, 0, .3)"})
-window.addEventListener("phx:page-loading-start", info => topbar.show())
-window.addEventListener("phx:page-loading-stop", info => topbar.hide())
+if(!isProduction) {
+  topbar.config({barColors: {0: "#29d"}, shadowColor: "rgba(0, 0, 0, .3)"})
+  window.addEventListener("phx:page-loading-start", info => topbar.show())
+  window.addEventListener("phx:page-loading-stop", info => topbar.hide())
+}
 
 // connect if there are any LiveViews on the page
 liveSocket.connect()

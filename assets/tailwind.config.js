@@ -13,7 +13,8 @@ module.exports = {
         'maple-dark-bg': '#212121',
         'maple-light-bg': '#F1F1F1',
         'maple-dark-border': '#8f8f8f',
-        'maple-light-border': '#f2f2f2'
+        'maple-light-border': '#f2f2f2',
+        'maple-dark-input-bg': '#474747',
       }
     },
   },

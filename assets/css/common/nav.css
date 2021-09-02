@@ -1,5 +1,5 @@
-.nav-item {
-  & + .md {
+.md-nav-item {
+  & {
     @apply pl-4;
   }
   &:hover {
