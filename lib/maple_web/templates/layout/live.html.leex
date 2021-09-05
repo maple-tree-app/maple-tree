@@ -7,6 +7,6 @@
     phx-click="lv:clear-flash"
     phx-value-key="error"><%= live_flash(@flash, :error) %></p>
 
-  <%= live_component @socket, MapleWeb.Live.Components.Navbar, id: :nav %>
+  <%= live_component @socket, MapleWeb.Live.Components.Navbar, id: :nav, current_user: assigns[:current_user] %>
   <%= @inner_content %>
 </main>

@@ -7,10 +7,18 @@
           <%= live_patch "Shopping List", to: Routes.shopping_list_path(@socket, :index), class: "md-nav-item" %>
           <%= live_patch "Tasks", to: Routes.shopping_list_path(@socket, :index), class: "md-nav-item" %>
         </div>
-        <div class="flex items-center">
-          <%= live_patch "Login", to: Routes.shopping_list_path(@socket, :index), class: "md-nav-item" %>
-          <%= live_patch "Register", to: Routes.user_registration_path(@socket, :new), class: "md-nav-item" %>
-        </div>
+        <%= if !assigns[:current_user] do %>
+          <div class="flex items-center">
+            <%= live_patch "Login", to: Routes.user_session_path(@socket, :new), class: "md-nav-item" %>
+            <%= live_patch "Register", to: Routes.user_registration_path(@socket, :new), class: "md-nav-item" %>
+          </div>
+        <% end %>
+        <%= if assigns[:current_user] do %>
+          <div class="flex items-center">
+            <%= live_patch "Settings", to: Routes.shopping_list_path(@socket, :index), class: "md-nav-item" %>
+            <%= live_patch "Log out", to: Routes.user_registration_path(@socket, :new), class: "md-nav-item" %>
+          </div>
+        <% end %>
       </div>
 
       <%# MOBILE NAV %>

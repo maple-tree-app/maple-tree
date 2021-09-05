@@ -2,12 +2,11 @@ defmodule MapleWeb.PageLive do
   use MapleWeb, :live_view
 
   alias Phoenix.View
+  alias MapleWeb.Helpers.LiveHelpers
 
   @impl true
   def mount(_params, session, socket) do
-    if locale = session["locale"] do
-      Gettext.put_locale(MapleWeb.Gettext, locale)
-    end
+    socket = socket |> LiveHelpers.pre_build(session)
     {:ok, socket}
   end
 

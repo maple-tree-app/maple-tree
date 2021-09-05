@@ -3,6 +3,8 @@ defmodule MapleWeb.Live.Components.Navbar do
 
   @impl true
   def mount(socket) do
+
+    IO.inspect(socket.assigns)
     {:ok, assign(socket, :mobile_menu_open?, false)}
   end
 

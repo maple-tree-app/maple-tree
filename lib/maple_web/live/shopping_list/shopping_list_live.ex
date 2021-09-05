@@ -2,9 +2,11 @@ defmodule MapleWeb.ShoppingListLive do
   use MapleWeb, :live_view
 
   alias Phoenix.View
+  alias MapleWeb.Helpers.LiveHelpers
 
   @impl true
-  def mount(_params, _session, socket) do
+  def mount(_params, session, socket) do
+    socket = socket |> LiveHelpers.pre_build(session)
     {:ok, socket}
   end
 
