@@ -1,4 +1,4 @@
-defmodule MapleWeb.Endpoint do
+defmodule MapleTreeWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :maple
 
   # The session will be stored in the cookie and signed,
@@ -10,7 +10,7 @@ defmodule MapleWeb.Endpoint do
     signing_salt: "j2+4gsFg"
   ]
 
-  socket "/socket", MapleWeb.UserSocket,
+  socket "/socket", MapleTreeWeb.UserSocket,
     websocket: true,
     longpoll: false
 
@@ -50,5 +50,5 @@ defmodule MapleWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug MapleWeb.Router
+  plug MapleTreeWeb.Router
 end

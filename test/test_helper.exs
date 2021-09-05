@@ -1,2 +1,2 @@
 ExUnit.start()
-Ecto.Adapters.SQL.Sandbox.mode(Maple.Repo, :manual)
+Ecto.Adapters.SQL.Sandbox.mode(MapleTree.Repo, :manual)

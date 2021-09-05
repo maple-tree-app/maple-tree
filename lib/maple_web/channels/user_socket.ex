@@ -1,8 +1,8 @@
-defmodule MapleWeb.UserSocket do
+defmodule MapleTreeWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", MapleWeb.RoomChannel
+  # channel "room:*", MapleTreeWeb.RoomChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
@@ -27,7 +27,7 @@ defmodule MapleWeb.UserSocket do
   # Would allow you to broadcast a "disconnect" event and terminate
   # all active sockets and channels for a given user:
   #
-  #     MapleWeb.Endpoint.broadcast("user_socket:#{user.id}", "disconnect", %{})
+  #     MapleTreeWeb.Endpoint.broadcast("user_socket:#{user.id}", "disconnect", %{})
   #
   # Returning `nil` makes this socket anonymous.
   @impl true

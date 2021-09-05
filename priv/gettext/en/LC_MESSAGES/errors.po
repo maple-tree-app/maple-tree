@@ -97,4 +97,4 @@ msgid "must be equal to %{number}"
 msgstr ""
 
 msgid "welcome %{name}"
-msgstr "Welcome to Maple, %{name}"
+msgstr "Welcome to MapleTree, %{name}"

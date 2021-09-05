@@ -1,4 +1,4 @@
-defmodule Maple.MixProject do
+defmodule MapleTree.MixProject do
   use Mix.Project
 
   def project do
@@ -19,7 +19,7 @@ defmodule Maple.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Maple.Application, []},
+      mod: {MapleTree.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end

@@ -1,8 +1,8 @@
-defmodule MapleWeb.UserSettingsControllerTest do
-  use MapleWeb.ConnCase, async: true
+defmodule MapleTreeWeb.UserSettingsControllerTest do
+  use MapleTreeWeb.ConnCase, async: true
 
-  alias Maple.Users
-  import Maple.UsersFixtures
+  alias MapleTree.Users
+  import MapleTree.UsersFixtures
 
   setup :register_and_log_in_user
 

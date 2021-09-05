@@ -1,15 +1,15 @@
-defmodule MapleWeb.UserRegistrationLive do
-  use MapleWeb, :live_view
+defmodule MapleTreeWeb.UserRegistrationLive do
+  use MapleTreeWeb, :live_view
 
   alias Phoenix.View
-  alias Maple.Users
+  alias MapleTree.Users
 
   def mount(_params, _session, socket) do
     {:ok, socket |> add_changeset}
   end
 
   def render(assigns) do
-    View.render(MapleWeb.UserRegistrationView, "new.html", assigns)
+    View.render(MapleTreeWeb.UserRegistrationView, "new.html", assigns)
   end
 
   defp add_changeset(socket) do

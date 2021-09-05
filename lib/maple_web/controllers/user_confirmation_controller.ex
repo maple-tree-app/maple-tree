@@ -1,7 +1,7 @@
-defmodule MapleWeb.UserConfirmationController do
-  use MapleWeb, :controller
+defmodule MapleTreeWeb.UserConfirmationController do
+  use MapleTreeWeb, :controller
 
-  alias Maple.Users
+  alias MapleTree.Users
 
   def new(conn, _params) do
     render(conn, "new.html")

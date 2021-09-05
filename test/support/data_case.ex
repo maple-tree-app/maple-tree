@@ -1,4 +1,4 @@
-defmodule Maple.DataCase do
+defmodule MapleTree.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -10,7 +10,7 @@ defmodule Maple.DataCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use Maple.DataCase, async: true`, although
+  by setting `use MapleTree.DataCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -18,20 +18,20 @@ defmodule Maple.DataCase do
 
   using do
     quote do
-      alias Maple.Repo
+      alias MapleTree.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import Maple.DataCase
+      import MapleTree.DataCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Maple.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(MapleTree.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Maple.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(MapleTree.Repo, {:shared, self()})
     end
 
     :ok

@@ -1,4 +1,4 @@
-defmodule MapleWeb.Helpers.Locale do
+defmodule MapleTreeWeb.Helpers.Locale do
   def get_locale_from_conn(conn) do
     case Plug.Conn.get_req_header(conn, "accept-language") do
       [accept] -> find_most_suitable_locale(accept)
@@ -7,7 +7,7 @@ defmodule MapleWeb.Helpers.Locale do
   end
 
   def find_most_suitable_locale(accept) do
-    known_locales = Gettext.known_locales(MapleWeb.Gettext)
+    known_locales = Gettext.known_locales(MapleTreeWeb.Gettext)
     locale = Enum.find(accept_language_to_list(accept), &(Enum.member?(known_locales, &1)))
     IO.inspect locale
     locale

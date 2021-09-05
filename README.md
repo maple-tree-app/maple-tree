@@ -1,4 +1,4 @@
-# Maple
+# MapleTree
 
 To start your Phoenix server:
 

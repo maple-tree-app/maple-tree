@@ -1,7 +1,7 @@
-defmodule MapleWeb.UserRegistrationControllerTest do
-  use MapleWeb.ConnCase, async: true
+defmodule MapleTreeWeb.UserRegistrationControllerTest do
+  use MapleTreeWeb.ConnCase, async: true
 
-  import Maple.UsersFixtures
+  import MapleTree.UsersFixtures
 
   describe "GET /users/register" do
     test "renders registration page", %{conn: conn} do

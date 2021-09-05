@@ -1,8 +1,8 @@
-defmodule MapleWeb.ShoppingListLive do
-  use MapleWeb, :live_view
+defmodule MapleTreeWeb.ShoppingListLive do
+  use MapleTreeWeb, :live_view
 
   alias Phoenix.View
-  alias MapleWeb.Helpers.LiveHelpers
+  alias MapleTreeWeb.Helpers.LiveHelpers
 
   @impl true
   def mount(_params, session, socket) do
@@ -12,7 +12,7 @@ defmodule MapleWeb.ShoppingListLive do
 
   @impl true
   def render(assigns) do
-    View.render(MapleWeb.ShoppingListView, "index.html", assigns)
+    View.render(MapleTreeWeb.ShoppingListView, "index.html", assigns)
   end
 
 end

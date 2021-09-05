@@ -1,8 +1,8 @@
-defmodule MapleWeb.UserRegistrationController do
-  use MapleWeb, :controller
-  alias Maple.Users.User
-  alias Maple.Users
-  alias MapleWeb.UserAuth
+defmodule MapleTreeWeb.UserRegistrationController do
+  use MapleTreeWeb, :controller
+  alias MapleTree.Users.User
+  alias MapleTree.Users
+  alias MapleTreeWeb.UserAuth
 
 
 
@@ -19,7 +19,7 @@ defmodule MapleWeb.UserRegistrationController do
 
       {:error, %Ecto.Changeset{} = changeset} ->
         conn
-          |> put_view(MapleWeb.UserRegistrationView)
+          |> put_view(MapleTreeWeb.UserRegistrationView)
           |> render("new.html", changeset: changeset)
     end
     redirect(conn, to: "/")

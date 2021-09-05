@@ -1,3 +1,3 @@
-defmodule MapleWeb.UserSessionView do
-  use MapleWeb, :view
+defmodule MapleTreeWeb.UserSessionView do
+  use MapleTreeWeb, :view
 end

@@ -1,3 +1,3 @@
-defmodule MapleWeb.UserConfirmationView do
-  use MapleWeb, :view
+defmodule MapleTreeWeb.UserConfirmationView do
+  use MapleTreeWeb, :view
 end

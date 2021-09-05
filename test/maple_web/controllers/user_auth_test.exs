@@ -1,16 +1,16 @@
-defmodule MapleWeb.UserAuthTest do
-  use MapleWeb.ConnCase, async: true
+defmodule MapleTreeWeb.UserAuthTest do
+  use MapleTreeWeb.ConnCase, async: true
 
-  alias Maple.Users
-  alias MapleWeb.UserAuth
-  import Maple.UsersFixtures
+  alias MapleTree.Users
+  alias MapleTreeWeb.UserAuth
+  import MapleTree.UsersFixtures
 
   @remember_me_cookie "_maple_web_user_remember_me"
 
   setup %{conn: conn} do
     conn =
       conn
-      |> Map.replace!(:secret_key_base, MapleWeb.Endpoint.config(:secret_key_base))
+      |> Map.replace!(:secret_key_base, MapleTreeWeb.Endpoint.config(:secret_key_base))
       |> init_test_session(%{})
 
     %{user: user_fixture(), conn: conn}
@@ -65,7 +65,7 @@ defmodule MapleWeb.UserAuthTest do
 
     test "broadcasts to the given live_socket_id", %{conn: conn} do
       live_socket_id = "users_sessions:abcdef-token"
-      MapleWeb.Endpoint.subscribe(live_socket_id)
+      MapleTreeWeb.Endpoint.subscribe(live_socket_id)
 
       conn
       |> put_session(:live_socket_id, live_socket_id)

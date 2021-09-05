@@ -1,13 +1,13 @@
-defmodule MapleWeb.Router do
-  use MapleWeb, :router
+defmodule MapleTreeWeb.Router do
+  use MapleTreeWeb, :router
 
-  import MapleWeb.UserAuth
+  import MapleTreeWeb.UserAuth
 
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
-    plug :put_root_layout, {MapleWeb.LayoutView, :root}
+    plug :put_root_layout, {MapleTreeWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :fetch_current_user
@@ -19,7 +19,7 @@ defmodule MapleWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", MapleWeb do
+  scope "/", MapleTreeWeb do
     pipe_through :browser
 
     live "/", PageLive, :index
@@ -28,7 +28,7 @@ defmodule MapleWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", MapleWeb do
+  # scope "/api", MapleTreeWeb do
   #   pipe_through :api
   # end
 
@@ -44,13 +44,13 @@ defmodule MapleWeb.Router do
 
     scope "/" do
       pipe_through [:browser, :require_authenticated_user]
-      live_dashboard "/dashboard", metrics: MapleWeb.Telemetry
+      live_dashboard "/dashboard", metrics: MapleTreeWeb.Telemetry
     end
   end
 
   ## Authentication routes
 
-  scope "/", MapleWeb do
+  scope "/", MapleTreeWeb do
     pipe_through [:browser, :redirect_if_user_is_authenticated]
 
     get "/users/log_in", UserSessionController, :new
@@ -62,7 +62,7 @@ defmodule MapleWeb.Router do
     put "/users/reset_password/:token", UserResetPasswordController, :update
   end
 
-  scope "/", MapleWeb do
+  scope "/", MapleTreeWeb do
     pipe_through [:browser, :require_authenticated_user]
 
     get "/users/settings", UserSettingsController, :edit
@@ -70,7 +70,7 @@ defmodule MapleWeb.Router do
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
   end
 
-  scope "/", MapleWeb do
+  scope "/", MapleTreeWeb do
     pipe_through [:browser]
 
     delete "/users/log_out", UserSessionController, :delete

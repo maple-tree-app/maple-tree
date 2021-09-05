@@ -1,5 +1,5 @@
-defmodule MapleWeb.PageLiveTest do
-  use MapleWeb.ConnCase
+defmodule MapleTreeWeb.PageLiveTest do
+  use MapleTreeWeb.ConnCase
 
   import Phoenix.LiveViewTest
 

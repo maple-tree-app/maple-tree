@@ -8,15 +8,15 @@
 use Mix.Config
 
 config :maple,
-  ecto_repos: [Maple.Repo],
+  ecto_repos: [MapleTree.Repo],
   generators: [binary_id: true]
 
 # Configures the endpoint
-config :maple, MapleWeb.Endpoint,
+config :maple, MapleTreeWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "8fpLTniWp4uh1XkQlB7lM0+QPQ1oEsDKyyi+MtD9w+U53gCdkBwGzoShw8XJ1Bj7",
-  render_errors: [view: MapleWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: Maple.PubSub,
+  render_errors: [view: MapleTreeWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: MapleTree.PubSub,
   live_view: [signing_salt: "rvOgCaHg"]
 
 # Configures Elixir's Logger
@@ -27,7 +27,7 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-config :maple, MapleWeb.Gettext, default_locale: "en", locales: ~w(en pt)
+config :maple, MapleTreeWeb.Gettext, default_locale: "en", locales: ~w(en pt)
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

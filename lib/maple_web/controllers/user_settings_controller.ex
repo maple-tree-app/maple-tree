@@ -1,8 +1,8 @@
-defmodule MapleWeb.UserSettingsController do
-  use MapleWeb, :controller
+defmodule MapleTreeWeb.UserSettingsController do
+  use MapleTreeWeb, :controller
 
-  alias Maple.Users
-  alias MapleWeb.UserAuth
+  alias MapleTree.Users
+  alias MapleTreeWeb.UserAuth
 
   plug :assign_email_and_password_changesets
 

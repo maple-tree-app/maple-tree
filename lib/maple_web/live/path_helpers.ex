@@ -1,4 +1,4 @@
-defmodule MapleWeb.PathHelpers do
+defmodule MapleTreeWeb.PathHelpers do
 
   def apply_class_when_current_route(conn, path, class) do
     if active_route?(conn, path),

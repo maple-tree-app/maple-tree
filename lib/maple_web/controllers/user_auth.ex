@@ -1,9 +1,9 @@
-defmodule MapleWeb.UserAuth do
+defmodule MapleTreeWeb.UserAuth do
   import Plug.Conn
   import Phoenix.Controller
 
-  alias Maple.Users
-  alias MapleWeb.Router.Helpers, as: Routes
+  alias MapleTree.Users
+  alias MapleTreeWeb.Router.Helpers, as: Routes
 
   # Make the remember me cookie valid for 60 days.
   # If you want bump or reduce this value, also change
@@ -73,7 +73,7 @@ defmodule MapleWeb.UserAuth do
     user_token && Users.delete_session_token(user_token)
 
     if live_socket_id = get_session(conn, :live_socket_id) do
-      MapleWeb.Endpoint.broadcast(live_socket_id, "disconnect", %{})
+      MapleTreeWeb.Endpoint.broadcast(live_socket_id, "disconnect", %{})
     end
 
     conn
@@ -98,11 +98,11 @@ defmodule MapleWeb.UserAuth do
 
   def set_user_locale(conn, _opts) do
     
-    case conn.params["locale"] || MapleWeb.Helpers.Locale.get_locale_from_conn(conn) do
+    case conn.params["locale"] || MapleTreeWeb.Helpers.Locale.get_locale_from_conn(conn) do
       nil ->
         conn
       locale ->
-        Gettext.put_locale(MapleWeb.Gettext, locale) #for liveview this needs to be repeated in mount/3
+        Gettext.put_locale(MapleTreeWeb.Gettext, locale) #for liveview this needs to be repeated in mount/3
         conn |> put_session(:locale, locale)
     end
   end

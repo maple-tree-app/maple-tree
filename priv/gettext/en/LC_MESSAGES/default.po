@@ -12,4 +12,4 @@ msgstr ""
 "Plural-Forms: nplurals=2\n"
 
 msgid "welcome %{name}"
-msgstr "Welcome to Maple, %{name}"
+msgstr "Welcome to MapleTree, %{name}"

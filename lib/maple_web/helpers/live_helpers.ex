@@ -1,6 +1,6 @@
-defmodule MapleWeb.Helpers.LiveHelpers do
+defmodule MapleTreeWeb.Helpers.LiveHelpers do
   import Phoenix.LiveView
-  alias Maple.Users
+  alias MapleTree.Users
 
   def pre_build(socket, session) do
     maybe_put_locale(session)
@@ -9,7 +9,7 @@ defmodule MapleWeb.Helpers.LiveHelpers do
 
   defp maybe_put_locale(session) do
     if locale = session["locale"] do
-      Gettext.put_locale(MapleWeb.Gettext, locale)
+      Gettext.put_locale(MapleTreeWeb.Gettext, locale)
     end
   end
 

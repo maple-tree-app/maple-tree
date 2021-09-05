@@ -1,3 +1,3 @@
-defmodule MapleWeb.UserRegistrationView do
-  use MapleWeb, :view
+defmodule MapleTreeWeb.UserRegistrationView do
+  use MapleTreeWeb, :view
 end

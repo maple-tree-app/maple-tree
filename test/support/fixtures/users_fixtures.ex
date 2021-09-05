@@ -1,7 +1,7 @@
-defmodule Maple.UsersFixtures do
+defmodule MapleTree.UsersFixtures do
   @moduledoc """
   This module defines test helpers for creating
-  entities via the `Maple.Users` context.
+  entities via the `MapleTree.Users` context.
   """
 
   def unique_user_email, do: "user#{System.unique_integer()}@example.com"
@@ -18,7 +18,7 @@ defmodule Maple.UsersFixtures do
     {:ok, user} =
       attrs
       |> valid_user_attributes()
-      |> Maple.Users.register_user()
+      |> MapleTree.Users.register_user()
 
     user
   end

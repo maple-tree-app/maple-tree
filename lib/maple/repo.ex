@@ -1,4 +1,4 @@
-defmodule Maple.Repo do
+defmodule MapleTree.Repo do
   use Ecto.Repo,
     otp_app: :maple,
     adapter: Ecto.Adapters.Postgres

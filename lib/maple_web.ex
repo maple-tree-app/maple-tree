@@ -1,12 +1,12 @@
-defmodule MapleWeb do
+defmodule MapleTreeWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, views, channels and so on.
 
   This can be used in your application as:
 
-      use MapleWeb, :controller
-      use MapleWeb, :view
+      use MapleTreeWeb, :controller
+      use MapleTreeWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -19,12 +19,12 @@ defmodule MapleWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: MapleWeb
+      use Phoenix.Controller, namespace: MapleTreeWeb
 
       import Plug.Conn
-      import MapleWeb.Gettext
-      alias MapleWeb.Router.Helpers, as: Routes
-      import MapleWeb.PathHelpers
+      import MapleTreeWeb.Gettext
+      alias MapleTreeWeb.Router.Helpers, as: Routes
+      import MapleTreeWeb.PathHelpers
     end
   end
 
@@ -32,13 +32,13 @@ defmodule MapleWeb do
     quote do
       use Phoenix.View,
         root: "lib/maple_web/templates",
-        namespace: MapleWeb
+        namespace: MapleTreeWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller,
         only: [get_flash: 1, get_flash: 2, view_module: 1, view_template: 1]
 
-      import MapleWeb.PathHelpers
+      import MapleTreeWeb.PathHelpers
 
       # Include shared imports and aliases for views
       unquote(view_helpers())
@@ -47,9 +47,9 @@ defmodule MapleWeb do
 
   def live_view do
     quote do
-      import MapleWeb.PathHelpers
+      import MapleTreeWeb.PathHelpers
       use Phoenix.LiveView,
-        layout: {MapleWeb.LayoutView, "live.html"}
+        layout: {MapleTreeWeb.LayoutView, "live.html"}
 
       unquote(view_helpers())
     end
@@ -58,7 +58,7 @@ defmodule MapleWeb do
   def live_component do
     quote do
       use Phoenix.LiveComponent
-      import MapleWeb.PathHelpers
+      import MapleTreeWeb.PathHelpers
 
       unquote(view_helpers())
     end
@@ -77,7 +77,7 @@ defmodule MapleWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import MapleWeb.Gettext
+      import MapleTreeWeb.Gettext
     end
   end
 
@@ -92,9 +92,9 @@ defmodule MapleWeb do
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
 
-      import MapleWeb.ErrorHelpers
-      import MapleWeb.Gettext
-      alias MapleWeb.Router.Helpers, as: Routes
+      import MapleTreeWeb.ErrorHelpers
+      import MapleTreeWeb.Gettext
+      alias MapleTreeWeb.Router.Helpers, as: Routes
     end
   end
 

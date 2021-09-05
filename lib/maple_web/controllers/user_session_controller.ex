@@ -1,8 +1,8 @@
-defmodule MapleWeb.UserSessionController do
-  use MapleWeb, :controller
+defmodule MapleTreeWeb.UserSessionController do
+  use MapleTreeWeb, :controller
 
-  alias Maple.Users
-  alias MapleWeb.UserAuth
+  alias MapleTree.Users
+  alias MapleTreeWeb.UserAuth
 
   def new(conn, _params) do
     render(conn, "new.html", error_message: nil)

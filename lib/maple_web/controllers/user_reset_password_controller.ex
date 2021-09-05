@@ -1,7 +1,7 @@
-defmodule MapleWeb.UserResetPasswordController do
-  use MapleWeb, :controller
+defmodule MapleTreeWeb.UserResetPasswordController do
+  use MapleTreeWeb, :controller
 
-  alias Maple.Users
+  alias MapleTree.Users
 
   plug :get_user_by_reset_password_token when action in [:edit, :update]
 

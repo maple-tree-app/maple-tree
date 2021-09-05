@@ -1,11 +1,11 @@
-defmodule Maple.Users do
+defmodule MapleTree.Users do
   @moduledoc """
   The Users context.
   """
 
   import Ecto.Query, warn: false
-  alias Maple.Repo
-  alias Maple.Users.{User, UserToken, UserNotifier}
+  alias MapleTree.Repo
+  alias MapleTree.Users.{User, UserToken, UserNotifier}
 
   ## Database getters
 

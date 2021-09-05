@@ -1,3 +1,3 @@
-defmodule MapleWeb.UserResetPasswordView do
-  use MapleWeb, :view
+defmodule MapleTreeWeb.UserResetPasswordView do
+  use MapleTreeWeb, :view
 end

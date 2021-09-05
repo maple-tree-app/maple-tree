@@ -1,4 +1,4 @@
-defmodule MapleWeb.ConnCase do
+defmodule MapleTreeWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -11,7 +11,7 @@ defmodule MapleWeb.ConnCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use MapleWeb.ConnCase, async: true`, although
+  by setting `use MapleTreeWeb.ConnCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -22,20 +22,20 @@ defmodule MapleWeb.ConnCase do
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
-      import MapleWeb.ConnCase
+      import MapleTreeWeb.ConnCase
 
-      alias MapleWeb.Router.Helpers, as: Routes
+      alias MapleTreeWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
-      @endpoint MapleWeb.Endpoint
+      @endpoint MapleTreeWeb.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Maple.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(MapleTree.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Maple.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(MapleTree.Repo, {:shared, self()})
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}
@@ -50,7 +50,7 @@ defmodule MapleWeb.ConnCase do
   test context.
   """
   def register_and_log_in_user(%{conn: conn}) do
-    user = Maple.UsersFixtures.user_fixture()
+    user = MapleTree.UsersFixtures.user_fixture()
     %{conn: log_in_user(conn, user), user: user}
   end
 
@@ -60,7 +60,7 @@ defmodule MapleWeb.ConnCase do
   It returns an updated `conn`.
   """
   def log_in_user(conn, user) do
-    token = Maple.Users.generate_user_session_token(user)
+    token = MapleTree.Users.generate_user_session_token(user)
 
     conn
     |> Phoenix.ConnTest.init_test_session(%{})

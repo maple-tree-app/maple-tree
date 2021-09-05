@@ -1,3 +1,3 @@
-defmodule MapleWeb.UserSettingsView do
-  use MapleWeb, :view
+defmodule MapleTreeWeb.UserSettingsView do
+  use MapleTreeWeb, :view
 end

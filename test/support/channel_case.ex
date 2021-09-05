@@ -1,4 +1,4 @@
-defmodule MapleWeb.ChannelCase do
+defmodule MapleTreeWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -11,7 +11,7 @@ defmodule MapleWeb.ChannelCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use MapleWeb.ChannelCase, async: true`, although
+  by setting `use MapleTreeWeb.ChannelCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -21,18 +21,18 @@ defmodule MapleWeb.ChannelCase do
     quote do
       # Import conveniences for testing with channels
       import Phoenix.ChannelTest
-      import MapleWeb.ChannelCase
+      import MapleTreeWeb.ChannelCase
 
       # The default endpoint for testing
-      @endpoint MapleWeb.Endpoint
+      @endpoint MapleTreeWeb.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Maple.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(MapleTree.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Maple.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(MapleTree.Repo, {:shared, self()})
     end
 
     :ok

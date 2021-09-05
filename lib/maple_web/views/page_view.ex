@@ -1,4 +1,4 @@
-defmodule MapleWeb.PageView do
-  use MapleWeb, :view
+defmodule MapleTreeWeb.PageView do
+  use MapleTreeWeb, :view
 
 end

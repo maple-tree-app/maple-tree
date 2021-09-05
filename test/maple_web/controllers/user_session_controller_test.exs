@@ -1,7 +1,7 @@
-defmodule MapleWeb.UserSessionControllerTest do
-  use MapleWeb.ConnCase, async: true
+defmodule MapleTreeWeb.UserSessionControllerTest do
+  use MapleTreeWeb.ConnCase, async: true
 
-  import Maple.UsersFixtures
+  import MapleTree.UsersFixtures
 
   setup do
     %{user: user_fixture()}

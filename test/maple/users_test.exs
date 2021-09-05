@@ -1,9 +1,9 @@
-defmodule Maple.UsersTest do
-  use Maple.DataCase
+defmodule MapleTree.UsersTest do
+  use MapleTree.DataCase
 
-  alias Maple.Users
-  import Maple.UsersFixtures
-  alias Maple.Users.{User, UserToken}
+  alias MapleTree.Users
+  import MapleTree.UsersFixtures
+  alias MapleTree.Users.{User, UserToken}
 
   describe "get_user_by_email/1" do
     test "does not return the user if the email does not exist" do

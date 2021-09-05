@@ -1,9 +1,9 @@
-defmodule MapleWeb.UserConfirmationControllerTest do
-  use MapleWeb.ConnCase, async: true
+defmodule MapleTreeWeb.UserConfirmationControllerTest do
+  use MapleTreeWeb.ConnCase, async: true
 
-  alias Maple.Users
-  alias Maple.Repo
-  import Maple.UsersFixtures
+  alias MapleTree.Users
+  alias MapleTree.Repo
+  import MapleTree.UsersFixtures
 
   setup do
     %{user: user_fixture()}

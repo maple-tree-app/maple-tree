@@ -1,4 +1,4 @@
-defmodule Maple.Users.User do
+defmodule MapleTree.Users.User do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -74,7 +74,7 @@ defmodule Maple.Users.User do
 
   defp maybe_unsafe_validate_unique_email(changeset, opts) do
     case Keyword.get(opts, :validate_unique_email, false) do
-      true -> unsafe_validate_unique(changeset, :email, Maple.Repo)
+      true -> unsafe_validate_unique(changeset, :email, MapleTree.Repo)
       false -> changeset
     end
   end
@@ -127,7 +127,7 @@ defmodule Maple.Users.User do
   If there is no user or the user doesn't have a password, we call
   `Bcrypt.no_user_verify/0` to avoid timing attacks.
   """
-  def valid_password?(%Maple.Users.User{hashed_password: hashed_password}, password)
+  def valid_password?(%MapleTree.Users.User{hashed_password: hashed_password}, password)
       when is_binary(hashed_password) and byte_size(password) > 0 do
     Bcrypt.verify_pass(password, hashed_password)
   end

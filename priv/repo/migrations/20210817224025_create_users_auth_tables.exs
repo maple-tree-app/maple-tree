@@ -1,4 +1,4 @@
-defmodule Maple.Repo.Migrations.CreateUsersAuthTables do
+defmodule MapleTree.Repo.Migrations.CreateUsersAuthTables do
   use Ecto.Migration
 
   def change do

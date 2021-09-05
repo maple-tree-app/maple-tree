@@ -1,4 +1,4 @@
-defmodule MapleWeb.ShoppingListView do
-  use MapleWeb, :view
+defmodule MapleTreeWeb.ShoppingListView do
+  use MapleTreeWeb, :view
 
 end

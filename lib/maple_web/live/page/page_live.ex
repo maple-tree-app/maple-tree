@@ -1,8 +1,8 @@
-defmodule MapleWeb.PageLive do
-  use MapleWeb, :live_view
+defmodule MapleTreeWeb.PageLive do
+  use MapleTreeWeb, :live_view
 
   alias Phoenix.View
-  alias MapleWeb.Helpers.LiveHelpers
+  alias MapleTreeWeb.Helpers.LiveHelpers
 
   @impl true
   def mount(_params, session, socket) do
@@ -12,7 +12,7 @@ defmodule MapleWeb.PageLive do
 
   @impl true
   def render(assigns) do
-    View.render(MapleWeb.PageView, "index.html", assigns)
+    View.render(MapleTreeWeb.PageView, "index.html", assigns)
   end
 
 end

@@ -1,3 +1,3 @@
-defmodule MapleWeb.LayoutView do
-  use MapleWeb, :view
+defmodule MapleTreeWeb.LayoutView do
+  use MapleTreeWeb, :view
 end
