@@ -1,4 +1,4 @@
-<main class="bg-maple-light-bg dark:bg-maple-dark-bg text-gray-900 dark:text-white" role="main">
+<main id="live-main" class="bg-maple-light-bg dark:bg-maple-dark-bg text-gray-900 dark:text-white" role="main" phx-hook="themeSetter">
   <p class="alert alert-info" role="alert"
     phx-click="lv:clear-flash"
     phx-value-key="info"><%= live_flash(@flash, :info) %></p>
@@ -7,6 +7,6 @@
     phx-click="lv:clear-flash"
     phx-value-key="error"><%= live_flash(@flash, :error) %></p>
 
-  <%= live_component @socket, MapleTreeWeb.Live.Components.Navbar, id: :nav, current_user: assigns[:current_user] %>
+  <%= live_component @socket, MapleTreeWeb.Live.Components.Navbar, id: :nav, current_user: assigns[:current_user], locale: assigns[:locale] %>
   <%= @inner_content %>
 </main>

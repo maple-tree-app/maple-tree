@@ -14,6 +14,8 @@ defmodule MapleTree.Users.User do
     field :confirmed_at, :naive_datetime
 
     timestamps()
+
+    has_one :settings, MapleTree.Users.UserSettings
   end
 
   @doc """

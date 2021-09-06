@@ -9,7 +9,6 @@ defmodule MapleTreeWeb.Helpers.Locale do
   def find_most_suitable_locale(accept) do
     known_locales = Gettext.known_locales(MapleTreeWeb.Gettext)
     locale = Enum.find(accept_language_to_list(accept), &(Enum.member?(known_locales, &1)))
-    IO.inspect locale
     locale
   end
 

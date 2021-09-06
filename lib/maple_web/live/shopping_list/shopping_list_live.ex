@@ -6,7 +6,7 @@ defmodule MapleTreeWeb.ShoppingListLive do
 
   @impl true
   def mount(_params, session, socket) do
-    socket = socket |> LiveHelpers.pre_build(session)
+    socket = socket |> LiveHelpers.init(session)
     {:ok, socket}
   end
 

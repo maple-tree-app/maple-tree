@@ -5,7 +5,7 @@ defmodule MapleTree.Users do
 
   import Ecto.Query, warn: false
   alias MapleTree.Repo
-  alias MapleTree.Users.{User, UserToken, UserNotifier}
+  alias MapleTree.Users.{User, UserToken, UserNotifier, UserSettings}
 
   ## Database getters
 
@@ -74,9 +74,14 @@ defmodule MapleTree.Users do
 
   """
   def register_user(attrs) do
-    %User{}
-    |> User.registration_changeset(attrs)
-    |> Repo.insert()
+    Ecto.Multi.new()
+    |> Ecto.Multi.insert(:user, User.registration_changeset(%User{}, attrs))
+    |> Ecto.Multi.insert(:users_settings, fn %{user: user} -> UserSettings.registration_changeset(%{user_id: user.id, theme: "dark", locale: "en"}) end)
+    |> Repo.transaction()
+    |> case do
+      {:ok, %{user: user}} -> {:ok, user}
+      {:error, :user, changeset, _} -> {:error, changeset}
+    end
   end
 
   @doc """
@@ -227,7 +232,7 @@ defmodule MapleTree.Users do
   """
   def get_user_by_session_token(token) do
     {:ok, query} = UserToken.verify_session_token_query(token)
-    Repo.one(query)
+    Repo.one(query) |> Repo.preload(:settings)
   end
 
   @doc """

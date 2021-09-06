@@ -16,6 +16,17 @@ defmodule MapleTree.Repo.Migrations.CreateUsersAuthTables do
 
     create unique_index(:users, [:email])
 
+    create table(:users_settings, primary_key: false) do
+      add :id, :binary_id, primary_key: true
+      add :user_id, references(:users, type: :binary_id, on_delete: :delete_all), null: false
+
+      add :theme, :string
+      add :locale, :string
+
+      timestamps()
+    end
+    create index(:users_settings, [:user_id])
+
     create table(:users_tokens, primary_key: false) do
       add :id, :binary_id, primary_key: true
       add :user_id, references(:users, type: :binary_id, on_delete: :delete_all), null: false

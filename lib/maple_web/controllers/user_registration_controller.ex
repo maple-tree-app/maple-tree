@@ -7,7 +7,6 @@ defmodule MapleTreeWeb.UserRegistrationController do
 
 
   def create(conn, %{"user" => user}) do
-    IO.inspect(user)
     case Users.register_user(user) do
       {:ok, user} ->
 

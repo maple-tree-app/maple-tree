@@ -93,17 +93,22 @@ defmodule MapleTreeWeb.UserAuth do
   end
 
   def set_user_theme(conn, _opts) do
-    assign(conn, :theme, "dark")
+    theme = case conn.assigns[:current_user] do
+      nil -> "auto"
+      current_user -> current_user.settings.theme
+    end
+    assign(conn, :theme, theme)
   end
 
   def set_user_locale(conn, _opts) do
-    
+
     case conn.params["locale"] || MapleTreeWeb.Helpers.Locale.get_locale_from_conn(conn) do
       nil ->
         conn
       locale ->
         Gettext.put_locale(MapleTreeWeb.Gettext, locale) #for liveview this needs to be repeated in mount/3
-        conn |> put_session(:locale, locale)
+
+        conn |> put_session(:locale, locale) |> assign(:locale, locale)
     end
   end
 

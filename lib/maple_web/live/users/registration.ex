@@ -3,9 +3,11 @@ defmodule MapleTreeWeb.UserRegistrationLive do
 
   alias Phoenix.View
   alias MapleTree.Users
+  alias MapleTreeWeb.Helpers.LiveHelpers
 
-  def mount(_params, _session, socket) do
-    {:ok, socket |> add_changeset}
+  def mount(_params, session, socket) do
+
+    {:ok, socket |> LiveHelpers.init(session)  |> add_changeset}
   end
 
   def render(assigns) do

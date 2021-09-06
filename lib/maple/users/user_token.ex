@@ -44,7 +44,6 @@ defmodule MapleTree.Users.UserToken do
         join: user in assoc(token, :user),
         where: token.inserted_at > ago(@session_validity_in_days, "day"),
         select: user
-
     {:ok, query}
   end
 
