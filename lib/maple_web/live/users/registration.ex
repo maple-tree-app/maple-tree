@@ -6,7 +6,6 @@ defmodule MapleTreeWeb.UserRegistrationLive do
   alias MapleTreeWeb.Helpers.LiveHelpers
 
   def mount(_params, session, socket) do
-
     {:ok, socket |> LiveHelpers.init(session)  |> add_changeset}
   end
 

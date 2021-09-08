@@ -101,14 +101,33 @@ defmodule MapleTreeWeb.UserAuth do
   end
 
   def set_user_locale(conn, _opts) do
-
-    case conn.params["locale"] || MapleTreeWeb.Helpers.Locale.get_locale_from_conn(conn) do
+    case get_user_settings(conn, :locale) || conn.params["locale"] || MapleTreeWeb.Helpers.Locale.get_locale_from_conn(conn) do
       nil ->
         conn
       locale ->
-        Gettext.put_locale(MapleTreeWeb.Gettext, locale) #for liveview this needs to be repeated in mount/3
+        # for liveview this needs to be repeated in mount/3
+        Gettext.put_locale(MapleTreeWeb.Gettext, locale)
+        conn
+          |> put_session(:locale, locale)
+          |> assign(:locale, locale)
+    end
+  end
 
-        conn |> put_session(:locale, locale) |> assign(:locale, locale)
+
+  defp get_user_settings(conn) do
+    with current_user <- conn.assigns[:current_user],
+      %{} = settings <- current_user.settings do
+        settings
+    else
+      _ -> nil
+      nil -> nil
+    end
+  end
+
+  defp get_user_settings(conn, key) do
+    case get_user_settings(conn) do
+      nil -> nil
+      settings -> Map.get(settings, key)
     end
   end
 

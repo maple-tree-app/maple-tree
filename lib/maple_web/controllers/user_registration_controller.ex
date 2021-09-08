@@ -1,6 +1,5 @@
 defmodule MapleTreeWeb.UserRegistrationController do
   use MapleTreeWeb, :controller
-  alias MapleTree.Users.User
   alias MapleTree.Users
   alias MapleTreeWeb.UserAuth
 
