@@ -20,5 +20,5 @@ defmodule MapleTreeWeb.Gettext do
 
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
-  use Gettext, otp_app: :maple
+  use Gettext, otp_app: :maple_tree
 end

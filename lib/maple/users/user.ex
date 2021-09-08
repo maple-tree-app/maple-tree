@@ -16,6 +16,7 @@ defmodule MapleTree.Users.User do
     timestamps()
 
     has_one :settings, MapleTree.Users.UserSettings
+    many_to_many :groups, MapleTree.Groups.Group, join_through: MapleTree.Groups.Group
   end
 
   @doc """

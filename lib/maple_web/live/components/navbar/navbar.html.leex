@@ -16,7 +16,7 @@
         <%= if assigns[:current_user] do %>
           <div class="flex items-center">
             <%= live_patch gettext("Settings"), to: Routes.shopping_list_path(@socket, :index), class: "md-nav-item" %>
-            <%= live_patch gettext("Log out"), to: Routes.user_registration_path(@socket, :new), class: "md-nav-item" %>
+            <%= link gettext("Log out"), to: Routes.user_session_path(@socket, :delete), method: :delete, class: "md-nav-item" %>
           </div>
         <% end %>
       </div>

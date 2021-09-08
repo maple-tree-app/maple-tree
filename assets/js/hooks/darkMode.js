@@ -7,8 +7,6 @@ export default {
 
 
   setThemeIfAllowed() {
-    if(!body.classList.contains('auto')) {
-      body.classList.toggle('dark');
-    }
+    body.classList.toggle('dark');
   }
 }

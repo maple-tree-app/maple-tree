@@ -1,7 +1,7 @@
 use Mix.Config
 
 # Configure your database
-config :maple, MapleTree.Repo,
+config :maple_tree, MapleTree.Repo,
   username: "postgres",
   password: "postgres",
   database: "maple_tree_dev",
@@ -15,7 +15,7 @@ config :maple, MapleTree.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
-config :maple, MapleTreeWeb.Endpoint,
+config :maple_tree, MapleTreeWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
@@ -55,7 +55,7 @@ config :maple, MapleTreeWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :maple, MapleTreeWeb.Endpoint,
+config :maple_tree, MapleTreeWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",

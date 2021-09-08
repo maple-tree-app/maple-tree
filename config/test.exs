@@ -8,7 +8,7 @@ config :bcrypt_elixir, :log_rounds, 1
 # The MIX_TEST_PARTITION environment variable can be used
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
-config :maple, MapleTree.Repo,
+config :maple_tree, MapleTree.Repo,
   username: "postgres",
   password: "postgres",
   database: "maple_test",
@@ -17,7 +17,7 @@ config :maple, MapleTree.Repo,
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :maple, MapleTreeWeb.Endpoint,
+config :maple_tree, MapleTreeWeb.Endpoint,
   http: [port: 4002],
   server: false
 

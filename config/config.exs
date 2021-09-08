@@ -7,12 +7,12 @@
 # General application configuration
 use Mix.Config
 
-config :maple,
+config :maple_tree,
   ecto_repos: [MapleTree.Repo],
   generators: [binary_id: true]
 
 # Configures the endpoint
-config :maple, MapleTreeWeb.Endpoint,
+config :maple_tree, MapleTreeWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "8fpLTniWp4uh1XkQlB7lM0+QPQ1oEsDKyyi+MtD9w+U53gCdkBwGzoShw8XJ1Bj7",
   render_errors: [view: MapleTreeWeb.ErrorView, accepts: ~w(html json), layout: false],
@@ -27,7 +27,7 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-config :maple, MapleTreeWeb.Gettext, default_locale: "en", locales: ~w(en pt)
+config :maple_tree, MapleTreeWeb.Gettext, default_locale: "en", locales: ~w(en pt)
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

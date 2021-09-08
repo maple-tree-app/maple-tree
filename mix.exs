@@ -3,7 +3,7 @@ defmodule MapleTree.MixProject do
 
   def project do
     [
-      app: :maple,
+      app: :maple_tree,
       version: "0.1.0",
       elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env()),
