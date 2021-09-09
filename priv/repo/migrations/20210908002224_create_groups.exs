@@ -7,6 +7,7 @@ defmodule Maple.Repo.Migrations.CreateGroups do
       add :name, :string
       add :color, :string
       add :description, :string
+      add :image_url, :string
 
       timestamps()
     end

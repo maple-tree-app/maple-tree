@@ -16,13 +16,8 @@ defmodule MapleTreeWeb.Helpers.LiveHelpers do
     socket
   end
 
-  defp maybe_assign_current_user(socket, session) do
-    if token = Map.get(session, "user_token") do
-      assign_current_user(socket, token)
-    else
-      socket
-    end
-  end
+  defp maybe_assign_current_user(socket, %{"user_token" => token}), do: assign_current_user(socket, token)
+  defp maybe_assign_current_user(socket, _), do: socket
 
   defp assign_current_user(socket, user_token) do
     assign_new(socket, :current_user, fn -> Users.get_user_by_session_token(user_token) end)

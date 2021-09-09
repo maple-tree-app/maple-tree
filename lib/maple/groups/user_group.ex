@@ -6,6 +6,7 @@ defmodule MapleTree.Groups.UserGroup do
   @foreign_key_type :binary_id
   schema "users_groups" do
     field :is_admin, :boolean, default: false
+    field :is_favorite, :boolean, default: false
     belongs_to :user, MapleTree.Users.User
     belongs_to :group, MapleTree.Groups.Group
 
@@ -13,9 +14,10 @@ defmodule MapleTree.Groups.UserGroup do
   end
 
   @doc false
-  def changeset(user_group, attrs) do
+  def changeset(%MapleTree.Groups.UserGroup{} = user_group, attrs) do
     user_group
-    |> cast(attrs, [:is_admin])
-    |> validate_required([:is_admin])
+    |> cast(attrs, [:user_id, :is_admin, :group_id, :is_favorite])
+    |> foreign_key_constraint(:user_id)
+    |> foreign_key_constraint(:group_id)
   end
 end

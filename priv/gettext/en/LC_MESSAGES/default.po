@@ -14,24 +14,26 @@ msgstr ""
 msgid "welcome %{name}"
 msgstr "Welcome to MapleTree, %{name}"
 
-msgid "Groups"
-msgstr ""
+msgid "groups"
+msgstr "Groups"
 
-#, fuzzy
-msgid "Shopping Lists"
-msgstr ""
+msgid "shopping lists"
+msgstr "Shopping lists"
 
-msgid "Tasks"
-msgstr ""
+msgid "tasks"
+msgstr "Tasks"
 
-msgid "Settings"
-msgstr ""
+msgid "settings"
+msgstr "Settings"
 
-msgid "Log Out"
-msgstr ""
+msgid "log out"
+msgstr "Log out"
 
-msgid "Login"
-msgstr ""
+msgid "login"
+msgstr "Login"
 
-msgid "Register"
-msgstr ""
+msgid "register"
+msgstr "Register"
+
+msgid "add group"
+msgstr "Add group"

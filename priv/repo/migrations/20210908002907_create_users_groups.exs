@@ -5,6 +5,7 @@ defmodule Maple.Repo.Migrations.CreateUsersGroups do
     create table(:users_groups, primary_key: false) do
       add :id, :binary_id, primary_key: true
       add :is_admin, :boolean, default: false, null: false
+      add :is_favorite, :boolean, defaul, false, null: false
       add :user_id, references(:users, on_delete: :nothing, type: :binary_id)
       add :group_id, references(:groups, on_delete: :nothing, type: :binary_id)
 

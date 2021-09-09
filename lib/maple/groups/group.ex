@@ -8,16 +8,18 @@ defmodule MapleTree.Groups.Group do
     field :color, :string
     field :description, :string
     field :name, :string
+    field :image_url, :string
 
     many_to_many :users, MapleTree.Groups.Group, join_through: MapleTree.Groups.UserGroup
+    has_many :users_groups, MapleTree.Groups.UserGroup
 
     timestamps()
   end
 
   @doc false
-  def changeset(group, attrs) do
+  def changeset(%MapleTree.Groups.Group{} = group, attrs) do
     group
-    |> cast(attrs, [:name, :color, :description])
-    |> validate_required([:name, :color, :description])
+    |> cast(attrs, [:name, :color, :description, :image_url])
+    |> validate_required([:name])
   end
 end

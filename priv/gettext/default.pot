@@ -15,23 +15,26 @@ msgid "welcome %{name}"
 msgstr ""
 
 
-msgid "Groups"
+msgid "groups"
 msgstr ""
 
-msgid "Shopping Lists"
+msgid "shopping lists"
 msgstr ""
 
-msgid "Tasks"
+msgid "tasks"
 msgstr ""
 
-msgid "Settings"
+msgid "settings"
 msgstr ""
 
-msgid "Log Out"
+msgid "log out"
 msgstr ""
 
-msgid "Login"
+msgid "login"
 msgstr ""
 
-msgid "Register"
+msgid "register"
+msgstr ""
+
+msgid "add group"
 msgstr ""

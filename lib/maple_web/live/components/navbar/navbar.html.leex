@@ -3,20 +3,20 @@
       <div class="hidden md:flex items-center justify-between pb-2">
         <div class="flex items-center">
           <%= live_patch img_tag(Routes.static_path(@socket, "/images/maple-leaf.png")), to: (Routes.page_path @socket, :index) %>
-          <%= live_patch gettext("Groups"), to: Routes.shopping_list_path(@socket, :index), class: "md-nav-item" %>
-          <%= live_patch gettext("Shopping Lists"), to: Routes.shopping_list_path(@socket, :index), class: "md-nav-item" %>
-          <%= live_patch gettext("Tasks"), to: Routes.shopping_list_path(@socket, :index), class: "md-nav-item" %>
+          <%= live_patch gettext("groups"), to: Routes.groups_page_path(@socket, :index), class: "md-nav-item" %>
+          <%= live_patch gettext("shopping lists"), to: Routes.shopping_list_path(@socket, :index), class: "md-nav-item" %>
+          <%= live_patch gettext("tasks"), to: Routes.shopping_list_path(@socket, :index), class: "md-nav-item" %>
         </div>
         <%= if !assigns[:current_user] do %>
           <div class="flex items-center">
-            <%= live_patch gettext("Login"), to: Routes.user_session_path(@socket, :new), class: "md-nav-item" %>
-            <%= live_patch gettext("Register"), to: Routes.user_registration_path(@socket, :new), class: "md-nav-item" %>
+            <%= live_patch gettext("login"), to: Routes.user_session_path(@socket, :new), class: "md-nav-item" %>
+            <%= live_patch gettext("register"), to: Routes.user_registration_path(@socket, :new), class: "md-nav-item" %>
           </div>
         <% end %>
         <%= if assigns[:current_user] do %>
           <div class="flex items-center">
-            <%= live_patch gettext("Settings"), to: Routes.shopping_list_path(@socket, :index), class: "md-nav-item" %>
-            <%= link gettext("Log out"), to: Routes.user_session_path(@socket, :delete), method: :delete, class: "md-nav-item" %>
+            <%= live_patch gettext("settings"), to: Routes.shopping_list_path(@socket, :index), class: "md-nav-item" %>
+            <%= link gettext("log out"), to: Routes.user_session_path(@socket, :delete), method: :delete, class: "md-nav-item" %>
           </div>
         <% end %>
       </div>
@@ -35,11 +35,11 @@
       <%= if @mobile_menu_open? do %>
         <div class="md:hidden absolute z-20 divide-y divide-maple-light-border dark:divide-maple-dark-border px-5 bg-maple-light-bg dark:bg-maple-dark-bg w-full border-b-2 border-yellow-300 dark:border-red-500 shadow-xl">
             <%= live_patch "Dashboard", to: (Routes.page_path @socket, :index), class: "block py-4 pl-5" %>
-            <%= live_patch gettext("Groups"), to: Routes.shopping_list_path(@socket, :index), class: "block py-4 pl-5" %>
-            <%= live_patch gettext("Shopping List"), to: Routes.shopping_list_path(@socket, :index), class: "block py-4 pl-5" %>
-            <%= live_patch gettext("Tasks"), to: Routes.shopping_list_path(@socket, :index), class: "block py-4 pl-5" %>
-            <%= live_patch gettext("Login"), to: Routes.shopping_list_path(@socket, :index), class: "block py-4 pl-5"  %>
-            <%= live_patch gettext("Register"), to: Routes.user_registration_path(@socket, :new), class: "block py-4 pl-5" %>
+            <%= live_patch gettext("groups"), to: Routes.shopping_list_path(@socket, :index), class: "block py-4 pl-5" %>
+            <%= live_patch gettext("shopping sist"), to: Routes.shopping_list_path(@socket, :index), class: "block py-4 pl-5" %>
+            <%= live_patch gettext("tasks"), to: Routes.shopping_list_path(@socket, :index), class: "block py-4 pl-5" %>
+            <%= live_patch gettext("login"), to: Routes.shopping_list_path(@socket, :index), class: "block py-4 pl-5"  %>
+            <%= live_patch gettext("register"), to: Routes.user_registration_path(@socket, :new), class: "block py-4 pl-5" %>
         </div>
       <% end %>
     </nav>

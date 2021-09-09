@@ -92,7 +92,9 @@ defmodule MapleTreeWeb.UserAuth do
     assign(conn, :current_user, user)
   end
 
-  def set_user_theme(conn, _opts), do: assign(conn, :theme, get_user_settings(conn, :theme, "auto"))
+  def set_user_theme(conn, _opts) do
+    assign(conn, :theme, get_user_settings(conn, :theme, "auto"))
+  end
 
   def set_user_locale(conn, _opts) do
     case get_user_settings(conn, :locale) || conn.params["locale"] || MapleTreeWeb.Helpers.Locale.get_locale_from_conn(conn) do
@@ -109,13 +111,15 @@ defmodule MapleTreeWeb.UserAuth do
 
 
   @spec get_user_settings(Map) :: nil|MapleTree.Users.UserSettings
-  defp get_user_settings(%{assigns: %{current_user: current_user}}), do: current_user
+  defp get_user_settings(%{assigns: %{current_user: %{settings: settings}}}), do: settings
   defp get_user_settings(_), do: nil
 
   defp get_user_settings(conn, key, fallback \\ nil) do
     case get_user_settings(conn) do
       nil -> fallback
-      settings -> Map.get(settings, key)
+      settings ->
+        a = Map.get(settings, key)
+        a
     end
   end
 
