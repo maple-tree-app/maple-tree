@@ -15,6 +15,9 @@ module.exports = {
         'maple-dark-border': '#8f8f8f',
         'maple-light-border': '#A7AFB2',
         'maple-dark-input-bg': '#474747',
+        'maple-red': '#EF4343',
+        'maple-yellow': '#EFC443',
+        'maple-navbar-dark': '#3333'
       }
     },
   },

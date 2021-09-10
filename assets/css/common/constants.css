@@ -1,0 +1,3 @@
+.maple_bg {
+  @apply bg-maple-light-bg dark:bg-maple-dark-bg text-gray-900 dark:text-white transition-colors ease-linear duration-100;
+}

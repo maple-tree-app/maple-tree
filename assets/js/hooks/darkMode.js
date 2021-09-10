@@ -8,5 +8,6 @@ export default {
 
   setThemeIfAllowed() {
     body.classList.toggle('dark');
+    body.classList.remove('auto')
   }
 }

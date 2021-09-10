@@ -1,4 +1,4 @@
-input.form-input {
+.form-input {
   @apply p-2 mt-3 bg-maple-light-bg dark:bg-maple-dark-bg dark:text-white border-0 border-b border-maple-light-border dark:border-maple-dark-border;
   /* text-black ring-1 ring-maple-light-border outline-none  dark:ring-maple-dark-border; */
 

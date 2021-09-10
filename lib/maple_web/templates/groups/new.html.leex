@@ -1,30 +1,30 @@
 <div class="p-10 m-auto max-w-7xl">
   <header>
-    <h1 class="text-xl"><%= gettext "add group" %></h1>
+    <h1 class="text-xl text-center"><%= gettext "add group" %></h1>
   </header>
   <%= form_for @changeset, "#",
   [
     id: "group-form",
-    class: "grid grid-cols-1 gap-x-8 sm:grid-cols-2",
+    class: "flex flex-col items-center",
     phx_change: "validate",
     autocomplete: "off",
     phx_submit: "save",
     ],
   fn f -> %>
-  <div>
+  <div class="w-full max-w-lg">
     <%= label f, :name, class: "mt-10 block" %>
-    <%= text_input f, :name, required: true, class: "form-input", phx_debounce: 150 %>
+    <%= text_input f, :name, required: true, class: "form-input w-full", phx_debounce: 150 %>
     <%= error_tag f, :name %>
   </div>
 
-  <div>
-    <%= label f, :description, class: "mt-10 block" %>
-    <%= textarea f, :description, required: false, class: "form-input", phx_debounce: 150 %>
-    <%= error_tag f, :email %>
+  <div class="w-full max-w-lg">
+    <%= label f, :description, class: "mt-10 mb-2 block w-full" %>
+    <%= textarea f, :description, required: false, class: "form-input w-full resize-none", phx_debounce: 150, spellcheck: "false" %>
+    <%= error_tag f, :description %>
   </div>
-  <div>
-    <%= label f, :color, class: "mt-10 block" %>
-    <%= color_input f, :color, required: false, class: "w-20 h-20", phx_debounce: 300 %>
+  <div class="mt-10 w-full max-w-lg flex items-center justify-between">
+    <%= label f, :color %>
+    <%= color_input f, :color, value: "#ef4343",required: false, class: "w-20 h-10", phx_debounce: 300 %>
     <%= error_tag f, :color %>
   </div>
 

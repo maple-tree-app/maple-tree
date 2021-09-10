@@ -1,4 +1,4 @@
- <nav class="sticky top-0 z-10 md:px-5 py-5 pb-2 text-lg bg-maple-light-bg dark:bg-maple-dark-bg border-b border-black dark:border-red-500 shadow-xl">
+ <nav class="maple_bg dark:bg-maple-navbar-dark sticky top-0 z-10 md:px-5 py-5 text-lg shadow-xl">
       <%# DESKTOP NAV  %>
       <div class="hidden md:flex items-center justify-between pb-2">
         <div class="flex items-center">
@@ -22,24 +22,29 @@
       </div>
 
       <%# MOBILE NAV %>
-      <div class="flex md:hidden items center justify-between">
-        <button type="button" id="mobile-button" phx-click="mobile-button" phx-target="<%=@myself%>">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 ml-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div class="relative flex md:hidden items-center ">
+        <button class="ml-5 absolute" type="button" id="mobile-button" phx-click="mobile-button" phx-target="<%=@myself%>">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
 
-        <%= img_tag(Routes.static_path(@socket, "/images/maple-leaf.png"), class: "mx-auto h-12 w-12") %>
+        <%= img_tag(Routes.static_path(@socket, "/images/maple-leaf.png"), class: "h-12 w-12 m-auto max-w-12") %>
       </div>
       <%# MOBILE MENU %>
       <%= if @mobile_menu_open? do %>
-        <div class="md:hidden absolute z-20 divide-y divide-maple-light-border dark:divide-maple-dark-border px-5 bg-maple-light-bg dark:bg-maple-dark-bg w-full border-b-2 border-yellow-300 dark:border-red-500 shadow-xl">
-            <%= live_patch "Dashboard", to: (Routes.page_path @socket, :index), class: "block py-4 pl-5" %>
-            <%= live_patch gettext("groups"), to: Routes.shopping_list_path(@socket, :index), class: "block py-4 pl-5" %>
-            <%= live_patch gettext("shopping sist"), to: Routes.shopping_list_path(@socket, :index), class: "block py-4 pl-5" %>
-            <%= live_patch gettext("tasks"), to: Routes.shopping_list_path(@socket, :index), class: "block py-4 pl-5" %>
-            <%= live_patch gettext("login"), to: Routes.shopping_list_path(@socket, :index), class: "block py-4 pl-5"  %>
-            <%= live_patch gettext("register"), to: Routes.user_registration_path(@socket, :new), class: "block py-4 pl-5" %>
+        <div class="md:hidden relative top-6 z-20 divide-y divide-maple-light-border dark:divide-maple-dark-border px-5 w-full shadow-xl font-medium text-base">
+            <%= live_patch "Dashboard", to: (Routes.page_path @socket, :index), class: "block py-3 pl-1" %>
+            <%= live_patch gettext("groups"), to: Routes.shopping_list_path(@socket, :index), class: "block py-3 pl-1" %>
+            <%= live_patch gettext("shopping lists"), to: Routes.shopping_list_path(@socket, :index), class: "block py-3 pl-1" %>
+            <%= live_patch gettext("tasks"), to: Routes.shopping_list_path(@socket, :index), class: "block py-3 pl-1" %>
+            <%= if !assigns[:current_user] do %>
+            <%= live_patch gettext("login"), to: Routes.shopping_list_path(@socket, :index), class: "block py-3 pl-1"  %>
+            <%= live_patch gettext("register"), to: Routes.user_registration_path(@socket, :new), class: "block py-3 pl-1" %>
+            <% else %>
+            <%= live_patch gettext("settings"), to: Routes.shopping_list_path(@socket, :index), class: "block py-3 pl-1"  %>
+            <%= live_patch gettext("log out"), to: Routes.user_session_path(@socket, :delete), class: "block py-3 pl-1" %>
+            <% end %>
         </div>
       <% end %>
     </nav>
