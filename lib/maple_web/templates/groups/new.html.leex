@@ -2,31 +2,36 @@
   <header>
     <h1 class="text-xl text-center"><%= gettext "add group" %></h1>
   </header>
-  <%= form_for @changeset, "#",
-  [
-    id: "group-form",
-    class: "flex flex-col items-center",
-    phx_change: "validate",
-    autocomplete: "off",
-    phx_submit: "save",
-    ],
-  fn f -> %>
-  <div class="w-full max-w-lg">
-    <%= label f, :name, class: "mt-10 block" %>
-    <%= text_input f, :name, required: true, class: "form-input w-full", phx_debounce: 150 %>
-    <%= error_tag f, :name %>
-  </div>
+  <div class="flex flex-col items-center">
+    <%= form_for @changeset, "#",
+    [
+      id: "group-form",
+      class: "flex flex-col items-center w-full bg-maple-navbar-dark max-w-xl p-20",
+      phx_change: "validate",
+      autocomplete: "off",
+      phx_submit: "save",
+      ],
+    fn f -> %>
+      <div class="w-full max-w-lg">
+        <%= label f, :name, class: "mt-10 block" %>
+        <%= text_input f, :name, required: true, class: "form-input w-full", phx_debounce: 300 %>
+        <%= error_tag f, :name %>
+      </div>
 
-  <div class="w-full max-w-lg">
-    <%= label f, :description, class: "mt-10 mb-2 block w-full" %>
-    <%= textarea f, :description, required: false, class: "form-input w-full resize-none", phx_debounce: 150, spellcheck: "false" %>
-    <%= error_tag f, :description %>
-  </div>
-  <div class="mt-10 w-full max-w-lg flex items-center justify-between">
-    <%= label f, :color %>
-    <%= color_input f, :color, value: "#ef4343",required: false, class: "w-20 h-10", phx_debounce: 300 %>
-    <%= error_tag f, :color %>
-  </div>
+      <div class="w-full max-w-lg">
+        <%= label f, :description, class: "mt-10 mb-2 block w-full" %>
+        <%= textarea f, :description, required: false, class: "form-input overflow-hidden w-full resize-none", phx_debounce: 300, spellcheck: "false", rows: 3 %>
+        <%= error_tag f, :description %>
+      </div>
+      <div class="mt-10 w-full max-w-lg flex items-center justify-between">
+        <%= label f, :color %>
+        <%= color_input f, :color, value: "#ef4343",required: false, class: "w-20 h-10", phx_debounce: 300 %>
+        <%= error_tag f, :color %>
+      </div>
 
-  <% end %>
+      <div class="col-span-full">
+        <%= submit "Add", phx_disable_with: "Adding...", class: "rounded py-2 px-8 mt-12 bg-maple-yellow text-black hover:bg-yellow-400 dark:hover:bg-yellow-300 transition duration-200" %>
+      </div>
+    <% end %>
+  </div>
 </div>

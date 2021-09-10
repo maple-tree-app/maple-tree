@@ -93,7 +93,6 @@ defmodule MapleTreeWeb.UserAuth do
   end
 
   def set_user_theme(conn, _opts) do
-    IO.inspect(get_session(conn))
     assign(conn, :theme, get_user_settings(conn, :theme, "auto"))
   end
 

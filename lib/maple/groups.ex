@@ -10,11 +10,12 @@ defmodule MapleTree.Groups do
   def create_group(attrs, user_id) do
     Ecto.Multi.new()
       |> Ecto.Multi.insert(:group, Group.changeset(%Group{}, attrs))
-      |> Ecto.Multi.insert(:users_groups, fn group -> UserGroup.changeset(%UserGroup{}, %{
+      |> Ecto.Multi.insert(:users_groups, fn %{group: group} ->
+        IO.inspect(group)
+        UserGroup.changeset(%UserGroup{}, %{
         group_id: group.id,
         user_id: user_id,
-        is_admin: true,
-        is_favorite: false
+        is_admin: true
       }) end)
       |> Repo.transaction()
       |> case do

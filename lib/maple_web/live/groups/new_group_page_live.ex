@@ -4,7 +4,6 @@ defmodule MapleTreeWeb.NewGroupPageLive do
   alias Phoenix.View
   alias MapleTreeWeb.Helpers.LiveHelpers
   alias MapleTree.Groups
-  alias MapleTree.Groups.Group
 
   @impl true
   def mount(_params, session, socket) do
@@ -17,6 +16,16 @@ defmodule MapleTreeWeb.NewGroupPageLive do
   @impl true
   def render(assigns) do
     View.render(MapleTreeWeb.GroupsView, "new.html", assigns)
+  end
+
+  @impl true
+  def handle_event("save", %{"group" => group_params}, socket) do
+    case Groups.create_group(group_params, socket.assigns.current_user.id) do
+      {:ok, _group} -> {:noreply, socket
+        |> put_flash(:info, "group has been created")
+        |> push_redirect(to: Routes.groups_page_path(socket, :index))}
+      {:error, changeset} -> {:noreply, socket |> put_flash(:error, "something went wrong") |> assign(changeset: changeset)}
+    end
   end
 
   @impl true
