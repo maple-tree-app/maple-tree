@@ -1,11 +1,16 @@
 <div class="p-10 max-w-7xl m-auto">
   <header class="flex flex-col items-start justify-between w-full h-16 sm:h-10 sm:flex-row">
-    <h1 class="text-xl"><%= gettext "groups" %></h1>
+    <h1 class="text-2xl"><%= gettext "groups" %></h1>
 
-    <%= live_patch  to: Routes.new_group_page_path(@socket, :new), class: "flex flex-row align-center items-center" do %>
-      <span class="mr-2 text-lg"><%= gettext("add group") %></span>
+    <%= live_patch  to: Routes.new_group_page_path(@socket, :new), class: "flex flex-row align-center items-center rounded-full bg-maple-red dark:bg-maple-yellow py-2 px-3 text-gray-900" do %>
+      <span class="mr-2 text-md"><%= gettext("add group") %></span>
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 relative" style="top: 2px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
     <% end %>
   </header>
+
+
+  <%= for group <- @groups do %>
+    <%= live_component @socket, MapleTreeWeb.Live.Components.GroupCard, group: group, id: "#group_card"<>group.id %>
+  <% end %>
 
 </div>

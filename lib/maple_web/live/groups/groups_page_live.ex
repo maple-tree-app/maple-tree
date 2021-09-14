@@ -8,7 +8,6 @@ defmodule MapleTreeWeb.GroupsPageLive do
   @impl true
   def mount(_params, session, socket) do
     socket = socket |> LiveHelpers.init(session) |> get_groups
-    IO.inspect socket.assigns.groups
     {:ok, socket}
   end
 

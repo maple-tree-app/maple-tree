@@ -1,6 +1,6 @@
  <nav class="maple_bg dark:bg-maple-navbar-dark sticky top-0 z-10 md:px-5 py-3 text-lg shadow-xl" phx-hook="darkMode">
       <%# DESKTOP NAV  %>
-      <div class="hidden md:flex items-center justify-between pb-2">
+      <div class="hidden md:flex items-center justify-between">
         <div class="flex items-center">
           <%= live_patch img_tag(Routes.static_path(@socket, "/images/maple-leaf.png")), to: (Routes.page_path @socket, :index) %>
           <%= live_patch gettext("groups"), to: Routes.groups_page_path(@socket, :index), class: "md-nav-item" %>

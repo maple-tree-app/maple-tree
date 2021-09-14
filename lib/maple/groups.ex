@@ -24,15 +24,12 @@ defmodule MapleTree.Groups do
   end
 
   def get_groups(user_id) do
-    IO.inspect(user_id)
-    IO.inspect("____________________")
     query = from(
       ug in UserGroup,
       where: ug.user_id == ^user_id,
       join: group in assoc(ug, :group),
       order_by: [desc: ug.is_admin],
       select: group)
-
     Repo.all(query) |> Repo.preload(:users)
   end
 end
