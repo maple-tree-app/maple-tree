@@ -6,4 +6,9 @@ defmodule MapleTreeWeb.Live.Components.Navbar do
     {:ok, socket}
   end
 
+  @impl true
+  def handle_event("click_dark_mode", _evt, socket) do
+    {:noreply, socket}
+  end
+
 end

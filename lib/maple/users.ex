@@ -76,7 +76,7 @@ defmodule MapleTree.Users do
   def register_user(attrs) do
     Ecto.Multi.new()
     |> Ecto.Multi.insert(:user, User.registration_changeset(%User{}, attrs))
-    |> Ecto.Multi.insert(:users_settings, fn %{user: user} -> UserSettings.registration_changeset(%{user_id: user.id, theme: "dark", locale: "en"}) end)
+    |> Ecto.Multi.insert(:users_settings, fn %{user: user} -> UserSettings.registration_changeset(%{user_id: user.id, theme: "auto", locale: "en"}) end)
     |> Repo.transaction()
     |> case do
       {:ok, %{user: user}} -> {:ok, user}
@@ -158,15 +158,6 @@ defmodule MapleTree.Users do
     |> Ecto.Multi.delete_all(:tokens, UserToken.user_and_contexts_query(user, [context]))
   end
 
-  @doc """
-  Delivers the update email instructions to the given user.
-
-  ## Examples
-
-      iex> deliver_update_email_instructions(user, current_email, &Routes.user_update_email_url(conn, :edit, &1))
-      {:ok, %{to: ..., body: ...}}
-
-  """
   def deliver_update_email_instructions(%User{} = user, current_email, update_email_url_fun)
       when is_function(update_email_url_fun, 1) do
     {encoded_token, user_token} = UserToken.build_email_token(user, "change:#{current_email}")

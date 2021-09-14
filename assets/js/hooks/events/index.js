@@ -1,0 +1,2 @@
+
+export {clickMobileMenu} from './clickMobileMenu';

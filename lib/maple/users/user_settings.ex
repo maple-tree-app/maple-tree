@@ -7,7 +7,7 @@ defmodule MapleTree.Users.UserSettings do
   schema "users_settings" do
     field :theme, :string
     field :locale, :string
-    belongs_to :user, MapleTree.Users.User
+    belongs_to :user, MapleTree.Users.User, type: :binary_id
 
     timestamps()
   end

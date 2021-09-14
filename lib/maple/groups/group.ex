@@ -10,7 +10,7 @@ defmodule MapleTree.Groups.Group do
     field :name, :string
     field :image_url, :string
 
-    many_to_many :users, MapleTree.Groups.Group, join_through: MapleTree.Groups.UserGroup
+    many_to_many :users, MapleTree.Users.User, join_through: MapleTree.Groups.UserGroup
     has_many :users_groups, MapleTree.Groups.UserGroup
 
     timestamps()

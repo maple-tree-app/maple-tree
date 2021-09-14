@@ -1,0 +1,15 @@
+  <div
+    class="<%= assigns[:class] || ""%>"
+    <%= if hook = assigns[:hook] do "phx-hook=#{hook}" end %>
+  >
+    <%= form_for assigns[:id], "#",
+      [
+        id: "group-form",
+        class: "toggle flex items-center",
+        phx_change: assigns[:event_name],
+        phx_target: assigns[:handler_id]
+      ],fn f -> %>
+        <%= checkbox f, :toggle, class: "toggle_checkbox"  %>
+        <%= label f, :toggle, "" %>
+    <% end %>
+</div>

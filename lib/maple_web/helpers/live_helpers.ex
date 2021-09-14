@@ -3,9 +3,10 @@ defmodule MapleTreeWeb.Helpers.LiveHelpers do
   alias MapleTree.Users
 
   def init(socket, session) do
-    socket
+    socket = socket
       |> maybe_put_locale(session)
       |> maybe_assign_current_user(session)
+    socket
   end
 
 

@@ -7,8 +7,8 @@ defmodule MapleTree.Groups.UserGroup do
   schema "users_groups" do
     field :is_admin, :boolean, default: false
     field :is_favorite, :boolean, default: false
-    belongs_to :user, MapleTree.Users.User
-    belongs_to :group, MapleTree.Groups.Group
+    belongs_to :user, MapleTree.Users.User, type: :binary_id
+    belongs_to :group, MapleTree.Groups.Group, type: :binary_id
 
     timestamps()
   end

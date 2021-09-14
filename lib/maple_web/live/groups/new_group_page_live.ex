@@ -30,7 +30,6 @@ defmodule MapleTreeWeb.NewGroupPageLive do
 
   @impl true
   def handle_event("validate", %{"group" => group_params}, socket) do
-    IO.inspect(group_params)
     {:noreply, assign(socket, :changeset, apply_changeset(group_params))}
   end
 
