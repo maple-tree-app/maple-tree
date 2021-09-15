@@ -3,7 +3,7 @@ import { isDarkThemeActive } from "../helpers";
 const body = document.body;
 export const darkMode =  {
   mounted() {
-    const checkboxes = Array.from(this.el.querySelectorAll('.toggle_checkbox'));
+    const checkboxes = Array.from(this.el.querySelectorAll('.dark_theme_toggle_checkbox'));
     checkboxes.forEach(checkbox => {
       checkbox.checked = isDarkThemeActive();
       checkbox.addEventListener('change', () => {

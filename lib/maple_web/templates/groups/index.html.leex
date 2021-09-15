@@ -1,5 +1,5 @@
-<div class="p-10 max-w-7xl m-auto">
-  <header class="flex flex-col items-start justify-between w-full h-16 sm:h-10 sm:flex-row">
+<div class="p-10 max-w-7xl m-auto" id="group-idx">
+  <header class="flex items-center justify-between w-full h-16 sm:h-10 flex-row">
     <h1 class="text-2xl"><%= gettext "groups" %></h1>
 
     <%= live_patch  to: Routes.new_group_page_path(@socket, :new), class: "flex flex-row align-center items-center rounded-full bg-maple-red dark:bg-maple-yellow py-2 px-3 text-gray-900" do %>
@@ -9,8 +9,28 @@
   </header>
 
 
-  <%= for group <- @groups do %>
-    <%= live_component @socket, MapleTreeWeb.Live.Components.GroupCard, group: group, id: "#group_card"<>group.id %>
-  <% end %>
+  <div class="pt-4">
+    <%= form_for :user_input, "#", [id: "groups-form", class: "flex flex-col items-start sm:flex-row sm:items-center justify-start mb-4 w-full", phx_change: "search"], fn f -> %>
+        <div class="mr-10">
+          <%= label f, "Group Name:", class: "mr-4" %>
+          <%= text_input f, :name, class: "form-input mt-0 w-44", phx_debounce: 500 %>
+        </div>
+
+        <div class="flex items-center w-full sm:w-52 justify-between">
+          <span class="mr-4">Admin groups only:</span>
+          <div class="toggle">
+            <%= checkbox f, :admin_only, phx_debounce: 500, phx_update: "ignore" %>
+
+            <%= label f, :admin_only, "" %>
+          </div>
+        </div>
+    <% end %>
+
+    <%= for group <- @groups do %>
+      <div class="mb-8">
+        <%= live_component @socket, MapleTreeWeb.Live.Components.GroupCard, group: group, id: "#group_card"<>group.id %>
+      </div>
+    <% end %>
+  </div>
 
 </div>

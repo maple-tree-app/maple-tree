@@ -23,13 +23,21 @@ defmodule MapleTree.Groups do
       end
   end
 
-  def get_groups(user_id) do
-    query = from(
-      ug in UserGroup,
-      where: ug.user_id == ^user_id,
-      join: group in assoc(ug, :group),
-      order_by: [desc: ug.is_admin],
-      select: group)
+  def get_groups(user_id, search_params \\ []) do
+    query = from(UserGroup, as:  :ug)
+      |> join(:left, [ug: user_group], g in assoc(user_group, :group), as: :groups)
+      |> where([ug, g], ug.user_id == ^user_id)
+      |> order_by([user_group, g], [desc: user_group.is_admin])
+      |> select([groups: g], g)
+      |> add_params(search_params)
     Repo.all(query) |> Repo.preload(:users)
+  end
+
+  defp add_params(query, params) do
+    Enum.reduce(params, query, fn 
+      {"name", name}, query -> where(query, [groups: g], like(g.name, ^"%#{name}%"))
+      {"admin_only", "true"}, query -> where(query, [ug: ug], ug.is_admin == true)
+      _, query -> query
+    end)
   end
 end
