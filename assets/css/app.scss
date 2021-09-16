@@ -1,7 +1,13 @@
+/* Common */
+@import "./common/input.css";
 @import "./common/form.css";
 @import "./common/nav.css";
 @import "./common/constants.css";
 @import "./common/toggle.css";
+
+/* Components */
+@import "./components/group_card.css";
+
 
 @tailwind base;
 @tailwind components;

@@ -1,0 +1,18 @@
+.group_card {
+  @apply border border-maple-navbar-dark dark:bg-maple-navbar-dark shadow-md flex items-center h-40 w-auto rounded-xl overflow-hidden cursor-pointer;
+
+  &__image {
+    height: 120px;
+    max-width: 160px;
+    flex-shrink: 0;
+  }
+
+  &__description {
+    @apply flex-grow text-sm mt-4;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    line-height: 1.8em;
+    max-height: calc(1.8em * 3);
+  }
+}

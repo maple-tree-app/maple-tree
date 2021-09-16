@@ -1,0 +1,8 @@
+.maple-input {
+  background-color: inherit;
+  color: inherit;
+  @apply px-4 py-2 border rounded-lg border-maple-light-border dark:border-maple-dark-border;
+  &:focus {
+    @apply border-red-500 dark:border-yellow-300 outline-none;
+  }
+}
