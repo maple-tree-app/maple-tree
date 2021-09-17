@@ -22,6 +22,7 @@ defmodule MapleTreeWeb.Router do
   scope "/", MapleTreeWeb do
     pipe_through :browser
 
+    # landing
     live "/", PageLive, :index
     live "/users/register", UserRegistrationLive, :new
   end
@@ -29,8 +30,12 @@ defmodule MapleTreeWeb.Router do
   scope "/", MapleTreeWeb do
     pipe_through [:browser, :require_authenticated_user]
 
+
     live "/shopping_list", ShoppingListLive, :index
+
+    #groups
     live "/groups", GroupsPageLive, :index
+    live "/groups/:id", GroupsDetailsLive, :show
     live "/groups/new", NewGroupPageLive, :new
   end
 

@@ -1,11 +1,11 @@
- <nav class="maple_bg sticky top-0 z-50 md:px-5 py-3 text-lg shadow-x" phx-hook="darkMode">
+ <nav class="maple_bg sticky top-0 z-50 md:px-5 py-3 text-lg shadow-xl" phx-hook="darkMode">
       <%# DESKTOP NAV  %>
       <div class="hidden md:flex items-center justify-between">
         <div class="flex items-center">
-          <%= live_patch img_tag(Routes.static_path(@socket, "/images/maple-leaf.png")), to: (Routes.page_path @socket, :index) %>
-          <%= live_patch gettext("groups"), to: Routes.groups_page_path(@socket, :index), class: "md-nav-item" %>
-          <%= live_patch gettext("shopping lists"), to: Routes.shopping_list_path(@socket, :index), class: "md-nav-item" %>
-          <%= live_patch gettext("tasks"), to: Routes.shopping_list_path(@socket, :index), class: "md-nav-item" %>
+          <%= live_redirect img_tag(Routes.static_path(@socket, "/images/maple-leaf.png")), to: (Routes.page_path @socket, :index) %>
+          <%= live_redirect gettext("groups"), to: Routes.groups_page_path(@socket, :index), class: "md-nav-item" %>
+          <%= live_redirect gettext("shopping lists"), to: Routes.shopping_list_path(@socket, :index), class: "md-nav-item" %>
+          <%= live_redirect gettext("tasks"), to: Routes.shopping_list_path(@socket, :index), class: "md-nav-item" %>
         </div>
         <div class="flex items-center">
 
@@ -18,13 +18,13 @@
 
           <%= if !assigns[:current_user] do %>
             <div class="flex items-center">
-              <%= live_patch gettext("login"), to: Routes.user_session_path(@socket, :new), class: "md-nav-item" %>
-              <%= live_patch gettext("register"), to: Routes.user_registration_path(@socket, :new), class: "md-nav-item" %>
+              <%= live_redirect gettext("login"), to: Routes.user_session_path(@socket, :new), class: "md-nav-item" %>
+              <%= live_redirect gettext("register"), to: Routes.user_registration_path(@socket, :new), class: "md-nav-item" %>
             </div>
           <% end %>
           <%= if assigns[:current_user] do %>
             <div class="flex items-center">
-              <%= live_patch gettext("settings"), to: Routes.shopping_list_path(@socket, :index), class: "md-nav-item" %>
+              <%= live_redirect gettext("settings"), to: Routes.shopping_list_path(@socket, :index), class: "md-nav-item" %>
               <%= link gettext("log out"), to: Routes.user_session_path(@socket, :delete), method: :delete, class: "md-nav-item" %>
             </div>
           <% end %>
@@ -43,16 +43,16 @@
       <%# MOBILE MENU %>
         <div id="mobile-menu" class="hidden md:hidden top-7 z-20 divide-y divide-maple-light-border dark:divide-maple-dark-border px-5 w-full font-medium text-base">
 
-            <%= live_patch "Dashboard", to: (Routes.page_path @socket, :index), class: "block py-3 pl-1" %>
-            <%= live_patch gettext("groups"), to: Routes.shopping_list_path(@socket, :index), class: "block py-3 pl-1" %>
-            <%= live_patch gettext("shopping lists"), to: Routes.shopping_list_path(@socket, :index), class: "block py-3 pl-1" %>
-            <%= live_patch gettext("tasks"), to: Routes.shopping_list_path(@socket, :index), class: "block py-3 pl-1" %>
+            <%= live_redirect "Dashboard", to: (Routes.page_path @socket, :index), class: "block py-3 pl-1" %>
+            <%= live_redirect gettext("groups"), to: Routes.shopping_list_path(@socket, :index), class: "block py-3 pl-1" %>
+            <%= live_redirect gettext("shopping lists"), to: Routes.shopping_list_path(@socket, :index), class: "block py-3 pl-1" %>
+            <%= live_redirect gettext("tasks"), to: Routes.shopping_list_path(@socket, :index), class: "block py-3 pl-1" %>
             <%= if !assigns[:current_user] do %>
-            <%= live_patch gettext("login"), to: Routes.shopping_list_path(@socket, :index), class: "block py-3 pl-1"  %>
-            <%= live_patch gettext("register"), to: Routes.user_registration_path(@socket, :new), class: "block mb-4 py-3 pl-1" %>
+            <%= live_redirect gettext("login"), to: Routes.shopping_list_path(@socket, :index), class: "block py-3 pl-1"  %>
+            <%= live_redirect gettext("register"), to: Routes.user_registration_path(@socket, :new), class: "block mb-4 py-3 pl-1" %>
             <% else %>
-            <%= live_patch gettext("settings"), to: Routes.shopping_list_path(@socket, :index), class: "block py-3 pl-1"  %>
-            <%= live_patch gettext("log out"), to: Routes.user_session_path(@socket, :delete), class: "block py-3 pl-1" %>
+            <%= live_redirect gettext("settings"), to: Routes.shopping_list_path(@socket, :index), class: "block py-3 pl-1"  %>
+            <%= live_redirect gettext("log out"), to: Routes.user_session_path(@socket, :delete), class: "block py-3 pl-1" %>
             <% end %>
             <div class="flex items-center justify-between pb-2 pt-4 pl-1">
               <span>Dark mode</span>

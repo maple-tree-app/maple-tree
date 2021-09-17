@@ -1,3 +1,8 @@
 .maple_bg {
-  @apply bg-maple-light-bg dark:bg-maple-dark-bg text-gray-900 dark:text-white transition-colors ease-linear duration-200;
+  @apply bg-maple-light-bg dark:bg-maple-dark-bg text-black dark:text-white transition-colors ease-linear duration-200;
+}
+
+
+.faded {
+  @apply text-gray-700 dark:text-gray-300
 }

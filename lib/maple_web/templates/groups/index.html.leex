@@ -2,7 +2,7 @@
   <header class="flex items-center justify-between w-full h-16 sm:h-10 flex-row">
     <h1 class="text-2xl"><%= gettext "groups" %></h1>
 
-    <%= live_patch  to: Routes.new_group_page_path(@socket, :new), class: "flex flex-row align-center items-center rounded-full bg-maple-red dark:bg-maple-yellow py-2 px-3 text-gray-900" do %>
+    <%= live_patch  to: Routes.new_group_page_path(@socket, :new), class: "flex flex-row align-center items-center rounded-full bg-maple-red dark:bg-maple-dark-bg py-2 px-3 border border-black border-maple-red dark:border-white" do %>
       <span class="mr-2 text-md"><%= gettext("add group") %></span>
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 relative" style="top: 2px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
     <% end %>
@@ -16,9 +16,7 @@
         class: "flex flex-col items-center justify-between sm:justify-start h-24 sm:flex-row w-full sm:mb-0 mb-8",
         phx_change: "search"
       ], fn f -> %>
-        <div class="relative">
-          <%= text_input f, :name, class: "maple-input w-full sm:w-52", phx_debounce: 500, placeholder: "Group Name:" %>
-        </div>
+        <%= text_input f, :name, class: "maple-input w-full sm:w-52", phx_debounce: 500, placeholder: "Group Name:" %>
 
         <div class="flex items-center w-full sm:w-52 ml-0 sm:ml-8 justify-between">
           <span class="mr-4">Admin groups only:</span>
@@ -29,9 +27,11 @@
         </div>
     <% end %>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-y-8 gap-x-4 lg:gap-x-12">
         <%= for group <- @groups do %>
-          <%= live_component @socket, MapleTreeWeb.Live.Components.GroupCard, group: group, id: "#group_card"<>group.id %>
+          <div phx-click="click-group" phx-value-id="<%= group.id %>">
+            <%= live_component @socket, MapleTreeWeb.Live.Components.GroupCard, group: group, id: "#group_card"<>group.id %>
+          </div>
         <% end %>
       </div>
   </div>

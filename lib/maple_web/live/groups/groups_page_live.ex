@@ -18,8 +18,12 @@ defmodule MapleTreeWeb.GroupsPageLive do
 
   @impl true
   def handle_event("search", %{"user_input" => search_params}, socket) do
-    IO.inspect search_params
     {:noreply, get_groups(socket, search_params)}
+  end
+
+  @impl true
+  def handle_event("click-group", %{"id" => group_id}, socket) do
+    {:noreply, push_redirect(socket, to: Routes.groups_details_path(socket, :show, group_id))}
   end
 
   def get_groups(socket, search_params \\ []) do

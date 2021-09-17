@@ -30,11 +30,23 @@ defmodule MapleTree.Groups do
       |> order_by([user_group, g], [desc: user_group.is_admin])
       |> select([groups: g], g)
       |> add_params(search_params)
-    Repo.all(query) |> Repo.preload(:users)
+    Repo.all(query)
+  end
+
+  def get_group(group_id, _search_params \\ []) do
+    query = from(Group, as: :group)
+      |> where([group: group], group.id == ^group_id)
+      |> preload([users_groups: :user])
+
+    Repo.one(query)
+  end
+
+  def user_belongs_to_group?(group_id, user_id) do
+    Repo.exists? from ug in UserGroup, where: ug.user_id == ^user_id and ug.group_id == ^group_id
   end
 
   defp add_params(query, params) do
-    Enum.reduce(params, query, fn 
+    Enum.reduce(params, query, fn
       {"name", name}, query -> where(query, [groups: g], like(g.name, ^"%#{name}%"))
       {"admin_only", "true"}, query -> where(query, [ug: ug], ug.is_admin == true)
       _, query -> query
