@@ -1,4 +1,4 @@
-defmodule Maple.Repo.Migrations.CreateGroups do
+defmodule MapleTree.Repo.Migrations.CreateGroups do
   use Ecto.Migration
 
   def change do

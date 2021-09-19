@@ -60,8 +60,8 @@ config :maple_tree, MapleTreeWeb.Endpoint,
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/maple_web/(live|views)/.*(ex)$",
-      ~r"lib/maple_web/templates/.*(eex)$"
+      ~r"lib/maple_tree_web/(live|views)/.*(ex)$",
+      ~r"lib/maple_tree_web/templates/.*(eex)$"
     ]
   ]
 

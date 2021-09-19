@@ -31,7 +31,7 @@ defmodule MapleTreeWeb do
   def view do
     quote do
       use Phoenix.View,
-        root: "lib/maple_web/templates",
+        root: "lib/maple_tree_web/templates",
         namespace: MapleTreeWeb
 
       # Import convenience functions from controllers

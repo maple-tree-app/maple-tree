@@ -50,7 +50,7 @@ defmodule MapleTreeWeb.UserSessionControllerTest do
           }
         })
 
-      assert conn.resp_cookies["_maple_web_user_remember_me"]
+      assert conn.resp_cookies["_maple_tree_web_user_remember_me"]
       assert redirected_to(conn) =~ "/"
     end
 

@@ -1,0 +1,12 @@
+.flash {
+  @apply absolute z-50 left-1/2 top-4 flex flex-row items-center px-5 py-2 justify-between rounded-full text-black;
+
+  &.alert-danger {
+    @apply bg-maple-red;
+  }
+
+  &.alert-info {
+    @apply bg-maple-yellow;
+  }
+}
+

@@ -5,7 +5,7 @@ defmodule MapleTreeWeb.UserAuthTest do
   alias MapleTreeWeb.UserAuth
   import MapleTree.UsersFixtures
 
-  @remember_me_cookie "_maple_web_user_remember_me"
+  @remember_me_cookie "_maple_tree_web_user_remember_me"
 
   setup %{conn: conn} do
     conn =
