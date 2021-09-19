@@ -47,7 +47,7 @@ defmodule MapleTree.Groups do
 
   defp add_params(query, params) do
     Enum.reduce(params, query, fn
-      {"name", name}, query -> where(query, [groups: g], like(g.name, ^"%#{name}%"))
+      {"name", name}, query -> where(query, [groups: g], ilike(g.name, ^"%#{name}%"))
       {"admin_only", "true"}, query -> where(query, [ug: ug], ug.is_admin == true)
       _, query -> query
     end)
