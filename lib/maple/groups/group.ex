@@ -11,7 +11,7 @@ defmodule MapleTree.Groups.Group do
     field :image_url, :string
 
     many_to_many :users, MapleTree.Users.User, join_through: MapleTree.Groups.UserGroup
-    has_many :users_groups, MapleTree.Groups.UserGroup
+    has_many :users_groups, MapleTree.Groups.UserGroup, on_delete: :delete_all
 
     timestamps()
   end

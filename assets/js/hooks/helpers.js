@@ -11,5 +11,8 @@ export function doesAutoThemeResultInDarkUi() {
 }
 
 export function isDarkThemeActive() {
-  return doesAutoThemeResultInDarkUi() || document.body.classList.contains('dark');
+  if (document.body.classList.contains('dark')) return true;
+  if (localStorage.getItem('theme') == 'light') return false;
+  
+  return doesAutoThemeResultInDarkUi();
 }

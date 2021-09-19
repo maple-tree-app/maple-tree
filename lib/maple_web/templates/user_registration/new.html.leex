@@ -20,6 +20,8 @@
         <%= error_tag f, :email %>
       </div>
 
+      <%= hidden_input f, :locale, value: Gettext.get_locale(MapleTreeWeb.Gettext) %>
+
       <div>
         <%= label f, :name, class: "mt-10 block" %>
         <%= text_input f, :name, required: false, class: "form-input" %>

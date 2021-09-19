@@ -100,7 +100,7 @@ defmodule MapleTreeWeb.UserAuth do
   end
 
   def set_user_locale(conn, _opts) do
-    case get_user_settings(conn, :locale) || conn.params["locale"] || MapleTreeWeb.Helpers.Locale.get_locale_from_conn(conn) do
+    case get_user_locale(conn) || conn.params["locale"] || MapleTreeWeb.Helpers.Locale.get_locale_from_conn(conn) do
       nil ->
         conn
       locale ->
@@ -121,8 +121,15 @@ defmodule MapleTreeWeb.UserAuth do
     case get_user_settings(conn) do
       nil -> fallback
       settings ->
-        a = Map.get(settings, key)
-        a
+        Map.get(settings, key)
+    end
+  end
+
+  defp get_user_locale(conn) do
+    case get_user_settings(conn, :locale) do
+      "auto" -> nil
+      nil -> nil
+      locale -> locale
     end
   end
 

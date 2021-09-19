@@ -59,6 +59,9 @@ defmodule MapleTree.Users do
   """
   def get_user!(id), do: Repo.get!(User, id)
 
+
+  def get_user_settings(id), do: Repo.one!(from(us in UserSettings, where: us.user_id == ^id))
+
   ## User registration
 
   @doc """
@@ -76,7 +79,7 @@ defmodule MapleTree.Users do
   def register_user(attrs) do
     Ecto.Multi.new()
     |> Ecto.Multi.insert(:user, User.registration_changeset(%User{}, attrs))
-    |> Ecto.Multi.insert(:users_settings, fn %{user: user} -> UserSettings.registration_changeset(%{user_id: user.id, theme: "auto", locale: "en"}) end)
+    |> Ecto.Multi.insert(:users_settings, fn %{user: user} -> UserSettings.registration_changeset(%{user_id: user.id, theme: "auto", locale: attrs["locale"] || "auto"}) end)
     |> Repo.transaction()
     |> case do
       {:ok, %{user: user}} -> {:ok, user}
@@ -328,7 +331,7 @@ defmodule MapleTree.Users do
       iex> reset_user_password(user, %{password: "new long password", password_confirmation: "new long password"})
       {:ok, %User{}}
 
-      iex> reset_user_password(user, %{password: "valid", password_confirmation: "not the same"})
+      iex> reset_user_password(user, %{password: "validset_to_dark_mode?", password_confirmation: "not the same"})
       {:error, %Ecto.Changeset{}}
 
   """
@@ -341,5 +344,13 @@ defmodule MapleTree.Users do
       {:ok, %{user: user}} -> {:ok, user}
       {:error, :user, changeset, _} -> {:error, changeset}
     end
+  end
+
+
+  @doc """
+  Update user's theme 'dark|light'
+  """
+  def update_user_theme(user_id, theme) do
+    Ecto.Changeset.change(get_user_settings(user_id), %{theme: theme}) |> Repo.update()
   end
 end

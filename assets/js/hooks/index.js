@@ -1,5 +1,5 @@
 import { clickMobileMenu }  from './events';
-import {darkMode, autoThemeSetter} from './themes';
+import {darkMode, autoThemeSetter} from './theme';
 
 
 const hooks = {};

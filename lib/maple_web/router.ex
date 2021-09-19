@@ -35,8 +35,8 @@ defmodule MapleTreeWeb.Router do
 
     #groups
     live "/groups", GroupsPageLive, :index
-    live "/groups/:id", GroupsDetailsLive, :show
     live "/groups/new", NewGroupPageLive, :new
+    live "/groups/:id", GroupsDetailsLive, :show
   end
 
   # Other scopes may use custom stacks.

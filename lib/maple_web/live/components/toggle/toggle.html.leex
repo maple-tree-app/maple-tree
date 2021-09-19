@@ -9,7 +9,7 @@
         phx_change: assigns[:event_name],
         phx_target: assigns[:handler_id]
       ],fn f -> %>
-        <%= checkbox f, :toggle, class: assigns[:toggle_class]  %>
+        <%= checkbox f, :toggle, class: assigns[:toggle_class], phx_debounce: assigns[:debounce]  %>
         <%= label f, :toggle, "" %>
     <% end %>
 </div>
