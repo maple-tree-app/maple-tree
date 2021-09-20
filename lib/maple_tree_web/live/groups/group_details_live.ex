@@ -8,8 +8,7 @@ defmodule MapleTreeWeb.GroupsDetailsLive do
   @impl true
   def mount(%{"id" => group_id}, session, socket) do
     socket = socket |> LiveHelpers.init(session) |> assign(group_id: group_id)
-
-    {:ok, handle_load socket}
+    {:ok, handle_load(socket)}
   end
 
   @impl true
