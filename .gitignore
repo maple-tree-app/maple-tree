@@ -33,7 +33,7 @@ npm-debug.log
 # this depending on your deployment strategy.
 /priv/static/
 
-/ssl/
+/priv/ssl/
 
 /config/prod.secret.exs
 /config/dev.secret.exs
