@@ -26,7 +26,7 @@
       </div>
       <div class="mt-10 w-full max-w-lg flex items-center justify-between">
         <%= label f, :color %>
-        <%= color_input f, :color, value: "#ef4343",required: false, class: "w-20 h-10", phx_debounce: 300 %>
+        <%= color_input f, :color, value: "#ef4343",required: false, class: "bg-transparent w-10 h-10 overflow-hidden rounded-full", phx_debounce: 300 %>
         <%= error_tag f, :color %>
       </div>
 
