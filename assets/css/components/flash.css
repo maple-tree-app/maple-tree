@@ -1,5 +1,7 @@
 .flash {
-  @apply absolute z-50 left-1/2 top-4 flex flex-row items-center px-5 py-2 justify-between rounded-full text-black;
+  @apply absolute z-50 left-0 right-0 w-max top-4 mx-auto flex flex-row items-center px-5 py-2 justify-between rounded-full text-black;
+  
+  max-width: calc(50vw);
 
   &.alert-danger {
     @apply bg-maple-red;

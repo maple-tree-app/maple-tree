@@ -18,6 +18,8 @@ defmodule MapleTreeWeb.GroupsPageLive do
 
   @impl true
   def handle_event("search", %{"user_input" => search_params}, socket) do
+    socket = socket |> put_flash(:info, "bla bla bla, this should close in 3 secs")
+    Process.send_after(self(), :clear_flash, 3000)
     {:noreply, get_groups(socket, search_params)}
   end
 

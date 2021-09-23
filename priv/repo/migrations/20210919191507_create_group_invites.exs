@@ -12,6 +12,7 @@ defmodule MapleTree.Repo.Migrations.CreateGroupInvites do
       timestamps()
     end
 
+    create unique_index(:group_invites, [:invite_code])
     create index(:group_invites, [:group_id])
     create index(:group_invites, [:created_by])
   end

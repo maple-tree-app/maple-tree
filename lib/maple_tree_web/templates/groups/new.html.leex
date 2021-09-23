@@ -1,10 +1,10 @@
-<div class="p-10 m-auto max-w-7xl">
+<div class="p-2 sm:p-8 m-auto max-w-7xl">
 
   <div class="flex flex-col items-center">
     <%= form_for @changeset, "#",
     [
       id: "group-form",
-      class: "flex flex-col items-center w-full rounded border border-maple-navbar-dark dark:bg-maple-navbar-dark max-w-xl px-20 py-10",
+      class: "flex flex-col items-center w-full rounded max-w-xl px-4 sm:px-20 py-10",
       phx_change: "validate",
       autocomplete: "off",
       phx_submit: "save",
@@ -30,8 +30,8 @@
         <%= error_tag f, :color %>
       </div>
 
-      <div class="col-span-full">
-        <%= submit "Add", phx_disable_with: "Adding...", class: "rounded py-2 px-8 mt-12 bg-maple-yellow text-black hover:bg-yellow-400 dark:hover:bg-yellow-300 transition duration-200" %>
+      <div class="col-span-full w-2/3">
+        <%= submit "Add", phx_disable_with: "Adding...", class: "rounded py-2 px-8 mt-12 w-full bg-maple-yellow text-black hover:bg-yellow-400 dark:hover:bg-yellow-300 transition duration-200" %>
       </div>
     <% end %>
   </div>

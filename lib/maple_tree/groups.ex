@@ -4,6 +4,7 @@ defmodule MapleTree.Groups do
 
   alias MapleTree.Groups.Group
   alias MapleTree.Groups.UserGroup
+  alias MapleTree.Groups.Invite
 
   def create_group_changeset(attrs \\ %{}), do: Group.changeset(%Group{}, attrs)
 
@@ -45,6 +46,11 @@ defmodule MapleTree.Groups do
     Repo.exists? from ug in UserGroup, where: ug.user_id == ^user_id and ug.group_id == ^group_id
   end
 
+  # TODO: add test for this
+  def delete_expired_invite_codes do
+    Repo.delete_all(from invite in Invite, where: invite.valid_until <= ^DateTime.utc_now())
+  end
+
   defp add_params(query, params) do
     Enum.reduce(params, query, fn
       {"name", name}, query -> where(query, [groups: g], ilike(g.name, ^"%#{name}%"))
@@ -52,4 +58,5 @@ defmodule MapleTree.Groups do
       _, query -> query
     end)
   end
+
 end

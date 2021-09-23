@@ -17,6 +17,9 @@ defmodule MapleTree.Groups.Invite do
   def changeset(invite, attrs) do
     invite
     |> cast(attrs, [:invite_code, :valid_until])
-    |> validate_required([:invite_code, :valid_until])
+    |> validate_required([:invite_code, :valid_until, :group_id, :created_by])
+    |> foreign_key_constraint([:group_id])
+    |> foreign_key_constraint([:created_by])
+    |> unsafe_validate_unique(:invite_code, MapleTree.Repo)
   end
 end

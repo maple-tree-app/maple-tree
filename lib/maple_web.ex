@@ -47,18 +47,17 @@ defmodule MapleTreeWeb do
 
   def live_view do
     quote do
-      import MapleTreeWeb.PathHelpers
       use Phoenix.LiveView,
         layout: {MapleTreeWeb.LayoutView, "live.html"}
 
       unquote(view_helpers())
+      unquote(MapleTreeWeb.Helpers.LiveCommon.apply())
     end
   end
 
   def live_component do
     quote do
       use Phoenix.LiveComponent
-      import MapleTreeWeb.PathHelpers
 
       unquote(view_helpers())
     end
@@ -94,6 +93,7 @@ defmodule MapleTreeWeb do
 
       import MapleTreeWeb.ErrorHelpers
       import MapleTreeWeb.Gettext
+      import MapleTreeWeb.PathHelpers
       alias MapleTreeWeb.Router.Helpers, as: Routes
     end
   end

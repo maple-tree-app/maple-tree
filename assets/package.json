@@ -12,6 +12,7 @@
     "phoenix_live_view": "file:../deps/phoenix_live_view",
     "postcss": "^8.3.6",
     "postcss-loader": "^4.2",
+    "rxjs": "^7.3.0",
     "topbar": "^0.1.4"
   },
   "devDependencies": {

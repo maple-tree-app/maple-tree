@@ -24,6 +24,12 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+config :maple_tree, MapleTree.Scheduler,
+  debug_logging: false,
+  jobs: [
+    {"@hourly", {MapleTree.Groups, :delete_expired_invite_codes, []}}
+  ]
+
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 

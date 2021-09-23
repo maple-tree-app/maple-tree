@@ -52,7 +52,7 @@
             <%= live_redirect gettext("register"), to: Routes.user_registration_path(@socket, :new), class: "block mb-4 py-3 pl-1" %>
             <% else %>
             <%= live_redirect gettext("settings"), to: Routes.shopping_list_path(@socket, :index), class: "block py-3 pl-1"  %>
-            <%= live_redirect gettext("log out"), to: Routes.user_session_path(@socket, :delete), class: "block py-3 pl-1" %>
+            <%= link gettext("log out"), to: Routes.user_session_path(@socket, :delete), method: :delete, class: "block py-3 pl-1" %>
             <% end %>
             <div class="flex items-center justify-between pb-2 pt-4 pl-1">
               <span>Dark mode</span>

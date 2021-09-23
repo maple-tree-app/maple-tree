@@ -2,7 +2,7 @@
   <header class="flex items-center justify-between w-full h-16 sm:h-10 flex-row">
     <h1 class="text-2xl"><%= gettext "groups" %></h1>
 
-    <%= live_patch  to: Routes.new_group_page_path(@socket, :new), class: "flex flex-row align-center items-center rounded-full bg-maple-red dark:bg-maple-dark-bg py-2 px-3 border border-black border-maple-red dark:border-white" do %>
+    <%= live_patch  to: Routes.new_group_page_path(@socket, :new), class: "flex flex-row align-center items-center rounded-full py-2 px-3" do %>
       <span class="mr-2 text-md"><%= gettext("add group") %></span>
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 relative" style="top: 2px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
     <% end %>

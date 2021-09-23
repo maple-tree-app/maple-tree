@@ -14,7 +14,9 @@ defmodule MapleTree.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: MapleTree.PubSub},
       # Start the Endpoint (http/https)
-      MapleTreeWeb.Endpoint
+      MapleTreeWeb.Endpoint,
+      # Start Quantum
+      MapleTree.Scheduler
       # Start a worker by calling: MapleTree.Worker.start_link(arg)
       # {MapleTree.Worker, arg}
     ]
