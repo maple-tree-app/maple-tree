@@ -48,7 +48,7 @@ defmodule MapleTree.Users.User do
     changeset
     |> validate_required([:email])
     |> validate_format(:email, ~r/^[^\s]+@[^\s]+$/, message: "must have the @ sign and no spaces")
-    |> validate_length(:email, max: 160)
+    |> validate_length(:email, max: 60)
     |> maybe_unsafe_validate_unique_email(opts)
     |> unique_constraint(:email)
   end

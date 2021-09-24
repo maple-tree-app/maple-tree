@@ -46,6 +46,11 @@ defmodule MapleTree.Groups do
     Repo.exists? from ug in UserGroup, where: ug.user_id == ^user_id and ug.group_id == ^group_id
   end
 
+  def generate_invite_code(group_id, user_id) do
+    code = :crypto.strong_rand_bytes(12)
+
+  end
+
   # TODO: add test for this
   def delete_expired_invite_codes do
     Repo.delete_all(from invite in Invite, where: invite.valid_until <= ^DateTime.utc_now())

@@ -1,0 +1,21 @@
+.dropdown-menu {
+  @apply absolute rounded flex flex-col shadow-lg bg-maple-light-surface dark:bg-maple-dark-surface w-max px-4 py-3;
+
+  top: calc(100% + 0.8rem);
+  right: 0;
+
+  &::before {
+    content: "";
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid;
+    position: absolute;
+    right: 1rem;
+    width: 0;
+    height: 0;
+    bottom: 100%;
+
+    @apply border-b-maple-light-surface dark:border-b-maple-dark-surface;
+
+  }
+}

@@ -4,5 +4,5 @@
 
 
 .faded {
-  @apply text-gray-700 dark:text-gray-300
+  @apply opacity-70 transition-colors ease-linear duration-200;
 }

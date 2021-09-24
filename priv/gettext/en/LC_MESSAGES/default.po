@@ -37,3 +37,6 @@ msgstr "Register"
 
 msgid "add group"
 msgstr "Add group"
+
+msgid "invite people"
+msgstr "Invite people"

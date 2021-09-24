@@ -1,11 +1,10 @@
 import { clickMobileMenu }  from './events';
-import {darkMode, autoThemeSetter} from './theme';
+import {darkMode} from './theme';
 
 
 const hooks = {};
 
 hooks.darkMode = darkMode;
-hooks.autoThemeSetter = autoThemeSetter;
 hooks.clickMobileMenu = clickMobileMenu;
 
 export default hooks;

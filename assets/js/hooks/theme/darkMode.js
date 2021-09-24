@@ -1,4 +1,4 @@
-import { isDarkThemeActive } from "../helpers";
+import { isDarkThemeActive } from "../../helpers";
 
 const body = document.body;
 export const darkMode =  {

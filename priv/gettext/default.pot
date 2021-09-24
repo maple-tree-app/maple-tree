@@ -38,3 +38,6 @@ msgstr ""
 
 msgid "add group"
 msgstr ""
+
+msgid "invite people"
+msgstr ""

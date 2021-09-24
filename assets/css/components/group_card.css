@@ -1,5 +1,5 @@
 .group_card {
-  @apply border border-maple-navbar-dark dark:bg-maple-navbar-dark shadow-md flex items-center h-28 w-auto rounded-xl overflow-hidden cursor-pointer;
+  @apply bg-maple-light-surface dark:bg-maple-dark-surface shadow-md flex items-center h-28 w-auto rounded-xl overflow-hidden cursor-pointer transition-colors ease-linear duration-200;
 
     -webkit-animation: fadein 0.15s; /* Safari, Chrome and Opera > 12.1 */
        -moz-animation: fadein 0.15s; /* Firefox < 16 */

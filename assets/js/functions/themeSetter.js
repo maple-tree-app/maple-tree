@@ -1,15 +1,14 @@
 import { isAutoThemeSet, isDarkDefaultTheme } from "../helpers";
 
-export const autoThemeSetter = {
-  mounted() {
-    const [body] = document.getElementsByTagName('body');
+export const autoThemeSetter = () => {
+    const body = document.body;
     if(isAutoThemeSet()) {
       const localStorageTheme = localStorage.getItem('theme');
       if(localStorageTheme) {
         body.classList.add(localStorageTheme);
-      }else if (isDarkDefaultTheme()) {
+      } else if (isDarkDefaultTheme()) {
         body.classList.add('dark')
       }
     }
-  }
 }
+
