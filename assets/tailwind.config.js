@@ -14,19 +14,18 @@ module.exports = {
     extend: {
       colors: {
         'maple-dark-bg': '#252526',
-        'maple-light-bg': '#ffffff',
+        'maple-light-bg': '#f1f1f1f1',
 
         'maple-dark-border': '#A7AFB2',
         'maple-light-border': '#8f8f8f',
 
         'maple-dark-surface': '#2d2d30',
-        'maple-light-surface': '#f5f6fa',
+        'maple-light-surface': '#ffffff',
 
         'maple-dark-input-bg': '#474747',
 
         'maple-red': '#b22c2c',
         'maple-yellow': '#dea730',
-        'maple-navbar-dark': '#3333',
         'maple-dark-toggle-bg': '#2222',
         'maple-dark-toggle-border': '#403f3f'
       }

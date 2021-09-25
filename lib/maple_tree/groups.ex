@@ -47,7 +47,13 @@ defmodule MapleTree.Groups do
   end
 
   def generate_invite_code(group_id, user_id) do
-    code = :crypto.strong_rand_bytes(12)
+    invite = Invite.insert_changeset(%Invite{}, %{
+      "created_by" => user_id,
+      "group_id" => group_id,
+      "valid_until" => DateTime.utc_now() |> DateTime.add(7 * 24 * 60 * 60) # 7 days 
+    }) |> Repo.insert!()
+
+    {:ok, invite}
 
   end
 

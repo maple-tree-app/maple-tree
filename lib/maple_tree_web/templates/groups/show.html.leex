@@ -2,13 +2,18 @@
   <header class="flex items-center justify-between w-full h-16 sm:h-10 flex-row">
     <h1 class="text-2xl"><%= @group.name %></h1>
     <div class="relative">
-      <button class="maple-button"><%= gettext "invite people" %></button>
+      <button class="maple-button" phx-click="handle_invite_button_click"><%= gettext "invite people" %></button>
+      <%= if @invite_dropdown_open? do %>
       <div class="dropdown-menu">
-        <a href="#">Link 1</a>
-        <a href="#">Link 2</a>
-        <a href="#">Link 3</a>
+        <div class="maple-input flex items-center p-0 justify-between overflow-hidden">
+          <input class="flex-grow py-2 pl-3 pr-2" style="color: inherit; background-color: inherit;" value='<%="http://mapletree.app/groups/join/"<>@invite_code %>'>
+          <button class="h-full w-10 flex items-center justify-center overflow-hidden bg-maple-light-bg text-black dark:bg-maple-dark-bg dark:text-white color-transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 " fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" /></svg>
+          </button>
+        </div>
       </div>
-      
+      <% end %>
+
     </div>
   </header>
 
