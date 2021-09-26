@@ -14,5 +14,4 @@ defmodule MapleTreeWeb.PageLive do
   def render(assigns) do
     View.render(MapleTreeWeb.PageView, "index.html", assigns)
   end
-
 end

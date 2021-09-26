@@ -353,4 +353,10 @@ defmodule MapleTree.Users do
   def update_user_theme(user_id, theme) do
     Ecto.Changeset.change(get_user_settings(user_id), %{theme: theme}) |> Repo.update()
   end
+
+
+  def get_user_friends(user_id) do
+    get_user!(user_id) |> MapleTree.Users.User.preload_friends 
+  end
+
 end

@@ -7,17 +7,47 @@ defmodule MapleTree.Users.User do
   @foreign_key_type :binary_id
   schema "users" do
     field :email, :string
+    field :username, :string
     field :password, :string, virtual: true
     field :name, :string
     field :image_url, :string
     field :hashed_password, :string
     field :confirmed_at, :naive_datetime
+    field :friendships, :any ,virtual: true
 
     timestamps()
 
     has_one :settings, MapleTree.Users.UserSettings
     has_many :users_groups, MapleTree.Groups.UserGroup, on_delete: :delete_all
     many_to_many :groups, MapleTree.Groups.Group, join_through: MapleTree.Groups.UserGroup
+
+    has_many :friendship_pivot, MapleTree.Users.Friendship, foreign_key: :from_user_id
+    has_many :reverse_friendship_pivot, MapleTree.Users.Friendship, foreign_key: :to_user_id
+
+    many_to_many :friends, MapleTree.Users.User,
+      join_through: "users_friendships",
+      join_where: [accepted: true],
+      preload_order: [desc: :username],
+      join_keys: [from_user_id: :id, to_user_id: :id]
+    
+    many_to_many :reverse_friends, MapleTree.Users.User,
+      join_through: "users_friendships",
+      join_where: [accepted: true],
+      preload_order: [desc: :username],
+      join_keys: [to_user_id: :id, from_user_id: :id]
+
+    many_to_many :pending_friend_invites, MapleTree.Users.User,
+      join_through: "users_friendships",
+      join_where: [accepted: false],
+      preload_order: [desc: :inserted_at],
+      join_keys: [to_user_id: :id, from_user_id: :id]
+
+    many_to_many :requested_friends, MapleTree.Users.User,
+      join_through: "users_friendships",
+      join_where: [accepted: false],
+      preload_order: [asc: :inserted_at],
+      join_keys: [from_user_id: :id, to_user_id: :id]
+
   end
 
   @doc """
@@ -39,7 +69,8 @@ defmodule MapleTree.Users.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password, :name])
+    |> cast(attrs, [:email, :password, :name, :username])
+    |> validate_required([:email, :password, :username])
     |> validate_email(opts)
     |> validate_password(opts)
   end
@@ -151,4 +182,10 @@ defmodule MapleTree.Users.User do
       add_error(changeset, :current_password, "is not valid")
     end
   end
+
+  def preload_friends(%MapleTree.Users.User{} = user) do
+    user = MapleTree.Repo.preload(user, [:friends, :reverse_friends, :requested_friends, :pending_friend_invites])
+    Map.put(user, :friendships, Enum.sort_by(user.friends ++ user.reverse_friends, &(&1.username)))
+  end
+
 end
