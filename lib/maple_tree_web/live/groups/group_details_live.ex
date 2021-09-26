@@ -37,6 +37,8 @@ defmodule MapleTreeWeb.GroupsDetailsLive do
     {:noreply, assign(socket, invite_code: invite.invite_code, invite_dropdown_open?: true)}
   end
 
+  @impl true
+  def handle_event("close_invite_button_dropdown", _, socket), do: {:noreply, assign(socket, :invite_dropdown_open?, false)}
 
   defp get_user_and_group_id(%{assigns: assigns}), do: %{user_id: assigns.current_user.id, group_id: assigns.group_id}
 

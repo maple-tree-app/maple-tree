@@ -1,5 +1,5 @@
 .dropdown-menu {
-  @apply absolute rounded-xl flex flex-col shadow-lg bg-maple-light-surface dark:bg-maple-dark-surface w-max px-4 py-8 md:w-96 color-transition;
+  @apply absolute rounded-xl flex flex-col shadow-lg bg-maple-light-surface dark:bg-maple-dark-surface w-max md:w-96 color-transition;
 
   top: calc(100% + 0.8rem);
   right: 0;

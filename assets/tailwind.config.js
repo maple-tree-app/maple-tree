@@ -11,6 +11,9 @@ module.exports = {
   ],
   darkMode: 'class', // or 'media' or 'class'
   theme: {
+    fontFamily: {
+      'roboto': ['roboto', 'sans-serif']
+    },
     extend: {
       colors: {
         'maple-dark-bg': '#252526',
@@ -27,7 +30,9 @@ module.exports = {
         'maple-red': '#b22c2c',
         'maple-yellow': '#dea730',
         'maple-dark-toggle-bg': '#2222',
-        'maple-dark-toggle-border': '#403f3f'
+        'maple-dark-toggle-border': '#403f3f',
+
+        'maple-success': '#4BB543',
       }
     },
   },

@@ -12,6 +12,7 @@ import "../css/app.scss"
 //     import {Socket} from "phoenix"
 //     import socket from "./socket"
 //
+require('babel-polyfill');
 import "phoenix_html"
 import {Socket} from "phoenix"
 import topbar from "topbar"
@@ -41,5 +42,5 @@ liveSocket.connect()
 // >> liveSocket.enableDebug()
 // >> liveSocket.enableLatencySim(1000)  // enabled for duration of browser session
 // >> liveSocket.disableLatencySim()
-window.liveSocket = liveSocket
+if(!isProduction) window.liveSocket = liveSocket
 

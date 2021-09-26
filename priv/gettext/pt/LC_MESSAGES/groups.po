@@ -8,29 +8,17 @@
 ## to merge POT files into PO files.
 msgid ""
 msgstr ""
-"Language: en\n"
+"Language: pt\n"
 "Plural-Forms: nplurals=2\n"
 
-msgid "welcome %{name}"
-msgstr "Welcome to MapleTree, %{name}"
+msgid "add group"
+msgstr "Criar grupo"
 
-msgid "groups"
-msgstr "Groups"
+msgid "invite friends"
+msgstr "Convidar amigos"
 
-msgid "shopping lists"
-msgstr "Shopping lists"
+msgid "send link"
+msgstr "envie este convite para um amigo"
 
-msgid "tasks"
-msgstr "Tasks"
-
-msgid "settings"
-msgstr "Settings"
-
-msgid "log out"
-msgstr "Log out"
-
-msgid "login"
-msgstr "Login"
-
-msgid "register"
-msgstr "Register"
+msgid "expires %{days}"
+msgstr "esse link irá expirar em %{days} dias."

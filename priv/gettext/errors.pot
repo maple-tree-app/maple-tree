@@ -8,6 +8,8 @@
 ## date. Leave `msgstr`s empty as changing them here has no
 ## effect: edit them in PO (`.po`) files instead.
 ## From Ecto.Changeset.cast/4
+"Language: en\n"
+
 msgid "can't be blank"
 msgstr ""
 

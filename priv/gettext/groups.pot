@@ -1,0 +1,11 @@
+msgid "add group"
+msgstr "Add group"
+
+msgid "invite friends"
+msgstr "Invite friends"
+
+msgid "send link"
+msgstr "send an invite link to a friend"
+
+msgid "expires %{days}"
+msgstr "this invite link will expire in %{days} days"

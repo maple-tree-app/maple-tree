@@ -11,26 +11,14 @@ msgstr ""
 "Language: en\n"
 "Plural-Forms: nplurals=2\n"
 
-msgid "welcome %{name}"
-msgstr "Welcome to MapleTree, %{name}"
+msgid "add group"
+msgstr "Add group"
 
-msgid "groups"
-msgstr "Groups"
+msgid "invite friends"
+msgstr "Invite friends"
 
-msgid "shopping lists"
-msgstr "Shopping lists"
+msgid "send link"
+msgstr "send an invite link to a friend"
 
-msgid "tasks"
-msgstr "Tasks"
-
-msgid "settings"
-msgstr "Settings"
-
-msgid "log out"
-msgstr "Log out"
-
-msgid "login"
-msgstr "Login"
-
-msgid "register"
-msgstr "Register"
+msgid "expires %{days}"
+msgstr "this invite link will expire in %{days} days"

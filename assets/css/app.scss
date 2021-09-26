@@ -1,3 +1,7 @@
+
+/* External */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
 /* Common */
 @import "./common/transitions.css";
 @import "./common/input.css";
@@ -8,11 +12,12 @@
 @import "./common/buttons.css";
 @import "./common/resets.css";
 
+
 /* Components */
 @import "./components/group_card.css";
 @import "./components/flash.css";
 @import "./components/dropdown.css";
-
+@import "./components/clipboard.css";
 
 @tailwind base;
 @tailwind components;

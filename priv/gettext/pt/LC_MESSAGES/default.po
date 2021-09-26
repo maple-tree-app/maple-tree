@@ -34,9 +34,3 @@ msgstr "Entrar"
 
 msgid "register"
 msgstr "Criar conta"
-
-msgid "add group"
-msgstr "Novo grupo"
-
-msgid "invite people"
-msgstr "Convidar pessoas"
