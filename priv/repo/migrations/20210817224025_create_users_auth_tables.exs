@@ -7,6 +7,7 @@ defmodule MapleTree.Repo.Migrations.CreateUsersAuthTables do
     create table(:users, primary_key: false) do
       add :id, :binary_id, primary_key: true
       add :email, :citext, null: false
+      add :username, :citext, null: false
       add :name, :string
       add :image_url, :string
       add :hashed_password, :string, null: false

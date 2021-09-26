@@ -46,6 +46,15 @@ defmodule MapleTree.Groups do
     Repo.exists? from ug in UserGroup, where: ug.user_id == ^user_id and ug.group_id == ^group_id
   end
 
+
+  def get_invite_code_valid_for_7_days(group_id, user_id) do
+    case Repo.one(first(from invite in Invite, where: invite.created_by == ^user_id and invite.group_id == ^group_id and invite.valid_until >= ^(DateTime.utc_now() |> DateTime.add(6 * 24 * 60 * 60)))) do
+      nil -> generate_invite_code(group_id, user_id)
+      invite -> IO.inspect "FOUND A VALID INVITE CODE"
+        {:ok, invite}
+    end
+  end
+
   def generate_invite_code(group_id, user_id) do
     invite = Invite.insert_changeset(%Invite{}, %{
       "created_by" => user_id,
@@ -54,7 +63,6 @@ defmodule MapleTree.Groups do
     }) |> Repo.insert!()
 
     {:ok, invite}
-
   end
 
   # TODO: add test for this

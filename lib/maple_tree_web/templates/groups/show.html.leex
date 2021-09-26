@@ -1,8 +1,8 @@
 <div class="p-10 max-w-7xl m-auto" id="group-show" phx-hook="closeOnUnfocus" data-target="dropdown-target" data-event="close_invite_button_dropdown">
-  <header class="flex items-center justify-between w-full h-16 sm:h-10 flex-row">
-    <h1 class="text-2xl"><%= @group.name %></h1>
-    <div id="dropdown-target" class="relative">
-      <button class="maple-button" phx-click="handle_invite_button_click"><%= dgettext "groups", "invite friends" %></button>
+  <header class="flex items-starts sm:items-center justify-between w-full h-28 sm:h-16 sm:h-10 flex-col sm:flex-row">
+    <h1 class="text-2xl text-center sm: text-left truncate"><%= @group.name %></h1>
+    <div id="dropdown-target" class="relative mt-4 sm:mt-0 ml-0 sm:ml-6 w-full sm:w-max min-w-max">
+      <button class="maple-button w-full min-w-max" phx-click="handle_invite_button_click"><%= dgettext "groups", "invite friends" %></button>
       <%= if @invite_dropdown_open? do %>
       <div class="dropdown-menu px-4">
         <span class="block text-left capitalize ml-3 py-2 font-medium"><%= dgettext("groups", "send link")%></span>

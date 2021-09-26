@@ -2,7 +2,6 @@ import { filter, fromEvent, Subject, takeUntil } from 'rxjs';
 export const closeOnUnfocus = {
   mounted() {
     const target = document.getElementById(this.el.dataset.target);
-    console.log(target);
     this.destroy$ = new Subject();
     fromEvent(document.body, 'click')
       .pipe(
