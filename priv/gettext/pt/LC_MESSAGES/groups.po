@@ -22,3 +22,9 @@ msgstr "envie este convite para um amigo"
 
 msgid "expires %{days}"
 msgstr "esse link irá expirar em %{days} dias."
+
+msgid "no group msg"
+msgstr "Parece que você ainda não está em nenhum grupo, você pode criar um clicando no botão acima."
+
+msgid "join msg"
+msgstr "Você gostaria de se juntar ao grupo"

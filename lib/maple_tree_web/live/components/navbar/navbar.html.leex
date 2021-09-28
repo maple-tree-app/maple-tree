@@ -4,6 +4,7 @@
         <div class="flex items-center">
           <%= live_redirect img_tag(Routes.static_path(@socket, "/images/maple-leaf.png")), to: (Routes.page_path @socket, :index) %>
           <%= live_redirect gettext("groups"), to: Routes.groups_page_path(@socket, :index), class: "md-nav-item" %>
+            <%= live_redirect gettext("friends"), to: Routes.shopping_list_path(@socket, :index), class: "block py-3 pl-5" %>
         </div>
         <div class="flex items-center">
 
@@ -36,13 +37,14 @@
           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
 
-        <%= img_tag(Routes.static_path(@socket, "/images/maple-leaf.png"), class: "h-12 w-12 m-auto max-w-12") %>
+        <%= img_tag(Routes.static_path(@socket, "/images/maple-leaf.png"), class: "h-12 w-12 m-auto max-w-12 cursor-pointer") %>
       </div>
       <%# MOBILE MENU %>
         <div id="mobile-menu" class="hidden md:hidden top-7 z-20 divide-y divide-maple-light-border dark:divide-maple-dark-border px-5 w-full font-medium text-base">
 
             <%= live_redirect "Dashboard", to: (Routes.page_path @socket, :index), class: "block py-3 pl-1" %>
-            <%= live_redirect gettext("groups"), to: Routes.shopping_list_path(@socket, :index), class: "block py-3 pl-1" %>
+            <%= live_redirect gettext("groups"), to: Routes.groups_page_path(@socket, :index), class: "block py-3 pl-1" %>
+            <%= live_redirect gettext("friends"), to: Routes.shopping_list_path(@socket, :index), class: "block py-3 pl-1" %>
             <%= if !assigns[:current_user] do %>
             <%= live_redirect gettext("login"), to: Routes.shopping_list_path(@socket, :index), class: "block py-3 pl-1"  %>
             <%= live_redirect gettext("register"), to: Routes.user_registration_path(@socket, :new), class: "block py-3 pl-1" %>

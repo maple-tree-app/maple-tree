@@ -1,8 +1,8 @@
 <div class="p-10 max-w-7xl m-auto" id="group-idx">
-  <header class="flex items-center justify-between w-full h-16 sm:h-10 flex-row">
-    <h1 class="text-2xl"><%= dgettext "groups", "groups" %></h1>
+  <header class="maple-header">
+    <h1 class="maple-header__title"><%= dgettext "default", "groups" %></h1>
 
-    <%= live_patch  to: Routes.new_group_page_path(@socket, :new), class: "flex flex-row align-center items-center rounded-full py-2 px-3" do %>
+    <%= live_patch  to: Routes.new_group_page_path(@socket, :new), class: "maple-header__side-button" do %>
       <span class="mr-2 text-md"><%= dgettext("groups", "add group") %></span>
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 relative" style="top: 2px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
     <% end %>
@@ -10,30 +10,34 @@
 
 
   <div class="pt-4">
-    <%= form_for :user_input, "#",
-      [
-        id: "groups-form",
-        class: "flex flex-col items-center justify-between sm:justify-start h-24 sm:flex-row w-full sm:mb-0 mb-8",
-        phx_change: "search"
-      ], fn f -> %>
-        <%= text_input f, :name, class: "maple-input w-full sm:w-52", phx_debounce: 500, placeholder: "Group Name:" %>
+    <%= if Enum.count(@groups) > 0 do %>
+      <%= form_for :user_input, "#",
+        [
+          id: "groups-form",
+          class: "flex flex-col items-center justify-between sm:justify-start h-24 sm:flex-row w-full sm:mb-0 mb-8",
+          phx_change: "search"
+        ], fn f -> %>
+          <%= text_input f, :name, class: "maple-input w-full sm:w-52", phx_debounce: 500, placeholder: "Group Name:" %>
 
-        <div class="flex items-center w-full sm:w-52 ml-0 sm:ml-8 justify-between">
-          <span class="mr-4">Admin groups only:</span>
-          <div class="toggle">
-            <%= checkbox f, :admin_only, phx_debounce: 500, phx_update: "ignore" %>
-            <%= label f, :admin_only, "" %>
+          <div class="flex items-center w-full sm:w-52 ml-0 sm:ml-8 justify-between">
+            <span class="mr-4">Admin groups only:</span>
+            <div class="toggle">
+              <%= checkbox f, :admin_only, phx_debounce: 500, phx_update: "ignore" %>
+              <%= label f, :admin_only, "" %>
+            </div>
           </div>
+      <% end %>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-y-8 gap-x-4 lg:gap-x-12">
+          <%= for group <- @groups do %>
+            <div phx-click="click-group" phx-value-id="<%= group.id %>">
+              <%= live_component @socket, MapleTreeWeb.Live.Components.GroupCard, group: group, id: "#group_card"<>group.id %>
+            </div>
+          <% end %>
         </div>
-    <% end %>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-y-8 gap-x-4 lg:gap-x-12">
-        <%= for group <- @groups do %>
-          <div phx-click="click-group" phx-value-id="<%= group.id %>">
-            <%= live_component @socket, MapleTreeWeb.Live.Components.GroupCard, group: group, id: "#group_card"<>group.id %>
-          </div>
-        <% end %>
-      </div>
+      <% else %>
+        <h1><%= dgettext "groups", "no group msg"%></h1>
+      <% end %>
   </div>
 
 </div>

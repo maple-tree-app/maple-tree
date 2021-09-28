@@ -9,9 +9,11 @@ defmodule MapleTree.Groups.Group do
     field :description, :string
     field :name, :string
     field :image_url, :string
+    field :members_counter, :integer, virtual: true
 
     many_to_many :users, MapleTree.Users.User, join_through: MapleTree.Groups.UserGroup
     has_many :users_groups, MapleTree.Groups.UserGroup, on_delete: :delete_all
+
 
     timestamps()
   end

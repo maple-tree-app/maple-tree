@@ -8,8 +8,9 @@ defmodule MapleTree.Groups.Invite do
   schema "group_invites" do
     field :invite_code, :string
     field :valid_until, :date
-    field :group_id, :binary_id
     field :created_by, :binary_id
+
+    belongs_to :group, MapleTree.Groups.Group, type: :binary_id
 
     timestamps()
   end

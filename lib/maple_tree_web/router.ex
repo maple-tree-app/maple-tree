@@ -30,13 +30,16 @@ defmodule MapleTreeWeb.Router do
   scope "/", MapleTreeWeb do
     pipe_through [:browser, :require_authenticated_user]
 
+    live "/shopping-list", ShoppingListLive, :index
+  end
 
-    live "/shopping_list", ShoppingListLive, :index
+  scope "/groups", MapleTreeWeb do
+    pipe_through [:browser, :require_authenticated_user]
 
-    #groups
-    live "/groups", GroupsPageLive, :index
-    live "/groups/new", NewGroupPageLive, :new
-    live "/groups/:id", GroupsDetailsLive, :show
+    live "/", GroupsPageLive, :index
+    live "/new", NewGroupPageLive, :new
+    live "/join/:code", JoinGroupLive, :join
+    live "/:id", GroupsDetailsLive, :show
   end
 
   # Other scopes may use custom stacks.

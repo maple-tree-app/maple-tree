@@ -7,7 +7,7 @@ defmodule MapleTreeWeb.GroupsDetailsLive do
 
   @impl true
   def mount(%{"id" => group_id}, session, socket) do
-    socket = socket |> LiveHelpers.init(session) |> assign(group_id: group_id, invite_dropdown_open?: false, invite_code: nil)
+    socket = socket |> LiveHelpers.init(session) |> assign(group_id: group_id, invite_dropdown_open?: false, invite_code_link: nil)
     {:ok, handle_load(socket)}
   end
 
@@ -33,14 +33,17 @@ defmodule MapleTreeWeb.GroupsDetailsLive do
   @impl true
   def handle_event("handle_invite_button_click", _params, socket) do
     %{user_id: user_id, group_id: group_id} = get_user_and_group_id(socket)
-    {:ok, invite} = Groups.get_invite_code_valid_for_7_days(group_id, user_id)
-    {:noreply, assign(socket, invite_code: invite.invite_code, invite_dropdown_open?: true)}
+    invite = Groups.get_invite_code_valid_for_7_days(group_id, user_id) |> build_invite_code_link(socket)
+    
+    {:noreply, assign(socket, invite_code_link: invite, invite_dropdown_open?: true)}
   end
 
   @impl true
   def handle_event("close_invite_button_dropdown", _, socket), do: {:noreply, assign(socket, :invite_dropdown_open?, false)}
 
   defp get_user_and_group_id(%{assigns: assigns}), do: %{user_id: assigns.current_user.id, group_id: assigns.group_id}
+
+  defp build_invite_code_link({:ok, invite}, socket), do: MapleTreeWeb.Endpoint.url <> Routes.join_group_path(socket, :join, invite.invite_code)
 
 
 end

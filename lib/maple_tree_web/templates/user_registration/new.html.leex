@@ -1,11 +1,11 @@
 <main class="m-auto flex justify-center my-10">
-  <div class="flex flex-col align-center justify-center w-2/3 max-w-xl">
+  <div class="flex flex-col align-center justify-center w-full max-w-2xl">
     <h1 class="mb-8 text-left sm:text-center text-2xl">Register</h1>
 
     <%= form_for @changeset, Routes.user_registration_path(@socket, :create),
         [
           id: "register-form",
-          class: "grid grid-cols-1 gap-x-8 sm:grid-cols-2",
+          class: "grid grid-cols-1 gap-x-8 mx-8 sm:grid-cols-2",
           phx_change: "validate",
           phx_trigger_action: @trigger_submit,
           autocomplete: "off",
@@ -14,34 +14,34 @@
         fn f -> %>
 
 
-      <div>
-        <%= label f, :email, class: "mt-10 block" %>
-        <%= email_input f, :email, required: true, class: "form-input" %>
+      <div class="mb-10">
+        <%= label f, :email, class: "mt-10" %>
+        <%= email_input f, :email, required: true, class: "maple-input w-full mt-2" %>
         <%= error_tag f, :email %>
       </div>
 
       <%= hidden_input f, :locale, value: Gettext.get_locale(MapleTreeWeb.Gettext) %>
 
-      <div>
-        <%= label f, :username, class: "mt-10 block" %>
-        <%= text_input f, :username, required: false, class: "form-input" %>
+      <div class="mb-10">
+        <%= label f, :username, class: "mt-10" %>
+        <%= text_input f, :username, required: false, class: "maple-input w-full mt-2" %>
         <%= error_tag f, :username %>
       </div>
 
-      <div>
-        <%= label f, :name, class: "mt-10 block" %>
-        <%= text_input f, :name, required: false, class: "form-input" %>
+      <div class="mb-10">
+        <%= label f, :name, class: "mt-10 " %>
+        <%= text_input f, :name, required: false, class: "maple-input w-full mt-2" %>
         <%= error_tag f, :name %>
       </div>
 
-      <div>
-        <%= label f, :password, class: "mt-10 block" %>
-        <%= password_input f, :password, value: input_value(f, :password), required: true, class: "form-input" %>
+      <div class="mb-10">
+        <%= label f, :password, class: "mt-10" %>
+        <%= password_input f, :password, value: input_value(f, :password), required: true, class: "maple-input w-full mt-2" %>
         <%= error_tag f, :password %>
       </div>
 
-      <div class="col-span-full">
-        <%= submit "Register", phx_disable_with: "Registering...", class: "rounded p-2 mt-8 bg-maple-yellow text-black hover:bg-yellow-400 dark:hover:bg-yellow-300 transition duration-200" %>
+      <div class="col-span-full w-full">
+        <%= submit "Register", phx_disable_with: "Registering...", class: "maple-button w-full" %>
       </div>
     <% end %>
   </div>

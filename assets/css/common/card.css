@@ -1,0 +1,23 @@
+.maple-card {
+  @apply bg-maple-light-surface dark:bg-maple-dark-surface shadow-md rounded-xl color-transition;
+}
+
+.shape-divider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+
+ svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 127px;
+  }
+
+   .shape-fill {
+    fill: #D41E1E;
+  }
+}

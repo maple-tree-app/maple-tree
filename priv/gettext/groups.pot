@@ -9,3 +9,9 @@ msgstr "send an invite link to a friend"
 
 msgid "expires %{days}"
 msgstr "this invite link will expire in %{days} days"
+
+msgid "no group msg"
+msgstr "It looks like you still don't have any groups, you can create one clicking on the button above."
+
+msgid "join msg"
+msgstr "Would you like to join"

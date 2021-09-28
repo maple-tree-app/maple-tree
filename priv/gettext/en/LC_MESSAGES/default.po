@@ -34,3 +34,6 @@ msgstr "Login"
 
 msgid "register"
 msgstr "Register"
+
+msgid "friends"
+msgstr "Friends"

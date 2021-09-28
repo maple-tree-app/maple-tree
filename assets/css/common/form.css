@@ -1,6 +1,6 @@
 .form-input { 
   background-color: inherit;
-  @apply p-2 mt-3 dark:text-white border-0 border-b border-maple-light-border dark:border-maple-dark-border block;
+  @apply p-2 mt-3 dark:text-white w-full border-0 border-b border-maple-light-border dark:border-maple-dark-border block;
   /* text-black ring-1 ring-maple-light-border outline-none  dark:ring-maple-dark-border; */
   &:focus {
     @apply border-red-500 dark:border-yellow-300 outline-none;

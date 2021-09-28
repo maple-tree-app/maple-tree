@@ -11,17 +11,17 @@
       ],
     fn f -> %>
       <header>
-        <h1 class="text-2xl text-center"><%= gettext "add group" %></h1>
+        <h1 class="text-2xl text-center"><%= dgettext "groups", "add group" %></h1>
       </header>
       <div class="w-full max-w-lg">
         <%= label f, :name, class: "mt-10 block" %>
-        <%= text_input f, :name, required: true, class: "form-input w-full", phx_debounce: 300 %>
+        <%= text_input f, :name, required: true, class: "maple-input mt-3 w-full", phx_debounce: 300 %>
         <%= error_tag f, :name %>
       </div>
 
       <div class="w-full max-w-lg">
         <%= label f, :description, class: "mt-10 mb-2 block w-full" %>
-        <%= textarea f, :description, required: false, class: "form-input overflow-hidden w-full resize-none", phx_debounce: 300, spellcheck: "false", rows: 3 %>
+        <%= textarea f, :description, required: false, class: "maple-input mt-3 overflow-hidden w-full resize-none", phx_debounce: 300, spellcheck: "false", rows: 3 %>
         <%= error_tag f, :description %>
       </div>
       <div class="mt-10 w-full max-w-lg flex items-center justify-between">
@@ -30,7 +30,7 @@
         <%= error_tag f, :color %>
       </div>
 
-      <div class="col-span-full w-2/3">
+      <div class="col-span-full w-full mt-10">
         <%= submit "Add", phx_disable_with: "Adding...", class: "maple-button w-full" %>
       </div>
     <% end %>

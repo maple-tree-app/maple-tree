@@ -50,8 +50,7 @@ defmodule MapleTree.Groups do
   def get_invite_code_valid_for_7_days(group_id, user_id) do
     case Repo.one(first(from invite in Invite, where: invite.created_by == ^user_id and invite.group_id == ^group_id and invite.valid_until >= ^(DateTime.utc_now() |> DateTime.add(6 * 24 * 60 * 60)))) do
       nil -> generate_invite_code(group_id, user_id)
-      invite -> IO.inspect "FOUND A VALID INVITE CODE"
-        {:ok, invite}
+      invite -> {:ok, invite}
     end
   end
 
@@ -64,6 +63,12 @@ defmodule MapleTree.Groups do
 
     {:ok, invite}
   end
+
+  def get_group_by_invite_code(invite_code) do
+    Repo.one(first(from invite in Invite, join: group in assoc(invite, :group), where: invite.invite_code == ^invite_code, select: group))
+  end
+
+  def add_user(group_id, user_id), do: UserGroup.changeset(%UserGroup{}, %{"group_id" => group_id, "user_id" => user_id})
 
   # TODO: add test for this
   def delete_expired_invite_codes do

@@ -1,5 +1,5 @@
 .group_card {
-  @apply bg-maple-light-surface dark:bg-maple-dark-surface shadow-md flex items-center h-28 w-auto rounded-xl overflow-hidden cursor-pointer transition-colors ease-linear duration-200;
+  @apply maple-card flex items-center h-28 w-auto overflow-hidden cursor-pointer;
 
     -webkit-animation: fadein 0.15s; /* Safari, Chrome and Opera > 12.1 */
        -moz-animation: fadein 0.15s; /* Firefox < 16 */

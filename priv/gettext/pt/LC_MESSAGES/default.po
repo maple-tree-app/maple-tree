@@ -34,3 +34,6 @@ msgstr "Entrar"
 
 msgid "register"
 msgstr "Criar conta"
+
+msgid "friends"
+msgstr "Amigos"

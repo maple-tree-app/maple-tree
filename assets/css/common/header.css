@@ -1,0 +1,11 @@
+.maple-header {
+  @apply flex items-start sm:items-center justify-between w-full h-28 sm:h-16 flex-col sm:flex-row mb-10;
+
+  &__title {
+    @apply text-2xl text-center sm:text-left truncate w-full;
+  }
+
+  &__side-button {
+    @apply mt-4 sm:mt-0 ml-0 sm:ml-6 w-full sm:w-max min-w-max maple-button flex flex-row items-center justify-center;
+  }
+}

@@ -1,6 +1,6 @@
 <div class="p-10 max-w-7xl m-auto" id="group-show" phx-hook="closeOnUnfocus" data-target="dropdown-target" data-event="close_invite_button_dropdown">
-  <header class="flex items-starts sm:items-center justify-between w-full h-28 sm:h-16 sm:h-10 flex-col sm:flex-row">
-    <h1 class="text-2xl text-center sm: text-left truncate"><%= @group.name %></h1>
+  <header class="flex items-start sm:items-center justify-between w-full h-28 sm:h-16 flex-col sm:flex-row">
+    <h1 class="text-2xl text-center sm:text-left truncate w-full"><%= @group.name %></h1>
     <div id="dropdown-target" class="relative mt-4 sm:mt-0 ml-0 sm:ml-6 w-full sm:w-max min-w-max">
       <button class="maple-button w-full min-w-max" phx-click="handle_invite_button_click"><%= dgettext "groups", "invite friends" %></button>
       <%= if @invite_dropdown_open? do %>
@@ -8,7 +8,7 @@
         <span class="block text-left capitalize ml-3 py-2 font-medium"><%= dgettext("groups", "send link")%></span>
 
         <div id="copy-group" class="copy flex items-center p-0 justify-between overflow-hidden" phx-hook="doCopyToClipboard">
-          <input class="flex-grow py-2 pl-3 pr-2" style="color: inherit; background-color: inherit;" value='<%=MapleTreeWeb.Endpoint.url<>"/"<>@invite_code %>'>
+          <input class="flex-grow py-2 pl-3 pr-2" style="color: inherit; background-color: inherit;" value="<%= @invite_code_link %>">
           <button class="h-full w-10 flex items-center justify-center overflow-hidden bg-maple-light-bg text-black dark:bg-maple-dark-bg dark:text-white color-transition">
             <svg id="copy" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 " fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" /></svg>
             <svg id="copy-success" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden text-maple-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>
@@ -22,6 +22,13 @@
   </header>
 
   <div class="pt-4">
+    <h2>TODO: add sections</h2>
+    <ul>
+      <li>shopping lists</li>
+      <li>members</li>
+      <li>notes</li>
+      <li>agenda</li>
+    </ul>
   </div>
 
 </div>
