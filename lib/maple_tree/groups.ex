@@ -2,9 +2,7 @@ defmodule MapleTree.Groups do
   import Ecto.Query, warn: false
   alias MapleTree.Repo
 
-  alias MapleTree.Groups.Group
-  alias MapleTree.Groups.UserGroup
-  alias MapleTree.Groups.Invite
+  alias MapleTree.Groups.{Group, UserGroup, Invite}
 
   def create_group_changeset(attrs \\ %{}), do: Group.changeset(%Group{}, attrs)
 
@@ -65,7 +63,16 @@ defmodule MapleTree.Groups do
   end
 
   def get_group_by_invite_code(invite_code) do
-    Repo.one(first(from invite in Invite, join: group in assoc(invite, :group), where: invite.invite_code == ^invite_code, select: group))
+    Repo.one(
+      first(
+        from invite in Invite,
+        join: group in assoc(invite, :group),
+        join: ug in subquery(from u in UserGroup, group_by: u.id, select: %{group_id: u.group_id, members_count: count(u.id)}), on: ug.group_id == group.id,
+        where: invite.invite_code == ^invite_code,
+        select: group,
+        select_merge: %{members_count: ug.members_count}
+      )
+    )
   end
 
   def add_user(group_id, user_id), do: UserGroup.changeset(%UserGroup{}, %{"group_id" => group_id, "user_id" => user_id})

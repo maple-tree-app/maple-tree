@@ -26,5 +26,13 @@ msgstr "this invite link will expire in %{days} days"
 msgid "no group msg"
 msgstr "It looks like you still don't have any groups, you can create one clicking on the button above."
 
+msgid "join"
+msgstr "Would you like to join:"
+
 msgid "join msg"
 msgstr "Would you like to join:"
+
+msgid "%{members} member"
+msgid_plural "%{members} members"
+msgstr[0] ""
+msgstr[1] ""

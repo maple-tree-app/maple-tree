@@ -1,6 +1,7 @@
 defmodule MapleTree.Users.User do
   use Ecto.Schema
   import Ecto.Changeset
+  alias MapleTree.Repo
 
   @derive {Inspect, except: [:password]}
   @primary_key {:id, :binary_id, autogenerate: true}
@@ -13,7 +14,7 @@ defmodule MapleTree.Users.User do
     field :image_url, :string
     field :hashed_password, :string
     field :confirmed_at, :naive_datetime
-    field :friendships, :any ,virtual: true
+    field :friendships, :any, virtual: true
 
     timestamps()
 
@@ -29,7 +30,7 @@ defmodule MapleTree.Users.User do
       join_where: [accepted: true],
       preload_order: [desc: :username],
       join_keys: [from_user_id: :id, to_user_id: :id]
-    
+
     many_to_many :reverse_friends, MapleTree.Users.User,
       join_through: "users_friendships",
       join_where: [accepted: true],
@@ -152,7 +153,7 @@ defmodule MapleTree.Users.User do
   Confirms the account by setting `confirmed_at`.
   """
   def confirm_changeset(user) do
-    now = NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second)
+    now = NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second)
     change(user, confirmed_at: now)
   end
 
@@ -184,7 +185,7 @@ defmodule MapleTree.Users.User do
   end
 
   def preload_friends(%MapleTree.Users.User{} = user) do
-    user = MapleTree.Repo.preload(user, [:friends, :reverse_friends, :requested_friends, :pending_friend_invites])
+    user = Repo.preload(user, [:friends, :reverse_friends, :requested_friends, :pending_friend_invites])
     Map.put(user, :friendships, Enum.sort_by(user.friends ++ user.reverse_friends, &(&1.username)))
   end
 

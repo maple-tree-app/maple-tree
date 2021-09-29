@@ -1,6 +1,6 @@
 <div class="flex items-center justify-center mt-20">
-  <div class="maple-card w-108 h-140 m-10 overflow-hidden">
-    <!-- <div class="absolute overflow-hidden w-52 h-32 "> 
+  <div class="maple-card w-108 h-120 m-10 overflow-hidden">
+    <!-- <div class="absolute overflow-hidden w-52 h-32 ">
       <div class="w-52 h-32 rounded-full absolute transform rotate-12" style="background-color: <%= @group.color %>"></div>
     </div> -->
     <div class="relative">
@@ -16,6 +16,8 @@
       <span class="mt-4"><%= dgettext "groups", "join msg"%></span>
       <h3 class="text-2xl mt-2 font-bold"><%= @group.name %>?</h3>
       <p class="mt-10 faded break-all mx-4"><%= @group.description %></p>
+      <small class="faded mt-8"><%= dngettext "groups", "%{members} member", "%{members} members", @group.members_count, members: @group.members_count %></small>
+        <button class="maple-button flex-grow"><%= dgettext "groups", "join" %></button>
     </div>
   </div>
 </div>

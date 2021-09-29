@@ -26,5 +26,13 @@ msgstr "esse link irá expirar em %{days} dias."
 msgid "no group msg"
 msgstr "Parece que você ainda não está em nenhum grupo, você pode criar um clicando no botão acima."
 
+msgid "join"
+msgstr "Entrar"
+
 msgid "join msg"
 msgstr "Você gostaria de se juntar ao grupo"
+
+msgid "%{members} member"
+msgid_plural "%{members} members"
+msgstr[0] "%{members} membro"
+msgstr[1] "%{members} membros"
