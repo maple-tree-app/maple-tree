@@ -1,4 +1,7 @@
 defmodule MapleTree.Groups.Group do
+  @moduledoc """
+    group entity module
+  """
   use Ecto.Schema
   import Ecto.Changeset
 

@@ -4,7 +4,7 @@
       name: "default",
       files: %{
         included: ["lib/", "src/", "web/", "apps/"],
-        excluded: []
+        excluded: ["deps/"]
       },
       plugins: [],
       requires: [],
@@ -12,7 +12,6 @@
       parse_timeout: 5000,
       color: true,
       checks: [
-        {Credo.Check.Design.AliasUsage},
         {Credo.Check.Design.DuplicatedCode},
         {Credo.Check.Readability.FunctionNames},
         {Credo.Check.Readability.SinglePipe},

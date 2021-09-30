@@ -27,7 +27,7 @@ msgid "no group msg"
 msgstr "It looks like you still don't have any groups, you can create one clicking on the button above."
 
 msgid "join"
-msgstr "Would you like to join:"
+msgstr "Join"
 
 msgid "join msg"
 msgstr "Would you like to join:"

@@ -1,4 +1,7 @@
 defmodule MapleTree.Users.UserNotifier do
+  @moduledoc """
+    e-mail builder functions
+  """
   # For simplicity, this module simply logs messages to the terminal.
   # You should replace it by a proper email or notification tool, such as:
   #

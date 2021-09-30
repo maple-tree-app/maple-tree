@@ -1,4 +1,7 @@
 defmodule MapleTree.Groups.Invite do
+  @moduledoc """
+    group_invites entity module
+  """
   use Ecto.Schema
   import Ecto.Changeset
   alias MapleTree.Util.Crypto
@@ -27,8 +30,7 @@ defmodule MapleTree.Groups.Invite do
 
   defp generate_unique_invite_code(changeset) do
     if changeset.valid? do
-      case put_change(changeset, :invite_code, Crypto.random_string(8))
-        |> unsafe_validate_unique(:invite_code, MapleTree.Repo) do
+      case unsafe_validate_unique(put_change(changeset, :invite_code, Crypto.random_string(8)), :invite_code, MapleTree.Repo) do
         %{valid?: false} = _ -> generate_unique_invite_code(changeset)
         changeset_with_unique_code -> changeset_with_unique_code
       end

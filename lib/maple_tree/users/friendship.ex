@@ -1,4 +1,7 @@
 defmodule MapleTree.Users.Friendship do
+  @moduledoc """
+    user_friendship pivot table entity module
+  """
   use Ecto.Schema
   import Ecto.Changeset
   alias MapleTree.Users.User

@@ -1,4 +1,7 @@
 defmodule MapleTree.Groups.UserGroup do
+  @moduledoc """
+    user_group pivot table entity module
+  """
   use Ecto.Schema
   import Ecto.Changeset
 

@@ -1,10 +1,11 @@
 defmodule MapleTree.Users do
   @moduledoc """
-  The Users context.
+    The Users context.
   """
 
   import Ecto.Query, warn: false
   alias MapleTree.Repo
+  alias Ecto.{Multi, Changeset}
   alias MapleTree.Users.{User, UserToken, UserNotifier, UserSettings}
 
   ## Database getters
@@ -20,7 +21,7 @@ defmodule MapleTree.Users do
       iex> get_user_by_email("unknown@example.com")
       nil
 
-  """
+  ""context"
   def get_user_by_email(email) when is_binary(email) do
     Repo.get_by(User, email: email)
   end
@@ -63,7 +64,6 @@ defmodule MapleTree.Users do
   def get_user_settings(id), do: Repo.one!(from(us in UserSettings, where: us.user_id == ^id))
 
   ## User registration
-
   @doc """
   Registers a user.
 
@@ -77,9 +77,9 @@ defmodule MapleTree.Users do
 
   """
   def register_user(attrs) do
-    Ecto.Multi.new()
-    |> Ecto.Multi.insert(:user, User.registration_changeset(%User{}, attrs))
-    |> Ecto.Multi.insert(:users_settings, fn %{user: user} -> UserSettings.registration_changeset(%{user_id: user.id, theme: "auto", locale: attrs["locale"] || "auto"}) end)
+    Multi.new()
+    |> Multi.insert(:user, User.registration_changeset(%User{}, attrs))
+    |> Multi.insert(:users_settings, fn %{user: user} -> UserSettings.registration_changeset(%{user_id: user.id, theme: "auto", locale: attrs["locale"] || "auto"}) end)
     |> Repo.transaction()
     |> case do
       {:ok, %{user: user}} -> {:ok, user}
@@ -132,7 +132,7 @@ defmodule MapleTree.Users do
     user
     |> User.email_changeset(attrs)
     |> User.validate_current_password(password)
-    |> Ecto.Changeset.apply_action(:update)
+    |> Changeset.apply_action(:update)
   end
 
   @doc """
@@ -156,9 +156,9 @@ defmodule MapleTree.Users do
   defp user_email_multi(user, email, context) do
     changeset = user |> User.email_changeset(%{email: email}) |> User.confirm_changeset()
 
-    Ecto.Multi.new()
-    |> Ecto.Multi.update(:user, changeset)
-    |> Ecto.Multi.delete_all(:tokens, UserToken.user_and_contexts_query(user, [context]))
+    Multi.new()
+    |> Multi.update(:user, changeset)
+    |> Multi.delete_all(:tokens, UserToken.user_and_contexts_query(user, [context]))
   end
 
   def deliver_update_email_instructions(%User{} = user, current_email, update_email_url_fun)
@@ -200,9 +200,9 @@ defmodule MapleTree.Users do
       |> User.password_changeset(attrs)
       |> User.validate_current_password(password)
 
-    Ecto.Multi.new()
-    |> Ecto.Multi.update(:user, changeset)
-    |> Ecto.Multi.delete_all(:tokens, UserToken.user_and_contexts_query(user, :all))
+      Multi.new()
+      |> Multi.update(:user, changeset)
+      |> Multi.delete_all(:tokens, UserToken.user_and_contexts_query(user, :all))
     |> Repo.transaction()
     |> case do
       {:ok, %{user: user}} -> {:ok, user}
@@ -279,9 +279,9 @@ defmodule MapleTree.Users do
   end
 
   defp confirm_user_multi(user) do
-    Ecto.Multi.new()
-    |> Ecto.Multi.update(:user, User.confirm_changeset(user))
-    |> Ecto.Multi.delete_all(:tokens, UserToken.user_and_contexts_query(user, ["confirm"]))
+    Multi.new()
+    |> Multi.update(:user, User.confirm_changeset(user))
+    |> Multi.delete_all(:tokens, UserToken.user_and_contexts_query(user, ["confirm"]))
   end
 
   ## Reset password
@@ -336,9 +336,9 @@ defmodule MapleTree.Users do
 
   """
   def reset_user_password(user, attrs) do
-    Ecto.Multi.new()
-    |> Ecto.Multi.update(:user, User.password_changeset(user, attrs))
-    |> Ecto.Multi.delete_all(:tokens, UserToken.user_and_contexts_query(user, :all))
+    Multi.new()
+    |> Multi.update(:user, User.password_changeset(user, attrs))
+    |> Multi.delete_all(:tokens, UserToken.user_and_contexts_query(user, :all))
     |> Repo.transaction()
     |> case do
       {:ok, %{user: user}} -> {:ok, user}
@@ -351,12 +351,12 @@ defmodule MapleTree.Users do
   Update user's theme 'dark|light'
   """
   def update_user_theme(user_id, theme) do
-    Ecto.Changeset.change(get_user_settings(user_id), %{theme: theme}) |> Repo.update()
+    Changeset.change(get_user_settings(user_id), %{theme: theme}) |> Repo.update()
   end
 
 
   def get_user_friends(user_id) do
-    get_user!(user_id) |> MapleTree.Users.User.preload_friends 
+    User.preload_friends(get_user!(user_id))
   end
 
 end
