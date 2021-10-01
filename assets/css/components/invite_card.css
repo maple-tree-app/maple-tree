@@ -1,0 +1,11 @@
+.invite-card__description {
+  @apply mx-6 mt-3 faded h-36 text-center;
+
+  text-overflow: ellipsis;
+  word-break: break-all;
+  overflow: hidden;
+  text-align: center;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+}

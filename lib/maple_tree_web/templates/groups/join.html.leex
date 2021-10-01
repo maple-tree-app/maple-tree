@@ -1,9 +1,8 @@
 <div class="flex items-center justify-center mt-20">
+
   <div class="maple-card w-108 h-120 m-10 overflow-hidden">
-    <!-- <div class="absolute overflow-hidden w-52 h-32 ">
-      <div class="w-52 h-32 rounded-full absolute transform rotate-12" style="background-color: <%= @group.color %>"></div>
-    </div> -->
     <div class="relative">
+
       <div class="shape-divider">
           <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
             <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" style="fill: <%=@group.color %>"></path>
@@ -15,11 +14,14 @@
       <img class="rounded-full mt-4 w-3/12 z-20" src="https://pbs.twimg.com/media/EXMrwZuUcAAnv5p.png:small" alt="">
       <span class="mt-4"><%= dgettext "groups", "join msg"%></span>
       <h3 class="text-2xl mt-2 font-bold"><%= @group.name %>?</h3>
-      <p class="mt-10 faded break-all mx-4"><%= @group.description %></p>
+      <p class="invite-card__description faded"><%= String.duplicate(@group.description, 20) %></p>
+
       <div class="mt-auto mb-5 flex flex-col items-center">
         <small class="faded mb-4"><%= dngettext "groups", "%{members} member", "%{members} members", @group.members_count, members: @group.members_count %></small>
-        <button class="maple-button "><%= dgettext "groups", "join" %></button>
+        <button class="maple-button" phx-click="join-group"><%= dgettext "groups", "join" %></button>
       </div>
+
     </div>
   </div>
+
 </div>

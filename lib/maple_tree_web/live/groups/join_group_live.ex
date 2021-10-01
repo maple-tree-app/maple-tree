@@ -15,4 +15,11 @@ defmodule MapleTreeWeb.JoinGroupLive do
     View.render(MapleTreeWeb.GroupsView, "join.html", assigns)
   end
 
+  @impl true
+  def handle_event("join-group", _, socket) do
+    
+    {:noreply, push_redirect(socket, to: Routes.groups_details_path(socket, :show, socket.assigns.group.id))}
+  end
+
+
 end
