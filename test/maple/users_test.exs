@@ -64,11 +64,11 @@ defmodule MapleTree.UsersTest do
 
     test "validates email uniqueness" do
       %{email: email} = user = user_fixture()
-      {:error, changeset} = Users.register_user(user)
+      {:error, changeset} = Users.register_user(Map.from_struct(user), [validate_unique_email: true])
       assert "has already been taken" in errors_on(changeset).email
 
       # Now try with the upper cased email too, to check that email case is ignored.
-      {:error, changeset} = Users.register_user(Map.put(user, :email, String.upcase(email)))
+      {:error, changeset} = Users.register_user(Map.put(Map.from_struct(user), :email, String.upcase(email)), [validate_unique_email: true])
       assert "has already been taken" in errors_on(changeset).email
     end
 
@@ -79,29 +79,6 @@ defmodule MapleTree.UsersTest do
       assert is_binary(user.hashed_password)
       assert is_nil(user.confirmed_at)
       assert is_nil(user.password)
-    end
-  end
-
-  describe "change_user_registration/2" do
-    test "returns a changeset" do
-      assert %Ecto.Changeset{} = changeset = Users.change_user_registration(%User{})
-      assert changeset.required == [:password, :email]
-    end
-
-    test "allows fields to be set" do
-      email = unique_user_email()
-      password = valid_user_password()
-
-      changeset =
-        Users.change_user_registration(
-          %User{},
-          valid_user_attributes(email: email, password: password)
-        )
-
-      assert changeset.valid?
-      assert get_change(changeset, :email) == email
-      assert get_change(changeset, :password) == password
-      assert is_nil(get_change(changeset, :hashed_password))
     end
   end
 
@@ -142,7 +119,7 @@ defmodule MapleTree.UsersTest do
       %{email: email} = user_fixture()
 
       {:error, changeset} =
-        Users.apply_user_email(user, valid_user_password(), %{email: email})
+        Users.apply_user_email(user, valid_user_password(), %{email: email}, [validate_unique_email: true])
 
       assert "has already been taken" in errors_on(changeset).email
     end

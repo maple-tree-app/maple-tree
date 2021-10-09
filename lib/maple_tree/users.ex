@@ -10,54 +10,12 @@ defmodule MapleTree.Users do
 
   ## Database getters
 
-  @doc """
-  Gets a user by email.
-
-  ## Examples
-
-      iex> get_user_by_email("foo@example.com")
-      %User{}
-
-      iex> get_user_by_email("unknown@example.com")
-      nil
-
-  ""context"
-  def get_user_by_email(email) when is_binary(email) do
-    Repo.get_by(User, email: email)
-  end
-
-  @doc """
-  Gets a user by email and password.
-
-  ## Examples
-
-      iex> get_user_by_email_and_password("foo@example.com", "correct_password")
-      %User{}
-
-      iex> get_user_by_email_and_password("foo@example.com", "invalid_password")
-      nil
-
-  """
   def get_user_by_email_and_password(email, password)
       when is_binary(email) and is_binary(password) do
     user = Repo.get_by(User, email: email)
     if User.valid_password?(user, password), do: user
   end
 
-  @doc """
-  Gets a single user.
-
-  Raises `Ecto.NoResultsError` if the User does not exist.
-
-  ## Examples
-
-      iex> get_user!(123)
-      %User{}
-
-      iex> get_user!(456)
-      ** (Ecto.NoResultsError)
-
-  """
   def get_user!(id), do: Repo.get!(User, id)
 
 
@@ -76,9 +34,9 @@ defmodule MapleTree.Users do
       {:error, %Ecto.Changeset{}}
 
   """
-  def register_user(attrs) do
+  def register_user(attrs, opts \\ []) do
     Multi.new()
-    |> Multi.insert(:user, User.registration_changeset(%User{}, attrs))
+    |> Multi.insert(:user, User.registration_changeset(%User{}, attrs, opts))
     |> Multi.insert(:users_settings, fn %{user: user} -> UserSettings.registration_changeset(%{user_id: user.id, theme: "auto", locale: attrs["locale"] || "auto"}) end)
     |> Repo.transaction()
     |> case do
@@ -115,22 +73,9 @@ defmodule MapleTree.Users do
     User.email_changeset(user, attrs)
   end
 
-  @doc """
-  Emulates that the email will change without actually changing
-  it in the database.
-
-  ## Examples
-
-      iex> apply_user_email(user, "valid password", %{email: ...})
-      {:ok, %User{}}
-
-      iex> apply_user_email(user, "invalid password", %{email: ...})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def apply_user_email(user, password, attrs) do
+  def apply_user_email(user, password, attrs, opts \\ []) do
     user
-    |> User.email_changeset(attrs)
+    |> User.email_changeset(attrs, opts)
     |> User.validate_current_password(password)
     |> Changeset.apply_action(:update)
   end

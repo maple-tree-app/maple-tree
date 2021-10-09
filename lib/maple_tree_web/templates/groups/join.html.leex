@@ -11,13 +11,18 @@
     </div>
 
     <div class="z-20 flex flex-col items-center h-full">
-      <img class="rounded-full mt-4 w-3/12 z-20" src="https://pbs.twimg.com/media/EXMrwZuUcAAnv5p.png:small" alt="">
+      
+      <img class="rounded-full mt-4 w-28 h-28 z-20 object-cover" src="http://www.progarchives.com/progressive_rock_discography_band/1615.jpg" alt="">
       <span class="mt-4"><%= dgettext "groups", "join msg"%></span>
       <h3 class="text-2xl mt-2 font-bold"><%= @group.name %>?</h3>
-      <p class="invite-card__description faded"><%= String.duplicate(@group.description, 20) %></p>
+      <%= if @group.description do %>
+        <p class="invite-card__description faded"><%= @group.description %></p>
+      <% end %>
 
       <div class="mt-auto mb-5 flex flex-col items-center">
-        <small class="faded mb-4"><%= dngettext "groups", "%{members} member", "%{members} members", @group.members_count, members: @group.members_count %></small>
+        <small class="faded mb-4">
+          <%= dngettext "groups", "%{members} member", "%{members} members", @group.members_count, members: @group.members_count %>
+        </small>
         <button class="maple-button" phx-click="join-group"><%= dgettext "groups", "join" %></button>
       </div>
 

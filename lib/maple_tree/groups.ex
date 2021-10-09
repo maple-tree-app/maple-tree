@@ -67,7 +67,10 @@ defmodule MapleTree.Groups do
       first(
         from invite in Invite,
         join: group in assoc(invite, :group),
-        join: ug in subquery(from u in UserGroup, group_by: u.id, select: %{group_id: u.group_id, members_count: count(u.id)}), on: ug.group_id == group.id,
+        join: ug in subquery(from u in UserGroup, 
+          group_by: u.group_id,
+          select: %{group_id: u.group_id, members_count: count(u.id)}),
+        on: ug.group_id == group.id,
         where: invite.invite_code == ^invite_code,
         select: group,
         select_merge: %{members_count: ug.members_count}
@@ -75,7 +78,7 @@ defmodule MapleTree.Groups do
     )
   end
 
-  def add_user(group_id, user_id), do: UserGroup.changeset(%UserGroup{}, %{"group_id" => group_id, "user_id" => user_id})
+  def add_user(group_id, user_id), do: Repo.insert! UserGroup.changeset(%UserGroup{}, %{"group_id" => group_id, "user_id" => user_id})
 
   # TODO: add test for this
   def delete_expired_invite_codes do

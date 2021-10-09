@@ -28,7 +28,7 @@ defmodule MapleTreeWeb.GroupsDetailsLive do
   end
 
   @impl true
-  def handle_event("handle_invite_button_click", _params, socket) when(socket.assigns.invite_code != nil), do: {:noreply, assign(socket, :invite_dropdown_open?, !socket.assigns.invite_dropdown_open?)}
+  def handle_event("handle_invite_button_click", _params, socket) when (socket.assigns.invite_code_link != nil), do: {:noreply, assign(socket, :invite_dropdown_open?, !socket.assigns.invite_dropdown_open?)}
 
   @impl true
   def handle_event("handle_invite_button_click", _params, socket) do
