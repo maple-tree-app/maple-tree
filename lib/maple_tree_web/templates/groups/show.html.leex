@@ -1,6 +1,6 @@
 <div class="p-10 max-w-7xl m-auto" id="group-show" phx-hook="closeOnUnfocus" data-target="dropdown-target" data-event="close_invite_button_dropdown">
   <header class="flex items-start sm:items-center justify-between w-full h-28 sm:h-16 flex-col sm:flex-row">
-    <h1 class="text-2xl text-center sm:text-left truncate w-full"><%= @group.name %></h1>
+    <h1 class="text-4xl text-center sm:text-left truncate w-full"><%= @group.name %></h1>
     <div id="dropdown-target" class="relative mt-4 sm:mt-0 ml-0 sm:ml-6 w-full sm:w-max min-w-max">
       <button class="maple-button w-full min-w-max" phx-click="handle_invite_button_click"><%= dgettext "groups", "invite friends" %></button>
       <%= if @invite_dropdown_open? do %>
@@ -24,11 +24,17 @@
   <div class="pt-4">
     <h2>TODO: add sections</h2>
     <ul>
-      <li>shopping lists</li>
       <li>members</li>
       <li>notes</li>
       <li>agenda</li>
     </ul>
+  </div>
+  <div class="mt-12">
+    <div class="maple-header">
+      <!-- TODO: change this to a link to the group's shopping list page -->
+      <h1 class="text-2xl"><%= dgettext "default", "shopping lists" %></h1> 
+      <button class="maple-header__side-button maple-header__side-button__alt"><%= dgettext "groups", "new shopping list" %></button>
+    </div>
   </div>
 
 </div>

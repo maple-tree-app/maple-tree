@@ -8,4 +8,7 @@
   &__side-button {
     @apply mt-4 sm:mt-0 ml-0 sm:ml-6 w-full sm:w-max min-w-max maple-button flex flex-row items-center justify-center;
   }
+  &__side-button__alt {
+    @apply maple-button__alt;
+  }
 }

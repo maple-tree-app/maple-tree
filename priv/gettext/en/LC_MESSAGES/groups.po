@@ -36,3 +36,6 @@ msgid "%{members} member"
 msgid_plural "%{members} members"
 msgstr[0] ""
 msgstr[1] ""
+
+msgid "new shopping list"
+msgstr "New Shopping List"
