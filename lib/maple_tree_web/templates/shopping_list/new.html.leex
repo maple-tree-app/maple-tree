@@ -1,0 +1,38 @@
+<div class="p-2 sm:p-8 m-auto max-w-7xl">
+
+  <div class="flex flex-col items-center">
+    <%= form_for @changeset, "#",
+    [
+      id: "group-form",
+      class: "flex flex-col items-center w-full rounded max-w-xl px-4 sm:px-20 py-10",
+      phx_change: "validate",
+      autocomplete: "off",
+      phx_submit: "save",
+      ],
+    fn f -> %>
+      <header>
+        <h1 class="text-2xl text-center"><%= dgettext "default", "shopping list" %></h1>
+      </header>
+      <div class="w-full max-w-lg">
+        <%= label f, :name, class: "mt-10 block" %>
+        <%= text_input f, :name, required: true, class: "maple-input mt-3 w-full", phx_debounce: 300 %>
+        <%= error_tag f, :name %>
+      </div>
+
+      <div class="w-full max-w-lg">
+        <%= label f, :description, class: "mt-10 mb-2 block w-full" %>
+        <%= textarea f, :description, required: false, class: "maple-input mt-3 overflow-hidden w-full resize-none", phx_debounce: 300, spellcheck: "false", rows: 3 %>
+        <%= error_tag f, :description %>
+      </div>
+      <div class="mt-10 w-full max-w-lg flex items-center justify-between">
+        <%= label f, :color %>
+        <%= color_input f, :color, value: "#ef4343",required: false, class: "bg-transparent w-10 h-10 overflow-hidden rounded-full", phx_debounce: 300 %>
+        <%= error_tag f, :color %>
+      </div>
+
+      <div class="col-span-full w-full mt-10">
+        <%= submit "Add", phx_disable_with: "Adding...", class: "maple-button w-full" %>
+      </div>
+    <% end %>
+  </div>
+</div>

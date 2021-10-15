@@ -42,6 +42,13 @@ defmodule MapleTreeWeb.Router do
     live "/:id", GroupsDetailsLive, :show
   end
 
+  scope "/shopping_list", MapleTreeWeb do
+    pipe_through [:browser]
+
+    live "/", ShoppingListLive, :index
+    live "/new", NewShoppingListLive, :new
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", MapleTreeWeb do
   #   pipe_through :api

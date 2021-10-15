@@ -18,7 +18,7 @@ msgid "groups"
 msgstr "Groups"
 
 msgid "shopping lists"
-msgstr "Shopping lists"
+msgstr "Shopping Lists"
 
 msgid "tasks"
 msgstr "Tasks"

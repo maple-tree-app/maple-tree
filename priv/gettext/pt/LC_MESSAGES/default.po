@@ -18,7 +18,7 @@ msgid "groups"
 msgstr "Grupos"
 
 msgid "shopping lists"
-msgstr "Listas de compra"
+msgstr "Listas de Compras"
 
 msgid "tasks"
 msgstr "Tarefas"
