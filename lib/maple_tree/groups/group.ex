@@ -8,7 +8,7 @@ defmodule MapleTree.Groups.Group do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "groups" do
-    field :color, :string
+    field :color, :string, default: "#ef4343"
     field :description, :string
     field :name, :string
     field :image_url, :string
