@@ -10,7 +10,7 @@
 
 
   <div class="pt-4">
-    <%= if Enum.count(@groups) > 0 do %>
+    <%= if @has_groups  do %>
       <%= form_for :user_input, "#",
         [
           id: "groups-form",
@@ -28,6 +28,7 @@
           </div>
       <% end %>
 
+      <%= if length(@groups) > 0 do %>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-y-8 gap-x-4 lg:gap-x-12">
           <%= for group <- @groups do %>
             <div phx-click="click-group" phx-value-id="<%= group.id %>">
@@ -36,8 +37,11 @@
           <% end %>
         </div>
       <% else %>
-        <h1><%= dgettext "groups", "no group msg"%></h1>
+        <h1><%= dgettext "groups", "no group found with filter"%></h1>
       <% end %>
+    <% else %>
+      <h1><%= dgettext "groups", "no group msg"%></h1>
+    <% end %>
   </div>
 
 </div>

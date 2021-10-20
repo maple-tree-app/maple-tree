@@ -26,6 +26,9 @@ msgstr "esse link irá expirar em %{days} dias."
 msgid "no group msg"
 msgstr "Parece que você ainda não está em nenhum grupo, você pode criar um clicando no botão acima."
 
+msgid "no group found with filter"
+msgstr "Não foi possivel achar um grupo que corresponde a sua busca"
+
 msgid "join"
 msgstr "Entrar"
 

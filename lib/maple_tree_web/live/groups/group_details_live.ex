@@ -6,7 +6,7 @@ defmodule MapleTreeWeb.GroupsDetailsLive do
   alias MapleTree.Groups
 
   @impl true
-  def mount(%{"id" => group_id}, session, socket) do
+  def mount(%{"group_id" => group_id}, session, socket) do
     socket = socket |> LiveHelpers.init(session) |> assign(group_id: group_id, invite_dropdown_open?: false, invite_code_link: nil)
     {:ok, handle_load(socket)}
   end

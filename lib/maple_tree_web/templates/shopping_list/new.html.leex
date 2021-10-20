@@ -11,7 +11,7 @@
       ],
     fn f -> %>
       <header>
-        <h1 class="text-2xl text-center"><%= dgettext "default", "shopping list" %></h1>
+        <h1 class="text-2xl text-center"><%= dgettext "shopping_list", "new shopping list" %></h1>
       </header>
       <div class="w-full max-w-lg">
         <%= label f, :name, class: "mt-10 block" %>
@@ -24,14 +24,10 @@
         <%= textarea f, :description, required: false, class: "maple-input mt-3 overflow-hidden w-full resize-none", phx_debounce: 300, spellcheck: "false", rows: 3 %>
         <%= error_tag f, :description %>
       </div>
-      <div class="mt-10 w-full max-w-lg flex items-center justify-between">
-        <%= label f, :color %>
-        <%= color_input f, :color, value: "#ef4343",required: false, class: "bg-transparent w-10 h-10 overflow-hidden rounded-full", phx_debounce: 300 %>
-        <%= error_tag f, :color %>
-      </div>
 
       <div class="col-span-full w-full mt-10">
         <%= submit "Add", phx_disable_with: "Adding...", class: "maple-button w-full" %>
+         <%= #style: MapleTreeWeb.Helpers.UI.get_custom_button_style_string(@group.color) %>
       </div>
     <% end %>
   </div>

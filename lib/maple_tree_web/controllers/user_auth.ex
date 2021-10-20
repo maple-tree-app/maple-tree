@@ -3,6 +3,7 @@ defmodule MapleTreeWeb.UserAuth do
   import Phoenix.Controller
 
   alias MapleTree.Users
+  alias MapleTree.Groups
   alias MapleTreeWeb.Router.Helpers, as: Routes
 
   # Make the remember me cookie valid for 60 days.
@@ -172,6 +173,24 @@ defmodule MapleTreeWeb.UserAuth do
     else
       conn
       |> put_flash(:error, "You must log in to access this page.")
+      |> maybe_store_return_to()
+      |> redirect(to: Routes.user_session_path(conn, :new))
+      |> halt()
+    end
+  end
+
+  @doc """
+    Check if user belongs to group
+  """
+  def belongs_to_group(conn, _opts) do
+    IO.inspect conn.assigns[:current_user].id
+    with current_user <- conn.assigns[:current_user],
+         true <- Groups.user_belongs_to_group?(conn.params["group_id"], current_user.id)
+    do
+      conn
+    else
+      _ -> conn
+      |> put_flash(:error, Gettext.dgettext(MapleTreeWeb.Gettext, "errors", "can't access page"))
       |> maybe_store_return_to()
       |> redirect(to: Routes.user_session_path(conn, :new))
       |> halt()
