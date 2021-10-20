@@ -183,7 +183,6 @@ defmodule MapleTreeWeb.UserAuth do
     Check if user belongs to group
   """
   def belongs_to_group(conn, _opts) do
-    IO.inspect conn.assigns[:current_user].id
     with current_user <- conn.assigns[:current_user],
          true <- Groups.user_belongs_to_group?(conn.params["group_id"], current_user.id)
     do

@@ -3,11 +3,12 @@ defmodule MapleTreeWeb.NewShoppingListLive do
 
   alias Phoenix.View
   alias MapleTreeWeb.Helpers.LiveHelpers
+  alias MapleTree.Groups
   alias MapleTree.Groups.ShoppingList
 
   @impl true
-  def mount(_params, session, socket) do
-    socket = socket |> LiveHelpers.init(session) |> assign(changeset: apply_changeset())
+  def mount(%{"group_id" => group_id}, session, socket) do
+    socket = socket |> LiveHelpers.init(session) |> assign(changeset: apply_changeset(), group: Groups.get_group(group_id))
     {:ok, socket}
   end
 

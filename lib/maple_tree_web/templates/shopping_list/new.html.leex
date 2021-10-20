@@ -26,8 +26,7 @@
       </div>
 
       <div class="col-span-full w-full mt-10">
-        <%= submit "Add", phx_disable_with: "Adding...", class: "maple-button w-full" %>
-         <%= #style: MapleTreeWeb.Helpers.UI.get_custom_button_style_string(@group.color) %>
+        <%= submit "Add", phx_disable_with: "Adding...", class: "maple-button w-full", style: MapleTreeWeb.Helpers.UI.get_custom_button_style_string(@group.color) %>
       </div>
     <% end %>
   </div>
