@@ -3,7 +3,7 @@ defmodule MapleTree.UsersTest do
 
   alias MapleTree.Users
   import MapleTree.UsersFixtures
-  alias MapleTree.Users.{User, UserToken}
+  alias MapleTree.Schemas.Users.{User, UserToken}
 
   describe "get_user_by_email_and_password/2" do
     test "does not return the user if the email does not exist" do
