@@ -1,4 +1,4 @@
-defmodule MapleTree.Groups.ShoppingList do
+defmodule MapleTree.Schemas.Groups.ShoppingList do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -9,8 +9,8 @@ defmodule MapleTree.Groups.ShoppingList do
     field :image_url, :string
     field :name, :string
 
-    belongs_to :group, MapleTree.Groups.Group, type: :binary_id
-    has_many :items, MapleTree.Groups.ShoppingItem, on_delete: :delete_all
+    belongs_to :group, MapleTree.Schemas.Groups.Group, type: :binary_id
+    has_many :items, MapleTree.Schemas.Groups.ShoppingItem, on_delete: :delete_all
 
     timestamps()
   end

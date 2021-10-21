@@ -1,4 +1,4 @@
-defmodule MapleTree.Groups.Invite do
+defmodule MapleTree.Schemas.Groups.Invite do
   @moduledoc """
     group_invites entity module
   """
@@ -13,7 +13,7 @@ defmodule MapleTree.Groups.Invite do
     field :valid_until, :date
     field :created_by, :binary_id
 
-    belongs_to :group, MapleTree.Groups.Group, type: :binary_id
+    belongs_to :group, MapleTree.Schemas.Groups.Group, type: :binary_id
 
     timestamps()
   end

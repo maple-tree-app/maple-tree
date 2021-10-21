@@ -45,7 +45,7 @@ defmodule MapleTreeWeb.Router do
     live "/join/:code", JoinGroupLive, :join
   end
 
-  scope "group/:group_id", MapleTreeWeb do
+  scope "/group/:group_id", MapleTreeWeb do
     pipe_through [:browser, :group_guard]
 
     live "/", GroupsDetailsLive, :show

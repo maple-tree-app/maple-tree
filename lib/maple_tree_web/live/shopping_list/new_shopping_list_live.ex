@@ -4,7 +4,7 @@ defmodule MapleTreeWeb.NewShoppingListLive do
   alias Phoenix.View
   alias MapleTreeWeb.Helpers.LiveHelpers
   alias MapleTree.Groups
-  alias MapleTree.Groups.ShoppingList
+  alias MapleTree.Schemas.Groups.ShoppingList
 
   @impl true
   def mount(%{"group_id" => group_id}, session, socket) do

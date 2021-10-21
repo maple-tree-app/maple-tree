@@ -114,7 +114,7 @@ defmodule MapleTreeWeb.UserAuth do
   end
 
 
-  @spec get_user_settings(Map) :: nil|MapleTree.Users.UserSettings
+  @spec get_user_settings(Map) :: nil|MapleTree.Schemas.Users.UserSettings
   defp get_user_settings(%{assigns: %{current_user: %{settings: settings}}}), do: settings
   defp get_user_settings(_), do: nil
 

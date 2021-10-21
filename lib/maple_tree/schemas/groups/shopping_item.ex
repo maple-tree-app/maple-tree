@@ -1,4 +1,4 @@
-defmodule MapleTree.Groups.ShoppingItem do
+defmodule MapleTree.Schemas.Groups.ShoppingItem do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -10,8 +10,8 @@ defmodule MapleTree.Groups.ShoppingItem do
     field :quantity, :integer
     field :shopping_list_id, :binary_id
 
-    belongs_to :group, MapleTree.Groups.Group, type: :binary_id
-    belongs_to :list, MapleTree.Groups.ShoppingList, type: :binary_id
+    belongs_to :group, MapleTree.Schemas.Groups.Group, type: :binary_id
+    belongs_to :list, MapleTree.Schemas.Groups.ShoppingList, type: :binary_id
 
     timestamps()
   end

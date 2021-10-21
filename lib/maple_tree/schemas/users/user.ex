@@ -1,4 +1,4 @@
-defmodule MapleTree.Users.User do
+defmodule MapleTree.Schemas.Users.User do
   use Ecto.Schema
   import Ecto.Changeset
   alias MapleTree.Repo
@@ -18,32 +18,32 @@ defmodule MapleTree.Users.User do
 
     timestamps()
 
-    has_one :settings, MapleTree.Users.UserSettings
-    has_many :users_groups, MapleTree.Groups.UserGroup, on_delete: :delete_all
-    many_to_many :groups, MapleTree.Groups.Group, join_through: MapleTree.Groups.UserGroup
+    has_one :settings, MapleTree.Schemas.Users.UserSettings
+    has_many :users_groups, MapleTree.Schemas.Groups.UserGroup, on_delete: :delete_all
+    many_to_many :groups, MapleTree.Schemas.Groups.Group, join_through: MapleTree.Schemas.Groups.UserGroup
 
-    has_many :friendship_pivot, MapleTree.Users.Friendship, foreign_key: :from_user_id
-    has_many :reverse_friendship_pivot, MapleTree.Users.Friendship, foreign_key: :to_user_id
+    has_many :friendship_pivot, MapleTree.Schemas.Users.Friendship, foreign_key: :from_user_id
+    has_many :reverse_friendship_pivot, MapleTree.Schemas.Users.Friendship, foreign_key: :to_user_id
 
-    many_to_many :friends, MapleTree.Users.User,
+    many_to_many :friends, MapleTree.Schemas.Users.User,
       join_through: "users_friendships",
       join_where: [accepted: true],
       preload_order: [desc: :username],
       join_keys: [from_user_id: :id, to_user_id: :id]
 
-    many_to_many :reverse_friends, MapleTree.Users.User,
+    many_to_many :reverse_friends, MapleTree.Schemas.Users.User,
       join_through: "users_friendships",
       join_where: [accepted: true],
       preload_order: [desc: :username],
       join_keys: [to_user_id: :id, from_user_id: :id]
 
-    many_to_many :pending_friend_invites, MapleTree.Users.User,
+    many_to_many :pending_friend_invites, MapleTree.Schemas.Users.User,
       join_through: "users_friendships",
       join_where: [accepted: false],
       preload_order: [desc: :inserted_at],
       join_keys: [to_user_id: :id, from_user_id: :id]
 
-    many_to_many :requested_friends, MapleTree.Users.User,
+    many_to_many :requested_friends, MapleTree.Schemas.Users.User,
       join_through: "users_friendships",
       join_where: [accepted: false],
       preload_order: [asc: :inserted_at],
@@ -163,7 +163,7 @@ defmodule MapleTree.Users.User do
   If there is no user or the user doesn't have a password, we call
   `Bcrypt.no_user_verify/0` to avoid timing attacks.
   """
-  def valid_password?(%MapleTree.Users.User{hashed_password: hashed_password}, password)
+  def valid_password?(%MapleTree.Schemas.Users.User{hashed_password: hashed_password}, password)
       when is_binary(hashed_password) and byte_size(password) > 0 do
     Bcrypt.verify_pass(password, hashed_password)
   end
@@ -184,7 +184,7 @@ defmodule MapleTree.Users.User do
     end
   end
 
-  def preload_friends(%MapleTree.Users.User{} = user) do
+  def preload_friends(%MapleTree.Schemas.Users.User{} = user) do
     user = Repo.preload(user, [:friends, :reverse_friends, :requested_friends, :pending_friend_invites])
     Map.put(user, :friendships, Enum.sort_by(user.friends ++ user.reverse_friends, &(&1.username)))
   end

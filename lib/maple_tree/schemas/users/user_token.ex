@@ -1,4 +1,4 @@
-defmodule MapleTree.Users.UserToken do
+defmodule MapleTree.Schemas.Users.UserToken do
   use Ecto.Schema
   import Ecto.Query
 
@@ -18,7 +18,7 @@ defmodule MapleTree.Users.UserToken do
     field :token, :binary
     field :context, :string
     field :sent_to, :string
-    belongs_to :user, MapleTree.Users.User
+    belongs_to :user, MapleTree.Schemas.Users.User
 
     timestamps(updated_at: false)
   end
@@ -30,7 +30,7 @@ defmodule MapleTree.Users.UserToken do
   """
   def build_session_token(user) do
     token = :crypto.strong_rand_bytes(@rand_size)
-    {token, %MapleTree.Users.UserToken{token: token, context: "session", user_id: user.id}}
+    {token, %MapleTree.Schemas.Users.UserToken{token: token, context: "session", user_id: user.id}}
   end
 
   @doc """
@@ -64,7 +64,7 @@ defmodule MapleTree.Users.UserToken do
     hashed_token = :crypto.hash(@hash_algorithm, token)
 
     {Base.url_encode64(token, padding: false),
-     %MapleTree.Users.UserToken{
+     %MapleTree.Schemas.Users.UserToken{
        token: hashed_token,
        context: context,
        sent_to: sent_to,
@@ -124,17 +124,17 @@ defmodule MapleTree.Users.UserToken do
   Returns the given token with the given context.
   """
   def token_and_context_query(token, context) do
-    from MapleTree.Users.UserToken, where: [token: ^token, context: ^context]
+    from MapleTree.Schemas.Users.UserToken, where: [token: ^token, context: ^context]
   end
 
   @doc """
   Gets all tokens for the given user for the given contexts.
   """
   def user_and_contexts_query(user, :all) do
-    from t in MapleTree.Users.UserToken, where: t.user_id == ^user.id
+    from t in MapleTree.Schemas.Users.UserToken, where: t.user_id == ^user.id
   end
 
   def user_and_contexts_query(user, [_ | _] = contexts) do
-    from t in MapleTree.Users.UserToken, where: t.user_id == ^user.id and t.context in ^contexts
+    from t in MapleTree.Schemas.Users.UserToken, where: t.user_id == ^user.id and t.context in ^contexts
   end
 end

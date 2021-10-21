@@ -1,4 +1,4 @@
-defmodule MapleTree.Groups.Group do
+defmodule MapleTree.Schemas.Groups.Group do
   @moduledoc """
     group entity module
   """
@@ -14,15 +14,15 @@ defmodule MapleTree.Groups.Group do
     field :image_url, :string
     field :members_count, :integer, virtual: true
 
-    many_to_many :users, MapleTree.Users.User, join_through: MapleTree.Groups.UserGroup
-    has_many :users_groups, MapleTree.Groups.UserGroup, on_delete: :delete_all
+    many_to_many :users, MapleTree.Schemas.Users.User, join_through: MapleTree.Schemas.Groups.UserGroup
+    has_many :users_groups, MapleTree.Schemas.Groups.UserGroup, on_delete: :delete_all
 
 
     timestamps()
   end
 
   @doc false
-  def changeset(%MapleTree.Groups.Group{} = group, attrs) do
+  def changeset(%MapleTree.Schemas.Groups.Group{} = group, attrs) do
     group
     |> cast(attrs, [:name, :color, :description, :image_url])
     |> validate_required([:name])

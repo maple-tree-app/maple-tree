@@ -1,4 +1,4 @@
-defmodule MapleTree.Users.UserNotifier do
+defmodule MapleTree.Schemas.Users.UserNotifier do
   @moduledoc """
     e-mail builder functions
   """

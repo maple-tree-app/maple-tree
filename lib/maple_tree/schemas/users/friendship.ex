@@ -1,10 +1,10 @@
-defmodule MapleTree.Users.Friendship do
+defmodule MapleTree.Schemas.Users.Friendship do
   @moduledoc """
     user_friendship pivot table entity module
   """
   use Ecto.Schema
   import Ecto.Changeset
-  alias MapleTree.Users.User
+  alias MapleTree.Schemas.Users.User
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id

@@ -2,7 +2,7 @@ defmodule MapleTree.Groups do
   import Ecto.Query, warn: false
   alias MapleTree.Repo
 
-  alias MapleTree.Groups.{Group, UserGroup, Invite, ShoppingList}
+  alias MapleTree.Schemas.Groups.{Group, UserGroup, Invite, ShoppingList}
 
   def create_group_changeset(attrs \\ %{}), do: Group.changeset(%Group{}, attrs)
 
@@ -56,7 +56,7 @@ defmodule MapleTree.Groups do
     invite = Invite.insert_changeset(%Invite{}, %{
       "created_by" => user_id,
       "group_id" => group_id,
-      "valid_until" => DateTime.utc_now() |> DateTime.add(7 * 24 * 60 * 60) # 7 days 
+      "valid_until" => DateTime.utc_now() |> DateTime.add(7 * 24 * 60 * 60) # 7 days
     }) |> Repo.insert!()
 
     {:ok, invite}
@@ -67,7 +67,7 @@ defmodule MapleTree.Groups do
       first(
         from invite in Invite,
         join: group in assoc(invite, :group),
-        join: ug in subquery(from u in UserGroup, 
+        join: ug in subquery(from u in UserGroup,
           group_by: u.group_id,
           select: %{group_id: u.group_id, members_count: count(u.id)}),
         on: ug.group_id == group.id,

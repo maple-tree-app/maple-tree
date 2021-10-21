@@ -6,7 +6,7 @@ defmodule MapleTree.Users do
   import Ecto.Query, warn: false
   alias MapleTree.Repo
   alias Ecto.{Multi, Changeset}
-  alias MapleTree.Users.{User, UserToken, UserNotifier, UserSettings}
+  alias MapleTree.Schemas.Users.{User, UserToken, UserNotifier, UserSettings}
 
   ## Database getters
 
