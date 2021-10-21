@@ -30,7 +30,11 @@ defmodule MapleTree.Schemas.Groups.Invite do
 
   defp generate_unique_invite_code(changeset) do
     if changeset.valid? do
-      case unsafe_validate_unique(put_change(changeset, :invite_code, Crypto.random_string(8)), :invite_code, MapleTree.Repo) do
+      case unsafe_validate_unique(
+             put_change(changeset, :invite_code, Crypto.random_string(8)),
+             :invite_code,
+             MapleTree.Repo
+           ) do
         %{valid?: false} = _ -> generate_unique_invite_code(changeset)
         changeset_with_unique_code -> changeset_with_unique_code
       end

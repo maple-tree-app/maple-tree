@@ -26,9 +26,9 @@ defmodule MapleTreeWeb.GroupsPageLive do
 
   def get_groups(socket, search_params \\ []) do
     groups = Groups.get_groups(socket.assigns.current_user.id, search_params)
-    socket
-      |> assign(groups: groups)
-      |> assign_new(:has_groups, fn -> length(groups) > 0 end)
-  end
 
+    socket
+    |> assign(groups: groups)
+    |> assign_new(:has_groups, fn -> length(groups) > 0 end)
+  end
 end

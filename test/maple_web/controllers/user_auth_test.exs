@@ -13,6 +13,7 @@ defmodule MapleTreeWeb.UserAuthTest do
       conn
       |> Map.replace!(:secret_key_base, MapleTreeWeb.Endpoint.config(:secret_key_base))
       |> init_test_session(%{})
+
     user = user_fixture()
 
     %{user: user, conn: conn, group: group_fixture(user.id)}
@@ -171,10 +172,11 @@ defmodule MapleTreeWeb.UserAuthTest do
       refute conn.status
     end
   end
-  
+
   describe "belongs_to_group/2" do
     test "should redirect user that doesn't belongs to group", %{conn: conn, group: group} do
-      conn = %{conn | params: %{"group_id" => group.id}}
+      conn =
+        %{conn | params: %{"group_id" => group.id}}
         |> fetch_flash()
         |> assign(:current_user, user_fixture())
         |> UserAuth.belongs_to_group([])
@@ -184,9 +186,10 @@ defmodule MapleTreeWeb.UserAuthTest do
     end
 
     test "should allow a member to load the page", %{conn: conn, group: group, user: user} do
-      conn = %{conn | params: %{"group_id" => group.id}}
+      conn =
+        %{conn | params: %{"group_id" => group.id}}
         |> fetch_flash()
-        |> assign(:current_user, user) 
+        |> assign(:current_user, user)
         |> UserAuth.belongs_to_group([])
 
       refute conn.halted

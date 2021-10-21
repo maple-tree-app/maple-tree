@@ -19,7 +19,7 @@ defmodule MapleTree.Schemas.Groups.ShoppingItem do
   @doc false
   def changeset(shopping_item, attrs) do
     shopping_item
-      |> cast(attrs, [:name, :quantity, :observation])
-      |> validate_required([:name, :quantity, :observation])
+    |> cast(attrs, [:name, :quantity, :observation])
+    |> validate_required([:name, :quantity, :observation])
   end
 end

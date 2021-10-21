@@ -14,5 +14,4 @@ defmodule MapleTreeWeb.ShoppingListLive do
   def render(assigns) do
     View.render(MapleTreeWeb.ShoppingListView, "index.html", assigns)
   end
-
 end

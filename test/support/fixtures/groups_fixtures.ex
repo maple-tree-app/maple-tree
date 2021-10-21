@@ -10,7 +10,7 @@ defmodule MapleTree.GroupsFixtures do
   def valid_group_attributes(attrs \\ %{}) do
     Enum.into(attrs, %{
       name: valid_group_name(),
-      description: valid_group_description(),
+      description: valid_group_description()
     })
   end
 
@@ -22,5 +22,4 @@ defmodule MapleTree.GroupsFixtures do
 
     user
   end
-
 end

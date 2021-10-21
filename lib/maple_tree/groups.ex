@@ -8,56 +8,69 @@ defmodule MapleTree.Groups do
 
   def create_group(attrs, user_id) do
     Ecto.Multi.new()
-      |> Ecto.Multi.insert(:group, Group.changeset(%Group{}, attrs))
-      |> Ecto.Multi.insert(:users_groups, fn %{group: group} ->
-        UserGroup.changeset(%UserGroup{}, %{
+    |> Ecto.Multi.insert(:group, Group.changeset(%Group{}, attrs))
+    |> Ecto.Multi.insert(:users_groups, fn %{group: group} ->
+      UserGroup.changeset(%UserGroup{}, %{
         group_id: group.id,
         user_id: user_id,
         is_admin: true
-      }) end)
-      |> Repo.transaction()
-      |> case do
-        {:ok, %{group: group}} -> {:ok, group}
-        {:error, :group, changeset, _} -> {:error, changeset}
-      end
+      })
+    end)
+    |> Repo.transaction()
+    |> case do
+      {:ok, %{group: group}} -> {:ok, group}
+      {:error, :group, changeset, _} -> {:error, changeset}
+    end
   end
 
   def get_groups(user_id, search_params \\ []) do
-    query = from(UserGroup, as:  :ug)
+    query =
+      from(UserGroup, as: :ug)
       |> join(:left, [ug: user_group], g in assoc(user_group, :group), as: :groups)
       |> where([ug, g], ug.user_id == ^user_id)
-      |> order_by([user_group, g], [desc: user_group.is_admin])
+      |> order_by([user_group, g], desc: user_group.is_admin)
       |> select([groups: g], g)
       |> add_params(search_params)
+
     Repo.all(query)
   end
 
   def get_group(group_id, _search_params \\ []) do
-    query = from(Group, as: :group)
+    query =
+      from(Group, as: :group)
       |> where([group: group], group.id == ^group_id)
-      |> preload([users_groups: :user])
+      |> preload(users_groups: :user)
 
     Repo.one(query)
   end
 
   def user_belongs_to_group?(group_id, user_id) do
-    Repo.exists? from ug in UserGroup, where: ug.user_id == ^user_id and ug.group_id == ^group_id
+    Repo.exists?(from ug in UserGroup, where: ug.user_id == ^user_id and ug.group_id == ^group_id)
   end
 
-
   def get_invite_code_valid_for_7_days(group_id, user_id) do
-    case Repo.one(first(from invite in Invite, where: invite.created_by == ^user_id and invite.group_id == ^group_id and invite.valid_until >= ^(DateTime.utc_now() |> DateTime.add(6 * 24 * 60 * 60)))) do
+    case Repo.one(
+           first(
+             from invite in Invite,
+               where:
+                 invite.created_by == ^user_id and invite.group_id == ^group_id and
+                   invite.valid_until >= ^(DateTime.utc_now() |> DateTime.add(6 * 24 * 60 * 60))
+           )
+         ) do
       nil -> generate_invite_code(group_id, user_id)
       invite -> {:ok, invite}
     end
   end
 
   def generate_invite_code(group_id, user_id) do
-    invite = Invite.insert_changeset(%Invite{}, %{
-      "created_by" => user_id,
-      "group_id" => group_id,
-      "valid_until" => DateTime.utc_now() |> DateTime.add(7 * 24 * 60 * 60) # 7 days
-    }) |> Repo.insert!()
+    invite =
+      Invite.insert_changeset(%Invite{}, %{
+        "created_by" => user_id,
+        "group_id" => group_id,
+        # 7 days
+        "valid_until" => DateTime.utc_now() |> DateTime.add(7 * 24 * 60 * 60)
+      })
+      |> Repo.insert!()
 
     {:ok, invite}
   end
@@ -66,19 +79,26 @@ defmodule MapleTree.Groups do
     Repo.one(
       first(
         from invite in Invite,
-        join: group in assoc(invite, :group),
-        join: ug in subquery(from u in UserGroup,
-          group_by: u.group_id,
-          select: %{group_id: u.group_id, members_count: count(u.id)}),
-        on: ug.group_id == group.id,
-        where: invite.invite_code == ^invite_code,
-        select: group,
-        select_merge: %{members_count: ug.members_count}
+          join: group in assoc(invite, :group),
+          join:
+            ug in subquery(
+              from u in UserGroup,
+                group_by: u.group_id,
+                select: %{group_id: u.group_id, members_count: count(u.id)}
+            ),
+          on: ug.group_id == group.id,
+          where: invite.invite_code == ^invite_code,
+          select: group,
+          select_merge: %{members_count: ug.members_count}
       )
     )
   end
 
-  def add_user(group_id, user_id), do: Repo.insert! UserGroup.changeset(%UserGroup{}, %{"group_id" => group_id, "user_id" => user_id})
+  def add_user(group_id, user_id),
+    do:
+      Repo.insert!(
+        UserGroup.changeset(%UserGroup{}, %{"group_id" => group_id, "user_id" => user_id})
+      )
 
   # TODO: add test for this
   def delete_expired_invite_codes do
@@ -96,5 +116,4 @@ defmodule MapleTree.Groups do
       _, query -> query
     end)
   end
-
 end

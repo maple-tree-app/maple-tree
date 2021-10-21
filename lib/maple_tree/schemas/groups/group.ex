@@ -14,9 +14,10 @@ defmodule MapleTree.Schemas.Groups.Group do
     field :image_url, :string
     field :members_count, :integer, virtual: true
 
-    many_to_many :users, MapleTree.Schemas.Users.User, join_through: MapleTree.Schemas.Groups.UserGroup
-    has_many :users_groups, MapleTree.Schemas.Groups.UserGroup, on_delete: :delete_all
+    many_to_many :users, MapleTree.Schemas.Users.User,
+      join_through: MapleTree.Schemas.Groups.UserGroup
 
+    has_many :users_groups, MapleTree.Schemas.Groups.UserGroup, on_delete: :delete_all
 
     timestamps()
   end

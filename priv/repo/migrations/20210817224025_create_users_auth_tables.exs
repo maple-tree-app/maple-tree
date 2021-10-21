@@ -26,6 +26,7 @@ defmodule MapleTree.Repo.Migrations.CreateUsersAuthTables do
 
       timestamps()
     end
+
     create index(:users_settings, [:user_id])
 
     create table(:users_tokens, primary_key: false) do

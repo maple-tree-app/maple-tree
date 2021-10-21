@@ -18,7 +18,6 @@ defmodule MapleTree.Users do
 
   def get_user!(id), do: Repo.get!(User, id)
 
-
   def get_user_settings(id), do: Repo.one!(from(us in UserSettings, where: us.user_id == ^id))
 
   ## User registration
@@ -37,7 +36,13 @@ defmodule MapleTree.Users do
   def register_user(attrs, opts \\ []) do
     Multi.new()
     |> Multi.insert(:user, User.registration_changeset(%User{}, attrs, opts))
-    |> Multi.insert(:users_settings, fn %{user: user} -> UserSettings.registration_changeset(%{user_id: user.id, theme: "auto", locale: attrs["locale"] || "auto"}) end)
+    |> Multi.insert(:users_settings, fn %{user: user} ->
+      UserSettings.registration_changeset(%{
+        user_id: user.id,
+        theme: "auto",
+        locale: attrs["locale"] || "auto"
+      })
+    end)
     |> Repo.transaction()
     |> case do
       {:ok, %{user: user}} -> {:ok, user}
@@ -145,9 +150,9 @@ defmodule MapleTree.Users do
       |> User.password_changeset(attrs)
       |> User.validate_current_password(password)
 
-      Multi.new()
-      |> Multi.update(:user, changeset)
-      |> Multi.delete_all(:tokens, UserToken.user_and_contexts_query(user, :all))
+    Multi.new()
+    |> Multi.update(:user, changeset)
+    |> Multi.delete_all(:tokens, UserToken.user_and_contexts_query(user, :all))
     |> Repo.transaction()
     |> case do
       {:ok, %{user: user}} -> {:ok, user}
@@ -291,7 +296,6 @@ defmodule MapleTree.Users do
     end
   end
 
-
   @doc """
   Update user's theme 'dark|light'
   """
@@ -299,9 +303,7 @@ defmodule MapleTree.Users do
     Changeset.change(get_user_settings(user_id), %{theme: theme}) |> Repo.update()
   end
 
-
   def get_user_friends(user_id) do
     User.preload_friends(get_user!(user_id))
   end
-
 end

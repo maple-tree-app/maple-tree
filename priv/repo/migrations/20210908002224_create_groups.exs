@@ -11,6 +11,5 @@ defmodule MapleTree.Repo.Migrations.CreateGroups do
 
       timestamps()
     end
-
   end
 end

@@ -12,13 +12,10 @@ defmodule MapleTree.Schemas.Users.UserSettings do
     timestamps()
   end
 
-
-  def registration_changeset(attrs), do: apply_changeset(%MapleTree.Schemas.Users.UserSettings{}, attrs)
-
-
+  def registration_changeset(attrs),
+    do: apply_changeset(%MapleTree.Schemas.Users.UserSettings{}, attrs)
 
   defp apply_changeset(%MapleTree.Schemas.Users.UserSettings{} = user_settings, attrs) do
     user_settings |> cast(attrs, [:theme, :locale, :user_id]) |> foreign_key_constraint(:user_id)
   end
-
 end

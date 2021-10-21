@@ -30,7 +30,9 @@ defmodule MapleTree.Schemas.Users.UserToken do
   """
   def build_session_token(user) do
     token = :crypto.strong_rand_bytes(@rand_size)
-    {token, %MapleTree.Schemas.Users.UserToken{token: token, context: "session", user_id: user.id}}
+
+    {token,
+     %MapleTree.Schemas.Users.UserToken{token: token, context: "session", user_id: user.id}}
   end
 
   @doc """
@@ -44,6 +46,7 @@ defmodule MapleTree.Schemas.Users.UserToken do
         join: user in assoc(token, :user),
         where: token.inserted_at > ago(@session_validity_in_days, "day"),
         select: user
+
     {:ok, query}
   end
 
@@ -135,6 +138,7 @@ defmodule MapleTree.Schemas.Users.UserToken do
   end
 
   def user_and_contexts_query(user, [_ | _] = contexts) do
-    from t in MapleTree.Schemas.Users.UserToken, where: t.user_id == ^user.id and t.context in ^contexts
+    from t in MapleTree.Schemas.Users.UserToken,
+      where: t.user_id == ^user.id and t.context in ^contexts
   end
 end

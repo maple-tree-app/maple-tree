@@ -20,10 +20,14 @@ defmodule MapleTree.Schemas.Users.User do
 
     has_one :settings, MapleTree.Schemas.Users.UserSettings
     has_many :users_groups, MapleTree.Schemas.Groups.UserGroup, on_delete: :delete_all
-    many_to_many :groups, MapleTree.Schemas.Groups.Group, join_through: MapleTree.Schemas.Groups.UserGroup
+
+    many_to_many :groups, MapleTree.Schemas.Groups.Group,
+      join_through: MapleTree.Schemas.Groups.UserGroup
 
     has_many :friendship_pivot, MapleTree.Schemas.Users.Friendship, foreign_key: :from_user_id
-    has_many :reverse_friendship_pivot, MapleTree.Schemas.Users.Friendship, foreign_key: :to_user_id
+
+    has_many :reverse_friendship_pivot, MapleTree.Schemas.Users.Friendship,
+      foreign_key: :to_user_id
 
     many_to_many :friends, MapleTree.Schemas.Users.User,
       join_through: "users_friendships",
@@ -48,7 +52,6 @@ defmodule MapleTree.Schemas.Users.User do
       join_where: [accepted: false],
       preload_order: [asc: :inserted_at],
       join_keys: [from_user_id: :id, to_user_id: :id]
-
   end
 
   @doc """
@@ -185,8 +188,9 @@ defmodule MapleTree.Schemas.Users.User do
   end
 
   def preload_friends(%MapleTree.Schemas.Users.User{} = user) do
-    user = Repo.preload(user, [:friends, :reverse_friends, :requested_friends, :pending_friend_invites])
-    Map.put(user, :friendships, Enum.sort_by(user.friends ++ user.reverse_friends, &(&1.username)))
-  end
+    user =
+      Repo.preload(user, [:friends, :reverse_friends, :requested_friends, :pending_friend_invites])
 
+    Map.put(user, :friendships, Enum.sort_by(user.friends ++ user.reverse_friends, & &1.username))
+  end
 end

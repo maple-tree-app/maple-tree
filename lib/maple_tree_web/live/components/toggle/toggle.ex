@@ -5,5 +5,4 @@ defmodule MapleTreeWeb.Live.Components.Toggle do
   def mount(socket) do
     {:ok, socket}
   end
-
 end

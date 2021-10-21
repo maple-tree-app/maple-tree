@@ -8,9 +8,6 @@ defmodule MapleTreeWeb.Live.Components.GroupCard do
 
   @impl true
   def update(assigns, socket) do
-    {:ok, assign(socket, Enum.map(assigns, fn ({key, val}) -> {key, val} end))}
+    {:ok, assign(socket, Enum.map(assigns, fn {key, val} -> {key, val} end))}
   end
-
-
-
 end
