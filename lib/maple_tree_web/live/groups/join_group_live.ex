@@ -7,7 +7,6 @@ defmodule MapleTreeWeb.JoinGroupLive do
 
   @impl true
   def mount(%{"code" => invite_code}, session, socket) do
-    IO.inspect(Groups.get_group_by_invite_code(invite_code))
 
     {:ok,
      socket

@@ -23,13 +23,11 @@ defmodule MapleTreeWeb.NewShoppingListLive do
 
   @impl true
   def handle_event("validate", %{"shopping_list" => shopping_list}, socket) do
-    IO.inspect(shopping_list)
     {:noreply, socket}
   end
 
   @impl true
   def handle_event("save", asd, socket) do
-    IO.inspect(asd)
     {:noreply, socket}
   end
 
