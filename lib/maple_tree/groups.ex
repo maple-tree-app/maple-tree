@@ -46,18 +46,23 @@ defmodule MapleTree.Groups do
 
 
   def get_invite_code_valid_for_7_days(group_id, user_id) do
-    case Repo.one(first(from invite in Invite, where: invite.created_by == ^user_id and invite.group_id == ^group_id and invite.valid_until >= ^(DateTime.utc_now() |> DateTime.add(6 * 24 * 60 * 60)))) do
+    case Repo.one(
+      first(
+        from invite in Invite,
+        where: invite.created_by == ^user_id and invite.group_id == ^group_id and invite.valid_until >= ^(DateTime.add(DateTime.utc_now(), 6 * 24 * 60 * 60))
+      )
+    ) do
       nil -> generate_invite_code(group_id, user_id)
       invite -> {:ok, invite}
     end
   end
 
   def generate_invite_code(group_id, user_id) do
-    invite = Invite.insert_changeset(%Invite{}, %{
+    invite = Repo.insert!(Invite.insert_changeset(%Invite{}, %{
       "created_by" => user_id,
       "group_id" => group_id,
-      "valid_until" => DateTime.utc_now() |> DateTime.add(7 * 24 * 60 * 60) # 7 days 
-    }) |> Repo.insert!()
+      "valid_until" => DateTime.add(DateTime.utc_now(), 7 * 24 * 60 * 60) # 7 days
+    }))
 
     {:ok, invite}
   end
@@ -67,7 +72,7 @@ defmodule MapleTree.Groups do
       first(
         from invite in Invite,
         join: group in assoc(invite, :group),
-        join: ug in subquery(from u in UserGroup, 
+        join: ug in subquery(from u in UserGroup,
           group_by: u.group_id,
           select: %{group_id: u.group_id, members_count: count(u.id)}),
         on: ug.group_id == group.id,

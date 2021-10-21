@@ -19,7 +19,7 @@ defmodule MapleTreeWeb.UserRegistrationLive do
   end
 
   def handle_event("save", %{"user" => user_params}, socket) do
-    changeset = apply_changeset(user_params, hash_password: true, validate_unique_email: true) |> Map.put(:action, :update)
+    changeset = Map.put(apply_changeset(user_params, hash_password: true, validate_unique_email: true), :action, :update)
     {:noreply, assign(socket, changeset: changeset, trigger_submit: changeset.valid?)}
   end
 

@@ -170,8 +170,10 @@ defmodule MapleTree.Users do
   Gets the user with the given signed token.
   """
   def get_user_by_session_token(token) do
-    {:ok, query} = UserToken.verify_session_token_query(token)
-    Repo.one(query) |> Repo.preload(:settings)
+    UserToken.verify_session_token_query(token)
+      |> elem(1)
+      |>  Repo.one()
+      |> Repo.preload(:settings)
   end
 
   @doc """
@@ -296,7 +298,7 @@ defmodule MapleTree.Users do
   Update user's theme 'dark|light'
   """
   def update_user_theme(user_id, theme) do
-    Changeset.change(get_user_settings(user_id), %{theme: theme}) |> Repo.update()
+    Repo.update(Changeset.change(get_user_settings(user_id), %{theme: theme}))
   end
 
 

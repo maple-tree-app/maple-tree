@@ -33,7 +33,7 @@ defmodule MapleTreeWeb.GroupsDetailsLive do
   @impl true
   def handle_event("handle_invite_button_click", _params, socket) do
     %{user_id: user_id, group_id: group_id} = get_user_and_group_id(socket)
-    invite = Groups.get_invite_code_valid_for_7_days(group_id, user_id) |> build_invite_code_link(socket)
+    invite = build_invite_code_link(Groups.get_invite_code_valid_for_7_days(group_id, user_id), socket)
     
     {:noreply, assign(socket, invite_code_link: invite, invite_dropdown_open?: true)}
   end

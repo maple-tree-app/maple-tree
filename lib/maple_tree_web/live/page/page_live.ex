@@ -5,10 +5,7 @@ defmodule MapleTreeWeb.PageLive do
   alias MapleTreeWeb.Helpers.LiveHelpers
 
   @impl true
-  def mount(_params, session, socket) do
-    socket = socket |> LiveHelpers.init(session)
-    {:ok, socket}
-  end
+  def mount(_params, session, socket), do: {:ok, LiveHelpers.init(socket, session)}
 
   @impl true
   def render(assigns) do
