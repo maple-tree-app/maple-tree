@@ -1,6 +1,24 @@
+![example workflow](https://github.com/maple-tree-app/maple-tree/actions/workflows/elixir.yml/badge.svg)
+
 # MapleTree
 
-To start your Phoenix server:
+### **currently in development**
+
+MapleTree is a FOSS collaborative organization website.
+
+Feel free to collaborate by creating an issue or a PR.
+
+Features:
+- [x] Groups
+- [ ] Image Uploads
+- [ ] Shopping Lists
+- [ ] Friends
+- [ ] Calendar
+- [ ] Collaborative Markdown Editor
+
+
+<hr>
+Running locally:
 
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.setup`
@@ -8,13 +26,3 @@ To start your Phoenix server:
   * Start Phoenix endpoint with `mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
-
-## Learn more
-
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
