@@ -7,11 +7,7 @@ defmodule MapleTreeWeb.JoinGroupLive do
 
   @impl true
   def mount(%{"code" => invite_code}, session, socket) do
-
-    {:ok,
-     socket
-     |> LiveHelpers.init(session)
-     |> assign(group: Groups.get_group_by_invite_code(invite_code))}
+    {:ok, socket |> LiveHelpers.init(session) |> assign(group: Groups.get_group_by_invite_code(invite_code))}
   end
 
   @impl true

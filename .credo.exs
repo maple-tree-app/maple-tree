@@ -16,8 +16,7 @@
         {Credo.Check.Readability.FunctionNames},
         {Credo.Check.Readability.SinglePipe},
         {Credo.Check.Warning.MapGetUnsafePass},
-        {Credo.Check.Warning.OperationOnSameValues},
-        {Credo.Check.Consistency.MultiAliasImportRequireUse}
+        {Credo.Check.Warning.OperationOnSameValues, priority: :normal},
       ]
     }
   ]

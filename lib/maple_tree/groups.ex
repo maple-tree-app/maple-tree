@@ -63,14 +63,13 @@ defmodule MapleTree.Groups do
   end
 
   def generate_invite_code(group_id, user_id) do
-    invite =
-      Invite.insert_changeset(%Invite{}, %{
-        "created_by" => user_id,
-        "group_id" => group_id,
-        # 7 days
-        "valid_until" => DateTime.utc_now() |> DateTime.add(7 * 24 * 60 * 60)
-      })
-      |> Repo.insert!()
+
+    invite = Repo.insert!(Invite.insert_changeset(%Invite{}, %{
+      "created_by" => user_id,
+      "group_id" => group_id,
+      "valid_until" => DateTime.add(DateTime.utc_now(), 7 * 24 * 60 * 60) # 7 days
+    }))
+
 
     {:ok, invite}
   end
@@ -79,17 +78,14 @@ defmodule MapleTree.Groups do
     Repo.one(
       first(
         from invite in Invite,
-          join: group in assoc(invite, :group),
-          join:
-            ug in subquery(
-              from u in UserGroup,
-                group_by: u.group_id,
-                select: %{group_id: u.group_id, members_count: count(u.id)}
-            ),
-          on: ug.group_id == group.id,
-          where: invite.invite_code == ^invite_code,
-          select: group,
-          select_merge: %{members_count: ug.members_count}
+        join: group in assoc(invite, :group),
+        join: ug in subquery(from u in UserGroup,
+          group_by: u.group_id,
+          select: %{group_id: u.group_id, members_count: count(u.id)}),
+        on: ug.group_id == group.id,
+        where: invite.invite_code == ^invite_code,
+        select: group,
+        select_merge: %{members_count: ug.members_count}
       )
     )
   end
