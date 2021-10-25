@@ -13,6 +13,7 @@
       <header>
         <h1 class="text-2xl text-center"><%= dgettext "shopping_list", "new shopping list" %></h1>
       </header>
+      <%= hidden_input f, :group_id, value: @group.id %>
       <div class="w-full max-w-lg">
         <%= label f, :name, class: "mt-10 block" %>
         <%= text_input f, :name, class: "maple-input mt-3 w-full", phx_debounce: 300 %>

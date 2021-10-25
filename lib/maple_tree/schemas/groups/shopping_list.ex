@@ -21,5 +21,6 @@ defmodule MapleTree.Schemas.Groups.ShoppingList do
     shopping_list
     |> cast(attrs, [:name, :image_url, :description, :group_id])
     |> validate_required([:name])
+    |> foreign_key_constraint(:group_id)
   end
 end

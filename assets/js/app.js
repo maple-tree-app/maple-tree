@@ -23,6 +23,7 @@ import {autoThemeSetter} from "./functions/themeSetter";
 const isProduction = process.env.NODE_ENV === 'production';
 
 autoThemeSetter();
+console.log(Socket)
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToken}, hooks})

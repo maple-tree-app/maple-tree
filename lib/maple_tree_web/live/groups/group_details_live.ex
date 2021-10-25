@@ -58,7 +58,6 @@ defmodule MapleTreeWeb.GroupsDetailsLive do
     %{user_id: user_id, group_id: group_id} = get_user_and_group_id(socket)
 
     group = Groups.get_group(group_id, user_id)
-    IO.inspect(Groups.get_group_shopping_lists(group.id))
     assign(socket,
       group: group,
       section_open_control: %{"shopping_lists" => true},
