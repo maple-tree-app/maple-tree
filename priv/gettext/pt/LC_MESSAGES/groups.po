@@ -40,5 +40,5 @@ msgid_plural "%{members} members"
 msgstr[0] "%{members} membro"
 msgstr[1] "%{members} membros"
 
-msgid "new shopping list"
-msgstr "Nova Lista de Compras"
+msgid "group has been created"
+msgstr "grupo criado"

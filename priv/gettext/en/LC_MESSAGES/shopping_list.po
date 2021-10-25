@@ -13,3 +13,6 @@ msgstr ""
 
 msgid "new shopping list"
 msgstr "New Shopping List"
+
+msgid "shopping list created"
+msgstr "shopping list created"

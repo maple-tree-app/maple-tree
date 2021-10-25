@@ -20,11 +20,11 @@ defmodule MapleTreeWeb.NewGroupPageLive do
   @impl true
   def handle_event("save", %{"group" => group_params}, socket) do
     case Groups.create_group(group_params, socket.assigns.current_user.id) do
-      {:ok, _group} ->
+      {:ok, group} ->
         {:noreply,
          socket
-         |> put_flash(:info, "group has been created")
-         |> push_redirect(to: Routes.groups_page_path(socket, :index))}
+           |> put_flash(:info, Gettext.dgettext(MapleTreeWeb.Gettext, "groups", "group has been created"))
+           |> push_redirect(to: Routes.groups_details_path(socket, :show, group.id))}
 
       {:error, changeset} ->
         {:noreply,

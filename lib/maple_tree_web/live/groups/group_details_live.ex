@@ -57,17 +57,12 @@ defmodule MapleTreeWeb.GroupsDetailsLive do
   defp handle_load(socket) do
     %{user_id: user_id, group_id: group_id} = get_user_and_group_id(socket)
 
-    case Groups.user_belongs_to_group?(socket.assigns.group_id, user_id) do
-      true ->
-        assign(socket,
-          group: Groups.get_group(group_id, user_id),
-          section_open_control: %{"shopping_lists" => true}
-        )
-
-      false ->
-        socket
-        |> put_flash(:error, "the group you're looking for doesn't exist")
-        |> push_redirect(to: Routes.groups_page_path(socket, :index))
-    end
+    group = Groups.get_group(group_id, user_id)
+    IO.inspect(Groups.get_group_shopping_lists(group.id))
+    assign(socket,
+      group: group,
+      section_open_control: %{"shopping_lists" => true},
+      shopping_lists: Groups.get_group_shopping_lists(group.id)
+    )
   end
 end

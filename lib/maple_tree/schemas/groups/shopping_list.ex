@@ -8,6 +8,7 @@ defmodule MapleTree.Schemas.Groups.ShoppingList do
     field :description, :string
     field :image_url, :string
     field :name, :string
+    field :items_count, :integer, virtual: true
 
     belongs_to :group, MapleTree.Schemas.Groups.Group, type: :binary_id
     has_many :items, MapleTree.Schemas.Groups.ShoppingItem, on_delete: :delete_all
