@@ -9,6 +9,7 @@ defmodule MapleTree.Groups do
   defdelegate create_group(attrs, user_id), to: MapleTree.Mutations.Groups
   defdelegate generate_invite_code(group_id, user_id), to: MapleTree.Mutations.Groups
   defdelegate add_user(group_id, user_id), to: MapleTree.Mutations.Groups
+  defdelegate delete_expired_invite_codes, to: MapleTree.Mutations.Groups
 
   # access
   defdelegate get_groups(user_id, search_params \\ []) , to: MapleTree.Access.Groups

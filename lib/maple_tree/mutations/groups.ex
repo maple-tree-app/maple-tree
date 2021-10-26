@@ -36,7 +36,6 @@ defmodule MapleTree.Mutations.Groups do
 
   def add_user(group_id, user_id), do: Repo.insert!( UserGroup.changeset(%UserGroup{}, %{"group_id" => group_id, "user_id" => user_id}))
 
-  # TODO: add test for this
   def delete_expired_invite_codes, do: Repo.delete_all(from invite in Invite, where: invite.valid_until <= ^DateTime.utc_now())
 
 end

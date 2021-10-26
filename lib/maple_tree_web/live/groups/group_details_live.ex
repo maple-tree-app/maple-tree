@@ -2,14 +2,14 @@ defmodule MapleTreeWeb.GroupsDetailsLive do
   use MapleTreeWeb, :live_view
 
   alias Phoenix.View
-  alias MapleTreeWeb.Helpers.LiveHelpers
   alias MapleTree.Groups
 
+  on_mount MapleTreeWeb.Helpers.InitAssigns
+
   @impl true
-  def mount(%{"group_id" => group_id}, session, socket) do
+  def mount(%{"group_id" => group_id}, _session, socket) do
     socket =
       socket
-      |> LiveHelpers.init(session)
       |> assign(group_id: group_id, invite_dropdown_open?: false, invite_code_link: nil)
 
     {:ok, handle_load(socket)}

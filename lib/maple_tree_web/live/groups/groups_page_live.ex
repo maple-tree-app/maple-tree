@@ -2,12 +2,13 @@ defmodule MapleTreeWeb.GroupsPageLive do
   use MapleTreeWeb, :live_view
 
   alias Phoenix.View
-  alias MapleTreeWeb.Helpers.LiveHelpers
   alias MapleTree.Groups
+  
+  on_mount MapleTreeWeb.Helpers.InitAssigns
 
   @impl true
-  def mount(_params, session, socket) do
-    socket = socket |> LiveHelpers.init(session) |> get_groups
+  def mount(_params, _session, socket) do
+    socket = socket |> get_groups
     {:ok, socket}
   end
 
