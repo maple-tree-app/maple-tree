@@ -4,7 +4,6 @@ const body = document.body;
 export const darkMode =  {
   mounted() {
     const checkboxes = Array.from(this.el.querySelectorAll('.dark_theme_toggle_checkbox'));
-    console.log('mounted');
     checkboxes.forEach(checkbox => {
       checkbox.checked = isDarkThemeActive();
 
