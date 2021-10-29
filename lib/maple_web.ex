@@ -40,6 +40,7 @@ defmodule MapleTreeWeb do
 
       import MapleTreeWeb.PathHelpers
       import MapleTreeWeb.Components.Modal
+      alias Phoenix.LiveView.JS
 
       # Include shared imports and aliases for views
       unquote(view_helpers())

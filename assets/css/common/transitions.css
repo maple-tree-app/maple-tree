@@ -1,3 +1,4 @@
 .color-transition {
   @apply transition-colors ease-linear duration-200;
 }
+

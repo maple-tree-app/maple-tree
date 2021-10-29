@@ -1,11 +1,14 @@
 <div class="p-20">
   SHOPPING LIST
-  <.modal id="modal-test">
+  <button class="maple-button" phx-click="open_modal">
+    Open modal
+  </button>
+  <.modal id="modal-test" click_away={JS.push("close_modal")} show={@modal_open}>
     <div class="text-center p-5 flex-auto justify-center">
       This is a modal Test
     </div>
     <:buttons>
-        <button class="maple-button" phx-click="cancel">Cancel</button>
+        <button class="maple-button" phx-click="close_modal">Cancel</button>
         <button class="maple-button">Confirm</button>
     </:buttons>
   </.modal>
