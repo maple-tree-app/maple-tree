@@ -51,6 +51,7 @@ defmodule MapleTreeWeb.Router do
     live "/", GroupsDetailsLive, :show
     live "/shopping_list", ShoppingListLive, :index
     live "/shopping_list/new", NewShoppingListLive, :new
+    live "/shopping_list/:shopping_list_id", ShoppingListDetailsLive, :show
   end
 
   # Other scopes may use custom stacks.

@@ -37,11 +37,11 @@ defmodule MapleTreeWeb do
       # Import convenience functions from controllers
       import Phoenix.Controller,
         only: [get_flash: 1, get_flash: 2, view_module: 1, view_template: 1]
-
       import MapleTreeWeb.PathHelpers
-      import MapleTreeWeb.Components.Modal
       alias Phoenix.LiveView.JS
 
+      
+      unquote(MapleTreeWeb.Components.load_components())
       # Include shared imports and aliases for views
       unquote(view_helpers())
     end
@@ -53,6 +53,7 @@ defmodule MapleTreeWeb do
         layout: {MapleTreeWeb.LayoutView, "live.html"}
 
       unquote(view_helpers())
+      unquote(MapleTreeWeb.Components.load_components())
       unquote(MapleTreeWeb.Helpers.LiveCommon.apply())
     end
   end
@@ -61,6 +62,7 @@ defmodule MapleTreeWeb do
     quote do
       use Phoenix.LiveComponent
 
+      unquote(MapleTreeWeb.Components.load_components())
       unquote(view_helpers())
     end
   end
@@ -96,6 +98,9 @@ defmodule MapleTreeWeb do
       import MapleTreeWeb.ErrorHelpers
       import MapleTreeWeb.Gettext
       import MapleTreeWeb.PathHelpers
+      import MapleTreeWeb.Components.Modal
+      unquote(MapleTreeWeb.Components.load_components())
+      alias MapleTreeWeb.Components
       alias MapleTreeWeb.Router.Helpers, as: Routes
     end
   end

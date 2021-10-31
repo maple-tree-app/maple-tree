@@ -11,12 +11,10 @@
 
   <div class="pt-4">
     <%= if @has_groups  do %>
-      <%= form_for :user_input, "#",
-        [
-          id: "groups-form",
-          class: "flex flex-col items-center justify-between sm:justify-start h-24 sm:flex-row w-full sm:mb-0 mb-8",
-          phx_change: "search"
-        ], fn f -> %>
+      <.form let={f} for={:user_input} id="groups-form"
+        class="flex flex-col items-center justify-between sm:justify-start h-24 sm:flex-row w-full sm:mb-0 mb-8"
+        phx_change="search"
+      >
           <%= text_input f, :name, class: "maple-input w-full sm:w-52", phx_debounce: 500, placeholder: "Group Name:" %>
 
           <div class="flex items-center w-full sm:w-52 ml-0 sm:ml-8 justify-between">
@@ -26,13 +24,14 @@
               <%= label f, :admin_only, "" %>
             </div>
           </div>
-      <% end %>
+      </.form>
 
       <%= if length(@groups) > 0 do %>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-y-8 gap-x-4 lg:gap-x-12">
           <%= for group <- @groups do %>
-            <div phx-click="click-group" phx-value-id="<%= group.id %>">
-              <%= live_component @socket, MapleTreeWeb.Live.Components.GroupCard, group: group, id: "#group_card"<>group.id %>
+            <div phx-click="click-group" phx-value-id={group.id}>
+              <.group_card group={group}, id={"#group_card#{group.id}"}>
+              </.group_card>
             </div>
           <% end %>
         </div>

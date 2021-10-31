@@ -7,14 +7,14 @@
       <button
         class="maple-button w-full min-w-max"
         phx-click="handle_invite_button_click"
-        style="<%= MapleTreeWeb.Helpers.UI.get_custom_button_style_string(@group.color) %>"
+        style={MapleTreeWeb.Helpers.UI.get_custom_button_style_string(@group.color)}
       ><%= dgettext "groups", "invite friends"%></button>
       <%= if @invite_dropdown_open? do %>
       <div class="dropdown-menu px-4">
         <span class="block text-left capitalize py-2 font-medium"><%= dgettext("groups", "send link")%></span>
 
         <div id="copy-group" class="copy flex items-center p-0 justify-between overflow-hidden" phx-hook="doCopyToClipboard">
-          <input class="flex-grow py-2 pl-3 pr-2" style="color: inherit; background-color: inherit;" value="<%= @invite_code_link %>">
+          <input class="flex-grow py-2 pl-3 pr-2" style="color: inherit; background-color: inherit;" value={@invite_code_link}>
           <button class="h-full w-10 flex items-center justify-center overflow-hidden bg-maple-light-bg text-black dark:bg-maple-dark-bg dark:text-white color-transition">
             <svg id="copy" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 " fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" /></svg>
             <svg id="copy-success" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden text-maple-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>
