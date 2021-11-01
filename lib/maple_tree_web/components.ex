@@ -3,6 +3,7 @@ defmodule MapleTreeWeb.Components  do
     quote do
       import MapleTreeWeb.Components.Modal
       import MapleTreeWeb.Components.GroupCard
+      import MapleTreeWeb.Components.GenericCard
       import MapleTreeWeb.Components.Thumbnail
     end
   end

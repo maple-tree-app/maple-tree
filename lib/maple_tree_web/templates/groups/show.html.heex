@@ -46,7 +46,16 @@
     <hr/>
     <%= if Map.get @section_open_control, "shopping_lists", false do %>
       <!-- Shopping list preview goes here -->
-      <div class="mt-6">
+      <div id="shopping_list_inner" class="mt-6 flex-col items-start fade-in" phx-remove={JS.hide(%JS{},transition: "fade-out", to: "#shopping_list_inner")}>
+        <%= for shopping_list <- @shopping_lists do %>
+        <.generic_card
+           id={shopping_list.id}
+           name={shopping_list.name}
+           image_url={shopping_list.image_url}
+           description={shopping_list.description}
+           color={@group.color}
+        />
+        <% end %>
       </div>
     <% end %>
   </div>
