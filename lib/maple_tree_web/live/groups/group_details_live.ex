@@ -36,6 +36,11 @@ defmodule MapleTreeWeb.GroupsDetailsLive do
   end
 
   @impl true
+  def handle_event("go_to_shopping_list", %{"id" => id}, socket) do
+    {:noreply, push_redirect(socket, to: Routes.shopping_list_details_path(socket, :show, socket.assigns.group.id, id))}
+  end
+
+  @impl true
   def handle_event("close_invite_button_dropdown", _, socket),
     do: {:noreply, assign(socket, :invite_dropdown_open?, false)}
 
