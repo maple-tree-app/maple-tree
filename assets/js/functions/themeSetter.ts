@@ -1,4 +1,4 @@
-import { isAutoThemeSet, isDarkDefaultTheme } from "../helpers";
+import { isAutoThemeSet, isDarkDefaultTheme } from "../helpers/index";
 
 export const autoThemeSetter = () => {
     const body = document.body;

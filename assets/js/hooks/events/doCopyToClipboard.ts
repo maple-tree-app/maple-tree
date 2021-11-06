@@ -8,7 +8,7 @@ export const doCopyToClipboard = {
     fromEvent(buttonRef, 'click')
       .pipe(
         takeUntil(this.destroy$),
-        concatMap(() => from(copyToUserClipboard(inputRef.value, buttonRef))),
+        concatMap(() => from(copyToUserClipboard(inputRef.value))),
         filter(didCopy => didCopy),
         tap(() => addSuccess(this.el, buttonRef)),
         concatMap(() => timer(2000)),
@@ -22,21 +22,21 @@ export const doCopyToClipboard = {
   }
 }
 
-function addSuccess(divRef, buttonRef) {
+function addSuccess(divRef: HTMLDivElement, buttonRef: HTMLButtonElement) {
   divRef.classList.add('copy-success');
-  const svgs = [...buttonRef.children];
+  const svgs = [...Array.from(buttonRef.children)];
   svgs[0].classList.add('hidden');
   svgs[1].classList.remove('hidden');
 }
 
-function removeSuccess(divRef, buttonRef) {
+function removeSuccess(divRef: HTMLDivElement, buttonRef: HTMLButtonElement) {
   divRef.classList.remove('copy-success');
-  const svgs = [...buttonRef.children];
+  const svgs = [...Array.from(buttonRef.children)];
   svgs[0].classList.remove('hidden');
   svgs[1].classList.add('hidden');
 }
 
-async function copyToUserClipboard(value) {
+async function copyToUserClipboard(value: string) {
   try {
     await navigator.clipboard.writeText(value);
   } catch (error) {

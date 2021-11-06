@@ -16,6 +16,6 @@ export const closeOnUnfocus = {
   }
 }
 
-function isClickInsideElement(target, event) {
+function isClickInsideElement(target: HTMLElement, event: any) {
   return target !== event.target && !target.contains(event.target);
 }

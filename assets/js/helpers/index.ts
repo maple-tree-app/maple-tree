@@ -1,16 +1,16 @@
-export function isDarkDefaultTheme() {
+export function isDarkDefaultTheme(): boolean {
   return window.matchMedia("(prefers-color-scheme: dark)").matches;
 }
 
-export function isAutoThemeSet() {
+export function isAutoThemeSet(): boolean {
   return document.body.classList.contains('auto');
 }
 
-export function doesAutoThemeResultInDarkUi() {
+export function doesAutoThemeResultInDarkUi(): boolean {
   return isDarkDefaultTheme() && isAutoThemeSet();
 }
 
-export function isDarkThemeActive() {
+export function isDarkThemeActive(): boolean {
   if (document.body.classList.contains('dark')) return true;
   if (localStorage.getItem('theme') == 'light') return false;
   

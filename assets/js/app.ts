@@ -1,7 +1,6 @@
 // We need to import the CSS so that webpack will load it.
 // The MiniCssExtractPlugin is used to separate it out into
 // its own CSS file.
-import "../css/app.scss"
 
 // webpack automatically bundles all modules in your
 // entry points. Those entry points can be configured
@@ -12,12 +11,11 @@ import "../css/app.scss"
 //     import {Socket} from "phoenix"
 //     import socket from "./socket"
 //
-require('babel-polyfill');
 import "phoenix_html"
 import {Socket} from "phoenix"
-import topbar from "topbar"
+// @ts-ignore
 import {LiveSocket} from "phoenix_live_view"
-import hooks from './hooks';
+import * as hooks from './hooks/index';
 import {autoThemeSetter} from "./functions/themeSetter";
 
 const isProduction = process.env.NODE_ENV === 'production';
@@ -27,13 +25,7 @@ autoThemeSetter();
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToken}, hooks})
 
-
-// Show progress bar on live navigation and form submits
-if(!isProduction) {
-  topbar.config({barColors: {0: "#29d"}, shadowColor: "rgba(0, 0, 0, .3)"})
-  window.addEventListener("phx:page-loading-start", info => topbar.show())
-  window.addEventListener("phx:page-loading-stop", info => topbar.hide())
-}
+console.log('zas');
 
 // connect if there are any LiveViews on the page
 liveSocket.connect()
@@ -42,5 +34,5 @@ liveSocket.connect()
 // >> liveSocket.enableDebug()
 // >> liveSocket.enableLatencySim(1000)  // enabled for duration of browser session
 // >> liveSocket.disableLatencySim()
-if(!isProduction) window.liveSocket = liveSocket
+if(!isProduction) (<any>window).liveSocket = liveSocket
 
