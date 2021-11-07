@@ -2,11 +2,10 @@ import { clickMobileMenu, closeOnUnfocus, doCopyToClipboard }  from './events/in
 import {darkMode} from './theme/index';
 
 
-const hooks: any = {};
+export const hooks: any = {};
 
 hooks.darkMode = darkMode;
 hooks.clickMobileMenu = clickMobileMenu;
 hooks.closeOnUnfocus = closeOnUnfocus;
 hooks.doCopyToClipboard = doCopyToClipboard;
 
-export default hooks;

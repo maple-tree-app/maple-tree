@@ -13,9 +13,8 @@
 //
 import "phoenix_html"
 import {Socket} from "phoenix"
-// @ts-ignore
 import {LiveSocket} from "phoenix_live_view"
-import * as hooks from './hooks/index';
+import {hooks} from './hooks/index';
 import {autoThemeSetter} from "./functions/themeSetter";
 
 const isProduction = process.env.NODE_ENV === 'production';
@@ -24,8 +23,6 @@ autoThemeSetter();
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToken}, hooks})
-
-console.log('zas');
 
 // connect if there are any LiveViews on the page
 liveSocket.connect()

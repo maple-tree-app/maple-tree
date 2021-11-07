@@ -1,0 +1,7 @@
+@layer components {
+  .maple-card {
+    @apply bg-maple-light-surface dark:bg-maple-dark-surface shadow-md rounded-xl color-transition;
+  }
+}
+
+

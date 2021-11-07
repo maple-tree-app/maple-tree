@@ -1,12 +1,10 @@
 {
     "compilerOptions": {
-      "module": "commonjs",
-      "noImplicitAny": true,
+      "module": "CommonJS",
       "removeComments": true,
       "preserveConstEnums": true,
       "isolatedModules": true,
-      "esModuleInterop": true,
-      "sourceMap": true
+      "esModuleInterop": true
     }
 }
 
