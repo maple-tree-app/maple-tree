@@ -5,6 +5,7 @@ defmodule MapleTreeWeb.Components  do
       import MapleTreeWeb.Components.GroupCard
       import MapleTreeWeb.Components.GenericCard
       import MapleTreeWeb.Components.Thumbnail
+      import MapleTreeWeb.Components.Icons
     end
   end
 end

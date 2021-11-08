@@ -6,13 +6,17 @@ defmodule MapleTreeWeb.GroupsDetailsLive do
 
   on_mount MapleTreeWeb.Helpers.InitAssigns
 
+
   @impl true
   def mount(%{"group_id" => group_id}, _session, socket) do
-    socket =
-      socket
-      |> assign(group_id: group_id, invite_dropdown_open?: false, invite_code_link: nil)
+    socket =  case connected?(socket) do
+      false -> assign(socket, loading?: true)
+      true -> socket
+        |> assign(group_id: group_id, loading?: false, invite_dropdown_open?: false, invite_code_link: nil)
+        |>handle_load()
+    end
 
-    {:ok, handle_load(socket)}
+    {:ok, socket}
   end
 
   @impl true
@@ -44,7 +48,7 @@ defmodule MapleTreeWeb.GroupsDetailsLive do
   def handle_event("close_invite_button_dropdown", _, socket),
     do: {:noreply, assign(socket, :invite_dropdown_open?, false)}
 
-  @impl
+  @impl true
   def handle_event("click_section", %{"section" => section}, socket) do
     {:noreply,
      update(socket, :section_open_control, fn control ->
