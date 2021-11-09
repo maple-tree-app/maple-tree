@@ -7,7 +7,12 @@ defmodule MapleTreeWeb.Components.GroupCard do
         <div class="h-full w-3 flex-shrink-0" style={"background-color: "<>@group.color}></div>
         <div class="flex flex-grow items-center py-6 mx-2 h-full">
         <%= #<img src="https://pbs.twimg.com/media/EXMrwZuUcAAnv5p.png:small" alt="lable" class="group_card__image"> %>
-          <.live_component module={MapleTreeWeb.Components.Thumbnail} id={@group.id<>"__thumbnail"} name={@group.name} color={@group.color} image={@group.image_url} />
+          <.live_component module={MapleTreeWeb.Components.Thumbnail}
+            id={@group.id<>"__thumbnail"}
+            class="group_card__image"
+            name={@group.name}
+            color={@group.color}
+            image={@group.image_url} />
           <div class="flex flex-col flex-grow justify-center items-start mx-2 h-full">
             <h3 class="text-xl font-bold"> <%= @group.name %> </h3>
             <%= if @group.description do %>

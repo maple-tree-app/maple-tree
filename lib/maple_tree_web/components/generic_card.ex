@@ -8,15 +8,23 @@ defmodule MapleTreeWeb.Components.GenericCard do
     image_url: String.t(),
     color: String.t(),
     description: String.t(),
-    render_arrow: Bool.t()
+    render_arrow: Bool.t(),
+    render_color_bar: Bool.t()
   }) :: Phoenix.LiveView.Rendered.t()
   def generic_card(assigns) do
     ~H"""
       <div class="group_card">
-        <div class="h-full w-3 flex-shrink-0" style={"background-color: "<>@color}></div>
+        <%= if Map.get(assigns, :render_color_bar, true) do %>
+          <div class="h-full w-3 flex-shrink-0" style={"background-color: "<>@color}></div>
+        <% end %>
         <div class="flex flex-grow items-center py-6 mx-2 h-full">
         <%= #<img src="https://pbs.twimg.com/media/EXMrwZuUcAAnv5p.png:small" alt="lable" class="group_card__image"> %>
-          <.live_component module={MapleTreeWeb.Components.Thumbnail} id={@id<>"__thumbnail"} name={@name} color={@color} image={Map.get(assigns, :image_url)} />
+          <.live_component module={MapleTreeWeb.Components.Thumbnail}
+          id={@id<>"__thumbnail"}
+          class="group_card__image"
+          name={@name}
+          color={@color}
+          image={Map.get(assigns, :image_url)} />
           <div class="flex flex-col flex-grow justify-center items-start mx-2 h-full">
             <h3 class="text-xl font-bold"> <%= @name %> </h3>
             <%= if description = Map.get(assigns, :description) do %>

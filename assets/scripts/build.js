@@ -89,22 +89,7 @@ build(path.join(__dirname, '..', "css", ENTRY_CSS_FILE), `${OUTPUT_DIR}/${OUTPUT
 if (MODE === 'dev' || MODE === 'development') {
   const watcher = watch(['../../lib/**/*.*eex*', '../js/**/*.{ts,js}', '../css/**/*.*css*']);
 	watcher.on('change', a => {
-    console.log(a)
-    console.log(getExtension(a))
-    switch(getExtension(a)) {
-      case 'js':
-      case 'ts':
         build(path.join(__dirname, '..', "js", ENTRY_FILE), `${OUTPUT_DIR}/${OUTPUT_FILE}`);
-        break;
-      case 'css':
-      case 'scss':
         build(path.join(__dirname, '..', "css", ENTRY_CSS_FILE), `${OUTPUT_DIR}/${OUTPUT_CSS_FILE}`);
-      break;
-    }
 	})
-}
-
-function getExtension(file) {
-  const split = file.split('.');
-  return split[split.length - 1];
 }
