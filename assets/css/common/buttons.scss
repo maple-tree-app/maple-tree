@@ -1,0 +1,7 @@
+.maple-button {
+  @apply rounded py-2 px-8 dark:bg-maple-red bg-maple-yellow text-black dark:text-white color-transition;
+
+}
+.maple-button__alt {
+  @apply bg-maple-orange dark:bg-maple-orange;
+}

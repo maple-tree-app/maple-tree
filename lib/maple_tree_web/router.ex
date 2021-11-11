@@ -19,6 +19,10 @@ defmodule MapleTreeWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :group_guard do
+    plug :belongs_to_group
+  end
+
   scope "/", MapleTreeWeb do
     pipe_through :browser
 
@@ -39,7 +43,15 @@ defmodule MapleTreeWeb.Router do
     live "/", GroupsPageLive, :index
     live "/new", NewGroupPageLive, :new
     live "/join/:code", JoinGroupLive, :join
-    live "/:id", GroupsDetailsLive, :show
+  end
+
+  scope "/group/:group_id", MapleTreeWeb do
+    pipe_through [:browser, :group_guard]
+
+    live "/", GroupsDetailsLive, :show
+    live "/shopping_list", ShoppingListLive, :index
+    live "/shopping_list/new", NewShoppingListLive, :new
+    live "/shopping_list/:shopping_list_id", ShoppingListDetailsLive, :show
   end
 
   # Other scopes may use custom stacks.

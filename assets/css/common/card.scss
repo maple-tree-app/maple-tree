@@ -1,0 +1,9 @@
+.maple-card {
+  @apply bg-maple-light-surface dark:bg-maple-dark-surface shadow-md rounded-xl color-transition;
+  &__image {
+    @apply hidden sm:block rounded-full mx-2;
+    flex-shrink: 0;
+  }
+}
+
+

@@ -1,0 +1,13 @@
+  <div
+    class={assigns[:class] || ""}
+    phx-hook={assigns[:hook]}
+  >
+    <.form let={f} for={assigns[:id]} id={Atom.to_string(assigns[:id])}
+        class="toggle flex items-center"
+        phx_change={assigns[:event_name]}
+        phx_target={assigns[:handler_id]}
+       >
+        <%= checkbox f, :toggle, class: assigns[:toggle_class], phx_debounce: assigns[:debounce], value: assigns[:value] || false  %>
+        <%= label f, :toggle, "" %>
+    </.form>
+</div>

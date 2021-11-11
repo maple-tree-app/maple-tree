@@ -1,0 +1,13 @@
+<%= if !@loaded do %>
+  LOADING... 
+<% else %>
+  
+<div class="p-10 max-w-7xl m-auto" id="group-idx">
+  <header class="maple-header">
+    <h1 class="maple-header__title"><%= @shopping_list.name %></h1>
+  </header>
+
+  <ShoppingListDetailsTable.main_table shopping_list={@shopping_list} />
+
+</div>
+<% end %>

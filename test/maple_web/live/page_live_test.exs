@@ -5,6 +5,6 @@ defmodule MapleTreeWeb.PageLiveTest do
 
   test "disconnected and connected render", %{conn: conn} do
     {:ok, page_live, disconnected_html} = live(conn, "/")
-    assert is_binary render(page_live)
+    assert is_binary(render(page_live))
   end
 end

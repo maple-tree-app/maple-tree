@@ -26,12 +26,12 @@
       </div>
       <div class="mt-10 w-full max-w-lg flex items-center justify-between">
         <%= label f, :color %>
-        <%= color_input f, :color, value: "#ef4343",required: false, class: "bg-transparent w-10 h-10 overflow-hidden rounded-full", phx_debounce: 300 %>
+        <%= color_input f, :color, required: false, value: input_value(f, :color), class: "bg-transparent w-10 h-10 overflow-hidden rounded-full", phx_debounce: 300 %>
         <%= error_tag f, :color %>
       </div>
 
       <div class="col-span-full w-full mt-10">
-        <%= submit "Add", phx_disable_with: "Adding...", class: "maple-button w-full" %>
+        <%= submit "Add", phx_disable_with: "Adding...", class: "maple-button w-full", style: MapleTreeWeb.Helpers.UI.get_custom_button_style_string(input_value(f, :color)) %>
       </div>
     <% end %>
   </div>

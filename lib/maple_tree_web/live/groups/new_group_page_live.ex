@@ -2,13 +2,12 @@ defmodule MapleTreeWeb.NewGroupPageLive do
   use MapleTreeWeb, :live_view
 
   alias Phoenix.View
-  alias MapleTreeWeb.Helpers.LiveHelpers
   alias MapleTree.Groups
 
-  @impl true
-  def mount(_params, session, socket) do
+  on_mount MapleTreeWeb.Helpers.InitAssigns
 
-    socket = LiveHelpers.init(socket, session)
+  @impl true
+  def mount(_params, _session, socket) do
     socket = assign(socket, :changeset, apply_changeset())
     {:ok, socket}
   end
@@ -21,10 +20,15 @@ defmodule MapleTreeWeb.NewGroupPageLive do
   @impl true
   def handle_event("save", %{"group" => group_params}, socket) do
     case Groups.create_group(group_params, socket.assigns.current_user.id) do
-      {:ok, _group} -> {:noreply, socket
-        |> put_flash(:info, "group has been created")
-        |> push_redirect(to: Routes.groups_page_path(socket, :index))}
-      {:error, changeset} -> {:noreply, socket |> put_flash(:error, "something went wrong") |> assign(changeset: changeset)}
+      {:ok, group} ->
+        {:noreply,
+         socket
+           |> put_flash(:info, Gettext.dgettext(MapleTreeWeb.Gettext, "groups", "group has been created"))
+           |> push_redirect(to: Routes.groups_details_path(socket, :show, group.id))}
+
+      {:error, changeset} ->
+        {:noreply,
+         socket |> put_flash(:error, "something went wrong") |> assign(changeset: changeset)}
     end
   end
 
@@ -33,9 +37,7 @@ defmodule MapleTreeWeb.NewGroupPageLive do
     {:noreply, assign(socket, :changeset, apply_changeset(group_params))}
   end
 
-
   defp apply_changeset(attrs \\ %{}) do
     Groups.create_group_changeset(attrs)
   end
-
 end

@@ -34,23 +34,22 @@ defmodule MapleTree.MixProject do
   defp deps do
     [
       {:bcrypt_elixir, "~> 2.0"},
-      {:phoenix, "~> 1.5.9"},
+      {:phoenix, "~> 1.6.2"},
       {:phoenix_ecto, "~> 4.1"},
       {:ecto_sql, "~> 3.4"},
       {:postgrex, ">= 0.0.0"},
-      {:phoenix_live_view, "~> 0.15.1"},
+      {:phoenix_html, "~> 3.0.4"},
       {:floki, ">= 0.30.0", only: :test},
-      {:phoenix_html, "~> 2.11"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_dashboard, "~> 0.4"},
-      {:telemetry_metrics, "~> 0.4"},
-      {:telemetry_poller, "~> 0.4"},
+      {:phoenix_live_reload, "~> 1.3.3", only: :dev},
+      {:phoenix_live_dashboard, "~> 0.5"},
+      {:telemetry_metrics, "~> 0.6"},
+      {:telemetry_poller, "~> 0.5"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:phx_gen_auth, "~> 0.7", only: [:dev], runtime: false},
       {:quantum, "~> 3.0"},
-      {:credo, "~> 1.5", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
+      {:esbuild, "~> 0.2", runtime: Mix.env() == :dev},
     ]
   end
 
@@ -65,7 +64,11 @@ defmodule MapleTree.MixProject do
       setup: ["deps.get", "ecto.setup", "cmd npm install --prefix assets"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
+      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
+      "assets.deploy": [
+              "cmd --cd assets NODE_ENV=production node scripts/build.js",
+              "phx.digest"
+      ]
     ]
   end
 end

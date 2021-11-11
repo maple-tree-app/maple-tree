@@ -23,20 +23,22 @@ secret_key_base =
     You can generate one by calling: mix phx.gen.secret
     """
 
-    config :maple_tree, MapleTreeWeb.Endpoint,
-    server: true,
-    url: [scheme: "https", host: "mapletree.app", port: "443"],
-    http: [:inet6, port: "4000"], # Use iptables to map to 80 in the OS level
-    https: [
-      :inet6,
-      port: 8443, # Use iptables to map to 443 in the OS level
-      cipher_suite: :compatible,
-      keyfile: "priv/ssl/key.pem",
-      certfile: "priv/ssl/csr.pem",
-      transport_options: [socket_opts: [:inet6]]
-    ],
-    cache_static_manifest: "priv/static/cache_manifest.json",
-    secret_key_base: secret_key_base
+config :maple_tree, MapleTreeWeb.Endpoint,
+  server: true,
+  url: [scheme: "https", host: "mapletree.app", port: "443"],
+  # Use iptables to map to 80 in the OS level
+  http: [:inet6, port: "4000"],
+  https: [
+    :inet6,
+    # Use iptables to map to 443 in the OS level
+    port: 8443,
+    cipher_suite: :compatible,
+    keyfile: "priv/ssl/key.pem",
+    certfile: "priv/ssl/csr.pem",
+    transport_options: [socket_opts: [:inet6]]
+  ],
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  secret_key_base: secret_key_base
 
 # ## Using releases (Elixir v1.9+)
 #

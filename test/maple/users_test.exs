@@ -3,7 +3,7 @@ defmodule MapleTree.UsersTest do
 
   alias MapleTree.Users
   import MapleTree.UsersFixtures
-  alias MapleTree.Users.{User, UserToken}
+  alias MapleTree.Schemas.Users.{User, UserToken}
 
   describe "get_user_by_email_and_password/2" do
     test "does not return the user if the email does not exist" do
@@ -64,11 +64,18 @@ defmodule MapleTree.UsersTest do
 
     test "validates email uniqueness" do
       %{email: email} = user = user_fixture()
-      {:error, changeset} = Users.register_user(Map.from_struct(user), [validate_unique_email: true])
+
+      {:error, changeset} =
+        Users.register_user(Map.from_struct(user), validate_unique_email: true)
+
       assert "has already been taken" in errors_on(changeset).email
 
       # Now try with the upper cased email too, to check that email case is ignored.
-      {:error, changeset} = Users.register_user(Map.put(Map.from_struct(user), :email, String.upcase(email)), [validate_unique_email: true])
+      {:error, changeset} =
+        Users.register_user(Map.put(Map.from_struct(user), :email, String.upcase(email)),
+          validate_unique_email: true
+        )
+
       assert "has already been taken" in errors_on(changeset).email
     end
 
@@ -119,14 +126,15 @@ defmodule MapleTree.UsersTest do
       %{email: email} = user_fixture()
 
       {:error, changeset} =
-        Users.apply_user_email(user, valid_user_password(), %{email: email}, [validate_unique_email: true])
+        Users.apply_user_email(user, valid_user_password(), %{email: email},
+          validate_unique_email: true
+        )
 
       assert "has already been taken" in errors_on(changeset).email
     end
 
     test "validates current password", %{user: user} do
-      {:error, changeset} =
-        Users.apply_user_email(user, "invalid", %{email: unique_user_email()})
+      {:error, changeset} = Users.apply_user_email(user, "invalid", %{email: unique_user_email()})
 
       assert %{current_password: ["is not valid"]} = errors_on(changeset)
     end

@@ -98,3 +98,6 @@ msgstr ""
 
 msgid "welcome %{name}"
 msgstr "Welcome to MapleTree, %{name}"
+
+msgid "can't access page"
+msgstr "the page you're searching for doesn't exist or you don't have access to."

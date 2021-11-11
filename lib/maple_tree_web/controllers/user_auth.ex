@@ -3,6 +3,7 @@ defmodule MapleTreeWeb.UserAuth do
   import Phoenix.Controller
 
   alias MapleTree.Users
+  alias MapleTree.Groups
   alias MapleTreeWeb.Router.Helpers, as: Routes
 
   # Make the remember me cookie valid for 60 days.
@@ -94,32 +95,37 @@ defmodule MapleTreeWeb.UserAuth do
 
   def set_user_theme(conn, _opts) do
     user_theme = get_user_settings(conn, :theme, "auto")
+
     conn
-      |> put_session(:theme, user_theme)
-      |> assign(:theme, user_theme)
+    |> put_session(:theme, user_theme)
+    |> assign(:theme, user_theme)
   end
 
   def set_user_locale(conn, _opts) do
-    case get_user_locale(conn) || conn.params["locale"] || MapleTreeWeb.Helpers.Locale.get_locale_from_conn(conn) do
+    case get_user_locale(conn) || conn.params["locale"] ||
+           MapleTreeWeb.Helpers.Locale.get_locale_from_conn(conn) do
       nil ->
         conn
+
       locale ->
         # for liveview this needs to be repeated in mount/3
         Gettext.put_locale(MapleTreeWeb.Gettext, locale)
+
         conn
-          |> put_session(:locale, locale)
-          |> assign(:locale, locale)
+        |> put_session(:locale, locale)
+        |> assign(:locale, locale)
     end
   end
 
-
-  @spec get_user_settings(Map) :: nil|MapleTree.Users.UserSettings
+  @spec get_user_settings(Map) :: nil | MapleTree.Schemas.Users.UserSettings
   defp get_user_settings(%{assigns: %{current_user: %{settings: settings}}}), do: settings
   defp get_user_settings(_), do: nil
 
   defp get_user_settings(conn, key, fallback \\ nil) do
     case get_user_settings(conn) do
-      nil -> fallback
+      nil ->
+        fallback
+
       settings ->
         Map.get(settings, key)
     end
@@ -175,6 +181,26 @@ defmodule MapleTreeWeb.UserAuth do
       |> maybe_store_return_to()
       |> redirect(to: Routes.user_session_path(conn, :new))
       |> halt()
+    end
+  end
+
+  @doc """
+    Check if user belongs to group
+  """
+  def belongs_to_group(conn, _opts) do
+    with current_user <- conn.assigns[:current_user],
+         true <- Groups.user_belongs_to_group?(conn.params["group_id"], current_user.id) do
+      conn
+    else
+      _ ->
+        conn
+        |> put_flash(
+          :error,
+          Gettext.dgettext(MapleTreeWeb.Gettext, "errors", "can't access page")
+        )
+        |> maybe_store_return_to()
+        |> redirect(to: Routes.user_session_path(conn, :new))
+        |> halt()
     end
   end
 

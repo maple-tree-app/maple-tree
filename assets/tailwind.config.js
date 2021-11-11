@@ -2,12 +2,15 @@ var _ = require('lodash')
 var flattenColorPalette = require('tailwindcss/lib/util/flattenColorPalette').default
 
 module.exports = {
+  mode: 'jit',
   purge: [
-    "../**/*.html.eex",
-    "../**/*.html.leex",
-    "../**/views/**/*.ex",
-    "../**/live/**/*.ex",
-    "./js/**/*.js"
+    '../../lib/**/*.ex',
+		'../../lib/**/*.leex',
+		'../../lib/**/*.heex',
+		'../../lib/**/*.lexs',
+		'../../lib/**/*.exs',
+		'../lib/**/*.eex',
+		'../js/**/*.js' 
   ],
   darkMode: 'class', // or 'media' or 'class'
   theme: {

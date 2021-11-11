@@ -6,7 +6,7 @@ defmodule MapleTreeWeb.UserRegistrationLive do
   alias MapleTreeWeb.Helpers.LiveHelpers
 
   def mount(_params, session, socket) do
-    {:ok, socket |> LiveHelpers.init(session)  |> add_changeset}
+    {:ok, socket |> LiveHelpers.init(session) |> add_changeset}
   end
 
   def render(assigns) do
@@ -14,7 +14,12 @@ defmodule MapleTreeWeb.UserRegistrationLive do
   end
 
   defp add_changeset(socket) do
-    params = [changeset: Users.change_user_registration(), trigger_submit: false, button_disabled: true]
+    params = [
+      changeset: Users.change_user_registration(),
+      trigger_submit: false,
+      button_disabled: true
+    ]
+
     assign(socket, params)
   end
 
@@ -27,6 +32,6 @@ defmodule MapleTreeWeb.UserRegistrationLive do
     {:noreply, assign(socket, changeset: apply_changeset(user_params))}
   end
 
-  defp apply_changeset(user_params, opts \\ []), do: Users.change_user_registration(user_params, opts)
-
+  defp apply_changeset(user_params, opts \\ []),
+    do: Users.change_user_registration(user_params, opts)
 end
