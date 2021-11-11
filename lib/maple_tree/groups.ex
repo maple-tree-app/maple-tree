@@ -10,6 +10,7 @@ defmodule MapleTree.Groups do
   defdelegate generate_invite_code(group_id, user_id), to: MapleTree.Mutations.Groups
   defdelegate add_user(group_id, user_id), to: MapleTree.Mutations.Groups
   defdelegate delete_expired_invite_codes, to: MapleTree.Mutations.Groups
+  defdelegate add_shopping_list_item(item), to: MapleTree.Mutations.Groups
 
   # access
   defdelegate get_groups(user_id, search_params \\ []) , to: MapleTree.Access.Groups
@@ -18,6 +19,7 @@ defmodule MapleTree.Groups do
   defdelegate user_belongs_to_group?(group_id, user_id), to: MapleTree.Access.Groups
   defdelegate get_invite_code_valid_for_7_days(group_id, user_id), to: MapleTree.Access.Groups
   defdelegate get_group_shopping_lists(group_id, search_params \\ []), to: MapleTree.Access.Groups
+  defdelegate get_shopping_list(shopping_list_id), to: MapleTree.Access.Groups
 
   def create_shopping_list(attrs) do
     Repo.insert(ShoppingList.changeset(%ShoppingList{}, attrs))

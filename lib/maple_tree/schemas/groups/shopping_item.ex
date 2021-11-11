@@ -6,12 +6,11 @@ defmodule MapleTree.Schemas.Groups.ShoppingItem do
   @foreign_key_type :binary_id
   schema "shopping_items" do
     field :name, :string
-    field :observation, :string
+    field :detail, :string
     field :quantity, :integer
-    field :shopping_list_id, :binary_id
 
     belongs_to :group, MapleTree.Schemas.Groups.Group, type: :binary_id
-    belongs_to :list, MapleTree.Schemas.Groups.ShoppingList, type: :binary_id
+    belongs_to :shopping_list, MapleTree.Schemas.Groups.ShoppingList, type: :binary_id
 
     timestamps()
   end
@@ -19,7 +18,8 @@ defmodule MapleTree.Schemas.Groups.ShoppingItem do
   @doc false
   def changeset(shopping_item, attrs) do
     shopping_item
-    |> cast(attrs, [:name, :quantity, :observation])
-    |> validate_required([:name, :quantity, :observation])
+      |> cast(attrs, [:name, :quantity, :detail])
+      |> validate_required([:name, :quantity])
+      |> foreign_key_constraint(:shopping_list_id)
   end
 end

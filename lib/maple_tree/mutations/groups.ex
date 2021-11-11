@@ -2,7 +2,7 @@ defmodule MapleTree.Mutations.Groups do
   import Ecto.Query, warn: false
   alias MapleTree.Repo
 
-  alias MapleTree.Schemas.Groups.{Group,UserGroup,Invite}
+  alias MapleTree.Schemas.Groups.{Group,UserGroup,Invite,ShoppingItem}
 
   def create_group_changeset(attrs \\ %{}), do: Group.changeset(%Group{}, attrs)
 
@@ -34,8 +34,10 @@ defmodule MapleTree.Mutations.Groups do
     {:ok, invite}
   end
 
-  def add_user(group_id, user_id), do: Repo.insert!( UserGroup.changeset(%UserGroup{}, %{"group_id" => group_id, "user_id" => user_id}))
+  def add_user(group_id, user_id), do: Repo.insert!(UserGroup.changeset(%UserGroup{}, %{"group_id" => group_id, "user_id" => user_id}))
 
   def delete_expired_invite_codes, do: Repo.delete_all(from invite in Invite, where: invite.valid_until <= ^DateTime.utc_now())
+
+  def add_shopping_list_item(%ShoppingItem{} = item), do: Repo.insert(item)
 
 end

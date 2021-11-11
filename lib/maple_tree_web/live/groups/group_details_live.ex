@@ -13,7 +13,7 @@ defmodule MapleTreeWeb.GroupsDetailsLive do
       false -> assign(socket, loading?: true)
       true -> socket
         |> assign(group_id: group_id, loading?: false, invite_dropdown_open?: false, invite_code_link: nil)
-        |>handle_load()
+        |> handle_load()
     end
 
     {:ok, socket}

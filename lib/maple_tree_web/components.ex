@@ -7,6 +7,7 @@ defmodule MapleTreeWeb.Components  do
       import MapleTreeWeb.Components.Thumbnail
       import MapleTreeWeb.Components.Icons
       import MapleTreeWeb.Components.Group.ShoppingListSection
+      alias MapleTreeWeb.Components.ShoppingListDetailsTable
     end
   end
 end

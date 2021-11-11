@@ -83,6 +83,17 @@ defmodule MapleTree.Access.Groups do
     end)
   end
 
+  def get_shopping_list(shopping_list_id) do
+    query =
+      from(ShoppingList, as: :sl)
+        |> where([sl: sl], sl.id == ^shopping_list_id)
+        |> select([sl: sl], sl)
+        |> preload([], [:items, :group])
+        |> first()
+    Repo.one(query)
+  end
+
+
   defp add_group_search_params(query, params) do
     Enum.reduce(params, query, fn
       {"name", name}, query -> where(query, [groups: g], ilike(g.name, ^"%#{name}%"))
