@@ -14,7 +14,7 @@ defmodule MapleTreeWeb.Components.Group.ShoppingListSection do
     <div class="mt-12">
       <div class="maple-header items-end mb-4">
         <div class="flex flex-row items-center cursor-pointer" phx-click="click_section" phx-value-section="shopping_lists">
-          <.collapse_arrow id="shopp_list_collapse_icon" collapsed?={Map.get(@section_open_control, "shopping_lists", false)}></.collapse_arrow>
+          <.collapse_arrow id="shopp_list_collapse_icon" class="h-6 w-6 mr-2" collapsed?={Map.get(@section_open_control, "shopping_lists", false)}></.collapse_arrow>
           <h1 class="text-2xl select-none"><%= dgettext "default", "shopping lists" %></h1> 
         </div>
         <%= live_patch  to: Routes.new_shopping_list_path(@socket, :new, @group.id), class: "maple-header__side-button", style: MapleTreeWeb.Helpers.UI.get_custom_button_style_string(@group.color) do %>

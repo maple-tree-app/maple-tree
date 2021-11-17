@@ -8,6 +8,7 @@ defmodule MapleTree.Schemas.Groups.ShoppingItem do
     field :name, :string
     field :detail, :string
     field :quantity, :integer
+    field :is_collapsed, :boolean, default: false, virtual: true
 
     belongs_to :group, MapleTree.Schemas.Groups.Group, type: :binary_id
     belongs_to :shopping_list, MapleTree.Schemas.Groups.ShoppingList, type: :binary_id
