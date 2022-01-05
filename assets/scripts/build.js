@@ -87,7 +87,7 @@ build(path.join(__dirname, '..', "js", ENTRY_FILE), `${OUTPUT_DIR}/${OUTPUT_FILE
 build(path.join(__dirname, '..', "css", ENTRY_CSS_FILE), `${OUTPUT_DIR}/${OUTPUT_CSS_FILE}`);
 // watcher
 if (MODE === 'dev' || MODE === 'development') {
-  const watcher = watch(['../../lib/**/*.*eex*', '../js/**/*.{ts,js}', '../css/**/*.*css*']);
+  const watcher = watch(['../../lib/**/*.*eex*', '../../lib/maple_tree_web/components/**/*.ex','../js/**/*.{ts,js}', '../css/**/*.*css*']);
 	watcher.on('change', a => {
         build(path.join(__dirname, '..', "js", ENTRY_FILE), `${OUTPUT_DIR}/${OUTPUT_FILE}`);
         build(path.join(__dirname, '..', "css", ENTRY_CSS_FILE), `${OUTPUT_DIR}/${OUTPUT_CSS_FILE}`);

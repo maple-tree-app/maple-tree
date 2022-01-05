@@ -15,7 +15,8 @@ module.exports = {
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     fontFamily: {
-      'roboto': ['roboto', 'sans-serif']
+      'roboto': ['roboto', 'sans-serif'],
+      'textbook': ['Kalam', 'roboto', 'sans-serif']
     },
     extend: {
       spacing: {
@@ -41,6 +42,10 @@ module.exports = {
         'maple-orange': '#FD6E10',
         'maple-peach': '#F79093',
         'maple-success': '#4BB543',
+        
+        'maple-textbook-bg': '#fcf0ad',
+        'maple-textbook-vertical-line': '#e18ffd',
+        'maple-textbook-horizontal-line': '#689ee9',
 
         'maple-dark-toggle-bg': '#2222',
         'maple-dark-toggle-border': '#403f3f',

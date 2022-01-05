@@ -3,12 +3,12 @@ defmodule MapleTreeWeb.GroupsPageLive do
 
   alias Phoenix.View
   alias MapleTree.Groups
-  
+
   on_mount MapleTreeWeb.Helpers.InitAssigns
 
   @impl true
   def mount(_params, _session, socket) do
-    socket = socket |> get_groups
+    socket = get_groups(socket)
     {:ok, socket}
   end
 
@@ -25,7 +25,7 @@ defmodule MapleTreeWeb.GroupsPageLive do
     {:noreply, push_redirect(socket, to: Routes.groups_details_path(socket, :show, group_id))}
   end
 
-  def get_groups(socket, search_params \\ []) do
+  defp get_groups(socket, search_params \\ []) do
     groups = Groups.get_groups(socket.assigns.current_user.id, search_params)
 
     socket

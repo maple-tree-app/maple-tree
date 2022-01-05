@@ -2,12 +2,7 @@
   LOADING... 
 <% else %>
   
-<div class="p-10 max-w-7xl m-auto" id="group-idx">
-  <header class="maple-header">
-    <h1 class="maple-header__title"><%= @shopping_list.name %></h1>
-  </header>
-
-  <ShoppingListDetailsTable.main_table shopping_list={@shopping_list} />
-
+<div class="max-w-2xl m-auto" id="group-idx">
+  <.live_component module={ShoppingListDetailsTable} id="shopping_list__table" shopping_list={@shopping_list} />
 </div>
 <% end %>

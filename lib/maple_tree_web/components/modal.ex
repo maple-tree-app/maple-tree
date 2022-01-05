@@ -12,7 +12,7 @@ defmodule MapleTreeWeb.Components.Modal do
         phx-remove={hide_modal(@id)}
       >
         <div class="absolute bg-black opacity-40 inset-0 z-0"></div>
-        <div 
+        <div
           id={"content"<>@id}
           phx-click-away={assigns[:click_away]}
           class="w-full max-w-lg p-5 relative mx-auto fade-in my-auto rounded-xl shadow-lg  bg-maple-light-surface dark:bg-maple-dark-surface"

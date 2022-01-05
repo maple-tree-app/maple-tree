@@ -73,10 +73,10 @@ defmodule MapleTree.Schemas.Users.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password, :name, :username])
-    |> validate_required([:email, :password, :username])
-    |> validate_email(opts)
-    |> validate_password(opts)
+      |> cast(attrs, [:email, :password, :name, :username])
+      |> validate_required([:email, :password, :username])
+      |> validate_email(opts)
+      |> validate_password(opts)
   end
 
   defp validate_email(changeset, opts) do
